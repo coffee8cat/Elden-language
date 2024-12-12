@@ -27,40 +27,13 @@ lexeme_t* string_to_lexems(const char* s, identificator* ids_table)
     while (curr < buff_end)
     {
         printf("curr: %c(%d), num = %d\n", *curr, *curr, lexeme_num);
-        if (*curr == '(')
-        {
-            lexeme_array[lexeme_num].type = OP;
-            lexeme_array[lexeme_num].value = '(';
-            curr++;
-            lexeme_num++;
-            continue;
-        }
-        if (*curr == ')')
-        {
-            lexeme_array[lexeme_num].type = OP;
-            lexeme_array[lexeme_num].value = ')';
-            curr++;
-            lexeme_num++;
-            continue;
-        }
-        if (*curr == '$')
-        {
-            lexeme_array[lexeme_num].type = OP;
-            lexeme_array[lexeme_num].value = '$';
-            curr++;
-            lexeme_num++;
-            continue;
-        }
-        if (isdigit(*curr))
-        {
-            lexeme_array[lexeme_num].type = NUM;
-            char* end = NULL;
-            lexeme_array[lexeme_num].value = strtod(curr, &end);
-            curr = (const char*)end;
-            lexeme_num++;
-            continue;
-        }
+
         if (get_OP(lexeme_array, lexeme_num, &curr) != UNKNOWN)
+        {
+            lexeme_num++;
+            continue;
+        }
+        else if (get_NUM(lexeme_array, lexeme_num, &curr) != -1)
         {
             lexeme_num++;
             continue;
@@ -83,13 +56,18 @@ lexeme_t* string_to_lexems(const char* s, identificator* ids_table)
     return lexeme_array;
 }
 
+// TOO MANY FUNCTIONS FOR GET ... !!!
+
 enum operations get_OP(lexeme_t* lexeme_array, size_t lexeme_num, const char** curr)
 {
     assert(lexeme_array);
     assert(curr);
     assert(*curr);
 
-    #define DEF_GRAMMAR_TOKEN(name, oper)                                   \
+    #define DEF_GRAMMAR_TOKEN(name, oper)
+    #define DEF_NUMBER_TOKEN(name, oper)
+
+    #define DEF_OPERATION_TOKEN(name, oper)                                 \
     if (strncmp(*curr, name, strlen(name)) == 0)                            \
     {                                                                       \
         printf("oper: %s\n", name);                                         \
@@ -99,10 +77,39 @@ enum operations get_OP(lexeme_t* lexeme_array, size_t lexeme_num, const char** c
         return oper;                                                        \
     }                                                                       \
 
-    #include "diff_rules_DSL.h"
-    #undef DEF_OPER
+    #include "DSL_elden.h"
+    #undef DEF_GRAMMAR_TOKEN
+    #undef DEF_OPERATION_TOKEN
+    #undef DEF_NUMBER_TOKEN
 
     return UNKNOWN;
+}
+
+int get_NUM(lexeme_t* lexeme_array, size_t lexeme_num, const char** curr)
+{
+    assert(lexeme_array);
+    assert(curr);
+    assert(*curr);
+
+    #define DEF_GRAMMAR_TOKEN(name, value)
+    #define DEF_OPERATION_TOKEN(name, value)
+
+    #define DEF_NUMBER_TOKEN(name, value)                                   \
+    if (strncmp(*curr, name, strlen(name)) == 0)                            \
+    {                                                                       \
+        printf("oper: %s\n", name);                                         \
+        *curr = *curr + strlen(name);                                       \
+        lexeme_array[lexeme_num].type  = NUM;                               \
+        lexeme_array[lexeme_num].value = value;                             \
+        return (int)value;                                                  \
+    }                                                                       \
+
+    #include "DSL_elden.h"
+    #undef DEF_GRAMMAR_TOKEN
+    #undef DEF_OPERATION_TOKEN
+    #undef DEF_NUMBER_TOKEN
+
+    return -1;
 }
 
 void add_label(lexeme_t* lexeme_array, size_t lexeme_num, const char** curr, identificator* ids_table)

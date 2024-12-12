@@ -8,31 +8,23 @@
 
 #include "id_table.h"
 
-#define DEF_GRAMMAR_TOKEN(name) name,
-enum grammar_tokens
+#define DEF_OPERATION_TOKEN(name, enum_value) enum_value,
+#define DEF_NUMBER_TOKEN(name, value)
+
+enum operations
 {
     #include "DSL_elden.h"
     UNKNOWN
 }
 
-enum operations
-{
-    GRAMMAR,
-    IF,
-    WHILE,
-    ASSIGNMENT,
-    VAR_DEFINITION,
-    FUNCTION_DEFINITION,
-    RETURN,
-    FUNCTION_CALL,
-    UNKNOWN
-}
+#undef DEF_OPERATION_TOKEN
+#undef DEF_NUMBER_TOKEN
 
 enum lexeme_type {OP, ID, NUM};
 struct lexeme_t
 {
     lexeme_type type;
-    double     value;
+    size_t     value;
     lexeme_t*   left;
     lexeme_t*  right;
 };
