@@ -1,0 +1,14 @@
+<General> ::= "The fallen leaves tell us a story" (<Operation> ";")+ "The Age of Fracture has come to the Lands Between"
+<Operation> ::= <Assignment> | <if> | <while>
+<if> ::= "And when the stars will fall along with" <Expression> ", we shall see" "{" <Operation>+ "}"
+<while> ::= "{" <Operation>+ "}" "As I awaited" <Expression> "return"
+<Assignment> ::= <Var> "=" <Expression> ";"
+<Var_definition> ::= <Var> "forged"
+<function_definition> ::= "The grace of" <ID> "upon the" (<Var> ",")* "{" <Operation>+ "}"
+<function_call> ::= "Let thy grace of" <ID> "bless again upon" (<Var> ",")*
+<Expression> ::= <T> (("smelted with" | "shadowed by") <T>)*
+<T> ::= <Primary> (("enchanted with" | "fractured by") <Primary>)*
+<Primary> ::= "(" <Expression> ")" | <Number> | <Var>
+<Var> ::= "the ring of " <ID>
+<ID>  ::= [a-z]+
+<Number> ::= "rune of death" | "Starling amber" | "Lost ashes of war" | "Messmer's splinter" | "pure golden needle" | "Michella's needle"
