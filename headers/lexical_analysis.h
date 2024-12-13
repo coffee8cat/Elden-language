@@ -19,7 +19,7 @@ enum operations
 
 #undef DEF_TOKEN
 
-enum lexeme_type {OP, ID, NUM};
+enum lexeme_type {LEX_OP, ID, LEX_NUM};
 struct lexeme_t
 {
     lexeme_type type;

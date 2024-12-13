@@ -1,22 +1,5 @@
 #include "lexical_analysis.h"
 
-const char* skip_until_spaces(const char* curr)
-{
-    assert(curr);
-    while(isalpha(*curr) || isdigit(*curr))
-        curr++;
-
-    return curr;
-}
-
-const char* skip_spaces(const char* curr)
-{
-    assert(curr);
-    while(isspace(*curr))
-        curr++;
-
-    return curr;
-}
 lexeme_t* string_to_lexemes(const char* s, identificator* ids_table)
 {
     assert(s);
@@ -38,6 +21,14 @@ lexeme_t* string_to_lexemes(const char* s, identificator* ids_table)
         curr = skip_spaces(curr);
         printf("[%p] curr: %c(%d), num = %d\n", curr, *curr, *curr, lexeme_num);
 
+        if (*curr == '{' || *curr == '}' || *curr == '(' || *curr == ')' || *curr == ',' *curr == ';', *curr == '$')
+        {
+            lexeme_array[lexeme_num].type = OP;
+            lexeme_array[lexeme_num].type = *curr;
+            curr++;
+            lexeme_num++;
+            continue;
+        }
         if (get_token(lexeme_array, lexeme_num, &curr))
         {
             lexeme_num++;
@@ -100,4 +91,22 @@ void add_label(lexeme_t* lexeme_array, size_t lexeme_num, const char** curr, ide
     lexeme_array[lexeme_num].value = position;
 
     *curr = label_end;
+}
+
+const char* skip_until_spaces(const char* curr)
+{
+    assert(curr);
+    while(isalpha(*curr) || isdigit(*curr))
+        curr++;
+
+    return curr;
+}
+
+const char* skip_spaces(const char* curr)
+{
+    assert(curr);
+    while(isspace(*curr))
+        curr++;
+
+    return curr;
 }
