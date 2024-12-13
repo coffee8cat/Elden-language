@@ -27,8 +27,5 @@ syntax_func get_Return;
 syntax_func get_Expression;
 syntax_func get_T;
 syntax_func get_Primary;
-syntax_func get_Var;
-syntax_func get_ID;
-syntax_func get_Number;
 
 #endif

@@ -15,6 +15,7 @@ const size_t default_str_size = 32;
 /*
 enum operation
 {
+    BOND,
     ASSIGNMENT,
     IF,
     WHILE,
