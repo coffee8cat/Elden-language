@@ -23,7 +23,7 @@ size_t add_id(identificator* ids_table, const char* name, size_t name_length)
         ids_table[position].name      = name;
         ids_table[position].name_len  = name_length;
     }
-    dump_variables_table(ids_table);
+    dump_ids_table(ids_table);
     return position;
 }
 

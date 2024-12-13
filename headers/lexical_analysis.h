@@ -5,20 +5,19 @@
 #include <stdlib.h>
 #include <assert.h>
 #include <string.h>
+#include <ctype.h>
 
 #include "id_table.h"
 
-#define DEF_OPERATION_TOKEN(name, enum_value) enum_value,
-#define DEF_NUMBER_TOKEN(name, value)
+#define DEF_TOKEN(name, type, value) value,
 
 enum operations
 {
     #include "DSL_elden.h"
     UNKNOWN
-}
+};
 
-#undef DEF_OPERATION_TOKEN
-#undef DEF_NUMBER_TOKEN
+#undef DEF_TOKEN
 
 enum lexeme_type {OP, ID, NUM};
 struct lexeme_t
@@ -30,8 +29,9 @@ struct lexeme_t
 };
 
 const char* skip_until_spaces(const char* curr);
-lexeme_t* string_to_lexems(const char* s, identificator* ids_table);
-enum operations get_OP(lexeme_t* lexeme_array, size_t lexeme_num, const char** curr);
+const char* skip_spaces(const char* curr);
+lexeme_t* string_to_lexemes(const char* s, identificator* ids_table);
+bool get_token(lexeme_t* lexeme_array, size_t lexeme_num, const char** curr);
 void add_label(lexeme_t* lexeme_array, size_t lexeme_num, const char** curr, identificator* ids_table);
 
 #endif
