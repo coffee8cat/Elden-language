@@ -1,41 +1,28 @@
 #include "lexical_analysis.h"
 #include "id_table.h"
+#include "files_usage.h"
+#include "tree_dump.h"
+#include "syntax_analysis.h"
 
 int main()
 {
     identificator* ids_table = prepare_ids_table();
-    const char* buff = "Let thy grace of Michella shine again upon the ring of Godwin rune of death";
+
+    FILE* input = fopen("data\\factorial.txt", "r");
+    assert(input);
+    const char* buff = readfile(input);
 
     lexeme_t* cmds = string_to_lexemes(buff, ids_table);
 
-    #define DEF_TOKEN(name, type, value) #value,
-
-    const char* operations_list[] =
-    {
-        #include "DSL_elden.h"
-    };
-
-    #undef DEF_TOKEN
-
-    for (size_t i = 0; i < 10; i++)
-    {
-        if (cmds[i].type == ID)
-        {
-
-            printf("%4d: %.*s(%d)\nposition = %d\n",
-            i, ids_table[cmds[i].value].name_len, ids_table[cmds[i].value].name,
-            cmds[i].type, cmds[i].value);
-        }
-        else
-        {
-            printf("%4d: %s(%d)\nvalue = %d(%c)\n",
-            i, operations_list[cmds[i].value],
-            cmds[i].type,
-            cmds[i].value,
-            (char)cmds[i].value);
-        }
-    }
-
+    dump_lexemes_array(cmds, ids_table);
     dump_ids_table(ids_table);
+
+    size_t curr = 0;
+    FILE* html_stream = prepare_to_dump();
+    assert(html_stream);
+
+    node_t* root = get_General(cmds, &curr, html_stream);
+
+    tree_dump(root, ids_table, html_stream, root);
     return 0;
 }

@@ -11,7 +11,7 @@ lexeme_t* string_to_lexemes(const char* s, identificator* ids_table)
     }
 
     const char* curr = s;
-    const char* buff_end  = strchr(s, '\0');
+    const char* buff_end  = 1 + strchr(s, '$'); // check buff end better!!!
     printf("--- curr[%p] end[%p]\n", curr, buff_end);
     size_t lexeme_num = 0;
 
@@ -21,10 +21,11 @@ lexeme_t* string_to_lexemes(const char* s, identificator* ids_table)
         curr = skip_spaces(curr);
         printf("[%p] curr: %c(%d), num = %d\n", curr, *curr, *curr, lexeme_num);
 
-        if (*curr == '{' || *curr == '}' || *curr == '(' || *curr == ')' || *curr == ',' *curr == ';', *curr == '$')
+        if ((*curr) == '{' || (*curr) == '}' || (*curr) == '(' || (*curr) == ')' || (*curr) == ',' || (*curr) == ';' || (*curr) == '$')
         {
-            lexeme_array[lexeme_num].type = OP;
-            lexeme_array[lexeme_num].type = *curr;
+            lexeme_array[lexeme_num].type  = OP;
+            lexeme_array[lexeme_num].value = *curr;
+            printf("OP: %c\n", *curr);
             curr++;
             lexeme_num++;
             continue;
@@ -32,8 +33,6 @@ lexeme_t* string_to_lexemes(const char* s, identificator* ids_table)
         if (get_token(lexeme_array, lexeme_num, &curr))
         {
             lexeme_num++;
-            printf("");
-            printf("curr: %c(%d), num = %d\n", *curr, *curr, lexeme_num);
             continue;
         }
         else
@@ -42,7 +41,6 @@ lexeme_t* string_to_lexemes(const char* s, identificator* ids_table)
             {
                 add_label(lexeme_array, lexeme_num, &curr, ids_table);
                 lexeme_num++;
-                printf("lexeme_num: %d", lexeme_num);
                 continue;
             }
         }
@@ -63,7 +61,7 @@ bool get_token(lexeme_t* lexeme_array, size_t lexeme_num, const char** curr)
     #define DEF_TOKEN(name, data_type, data_value)                          \
     if (strncmp(*curr, name, strlen(name)) == 0)                            \
     {                                                                       \
-        printf("oper: %s\n", name);                                         \
+        printf("%s: %s\n", #data_type, name);                               \
         *curr = *curr + strlen(name);                                       \
         lexeme_array[lexeme_num].type  = data_type;                         \
         lexeme_array[lexeme_num].value = data_value;                        \
@@ -109,4 +107,45 @@ const char* skip_spaces(const char* curr)
         curr++;
 
     return curr;
+}
+
+#define DEF_TOKEN(name, type, value) #value,
+
+const char* operations_list[] =
+{
+    #include "DSL_elden.h"
+};
+
+#undef DEF_TOKEN
+
+void dump_lexemes_array(lexeme_t* cmds, identificator* ids_table)
+{
+    assert(cmds);
+    assert(ids_table);
+
+    for (size_t i = 0; i < 100; i++)
+    {
+        if (cmds[i].type == ID)
+        {
+
+            printf("%4d, ID: %.*s\nposition = %d\n",
+            i, ids_table[cmds[i].value].name_len, ids_table[cmds[i].value].name, cmds[i].value);
+        }
+        else
+        {
+            char type_name[5] = {};
+            if (cmds[i].type == NUM) { strcpy(type_name, "NUM"); }
+            if (cmds[i].type == OP)  { strcpy(type_name, "OP"); }
+            if (cmds[i].value < UNKNOWN)
+            {
+                printf("%4d, %s: %s\n",
+                i, type_name, operations_list[cmds[i].value]);
+            }
+            else
+            {
+                printf("%4d, %s: %c\n",
+                i, type_name, cmds[i].value);
+            }
+        }
+    }
 }

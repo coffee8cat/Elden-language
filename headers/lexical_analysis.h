@@ -7,11 +7,12 @@
 #include <string.h>
 #include <ctype.h>
 
+#include "elden_tree_data.h"
 #include "id_table.h"
 
 #define DEF_TOKEN(name, type, value) value,
 
-enum operations
+enum lexical_operations
 {
     #include "DSL_elden.h"
     UNKNOWN
@@ -19,19 +20,21 @@ enum operations
 
 #undef DEF_TOKEN
 
-enum lexeme_type {LEX_OP, ID, LEX_NUM};
 struct lexeme_t
 {
-    lexeme_type type;
+    node_type   type;
     size_t     value;
     lexeme_t*   left;
     lexeme_t*  right;
 };
 
-const char* skip_until_spaces(const char* curr);
-const char* skip_spaces(const char* curr);
 lexeme_t* string_to_lexemes(const char* s, identificator* ids_table);
 bool get_token(lexeme_t* lexeme_array, size_t lexeme_num, const char** curr);
 void add_label(lexeme_t* lexeme_array, size_t lexeme_num, const char** curr, identificator* ids_table);
+
+const char* skip_until_spaces(const char* curr);
+const char* skip_spaces(const char* curr);
+
+void dump_lexemes_array(lexeme_t* cmds, identificator* ids_table);
 
 #endif

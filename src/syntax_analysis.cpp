@@ -1,4 +1,5 @@
 #include "syntax_analysis.h"
+#include "DSL_comp_tree.h"
 
 #define SYNTAX_ERROR(expected)                                                                  \
     fprintf(stderr, "\n\n!!! SYNTAX ERROR !!!\n"                                                \
@@ -7,10 +8,10 @@
                     lexeme_array[*curr].value, lexeme_array[*curr].value);                      \
     assert(0)                                                                                   \
 
-// How the hell do i understand what is fucked with a NUMBER of expected lexeme???
+// How the hell do i understand what is fucked by a NUMBER of expected lexeme???
 
 
-#define CHECK_WORD(word) (lexeme_array[*curr].type == LEX_OP && lexeme_array[*curr].value == (word))
+#define CHECK_WORD(word) (lexeme_array[*curr].type == OP && lexeme_array[*curr].value == (word))
 
 #define GRAMMAR_CHECK(word)                                 \
     if (not CHECK_WORD(word)) {SYNTAX_ERROR(word);}         \
@@ -27,12 +28,15 @@ node_t* get_General (lexeme_t* lexeme_array, size_t* curr, FILE* html_stream)
     assert(curr);
     assert(html_stream);
 
-    node_t* node = get_Operation(lexeme_array, curr, html_stream);
+    node_t* node = NULL;
+    if(not (node = get_Operation(lexeme_array, curr, html_stream))) { SYNTAX_ERROR(Operation); }
+    GRAMMAR_CHECK(';');
+
     node_t* temp = NULL;
-    while (temp = get_Operation(lexeme_array, curr, html_stream))
+    while ((temp = get_Operation(lexeme_array, curr, html_stream)) != NULL)
     {
         node = _BOND(node, temp);
-        CHECK_GRAMMAR(';');
+        GRAMMAR_CHECK(';');
     }
 
     return node;
@@ -45,20 +49,20 @@ node_t* get_Operation(lexeme_t* lexeme_array, size_t* curr, FILE* html_stream)
     assert(html_stream);
 
     node_t* node = NULL;
-    if      ((node = get_Assignment(lexeme_array, curr, html_stream))           != NULL) { continue; }
-    else if ((node = get_If(lexeme_array, curr, html_stream))                   != NULL) { continue; }
-    else if ((node = get_While(lexeme_array, curr, html_stream))                != NULL) { continue; }
-    else if ((node = get_Var_Definition(lexeme_array, curr, html_stream))       != NULL) { continue; }
-    else if ((node = get_Function_Definition(lexeme_array, curr, html_stream))  != NULL) { continue; }
-    else if ((node = get_Function_Call(lexeme_array, curr, html_stream))        != NULL) { continue; }
-    else if ((node = get_Return(lexeme_array, curr, html_stream))               != NULL) { continue; }
+    if      ((node = get_Assignment(lexeme_array, curr, html_stream))           != NULL) { return node; }
+    else if ((node = get_IF(lexeme_array, curr, html_stream))                   != NULL) { return node; }
+    else if ((node = get_While(lexeme_array, curr, html_stream))                != NULL) { return node; }
+    else if ((node = get_Var_Definition(lexeme_array, curr, html_stream))       != NULL) { return node; }
+    else if ((node = get_Function_Definition(lexeme_array, curr, html_stream))  != NULL) { return node; }
+    else if ((node = get_Function_Call(lexeme_array, curr, html_stream))        != NULL) { return node; }
+    else if ((node = get_Return(lexeme_array, curr, html_stream))               != NULL) { return node; }
+    else if ((node = get_Scan(lexeme_array, curr, html_stream))                 != NULL) { return node; }
+    else if ((node = get_Print(lexeme_array, curr, html_stream))                != NULL) { return node; }
 
-    else { return NULL; }
-    GRAMMAR_CHECK(';');
-
-    return node;
+    return NULL;
 }
 
+//<Assignment> ::= "And now" <space> <Var> <space> "is" <space> <Expression> ";"
 node_t* get_Assignment(lexeme_t* lexeme_array, size_t* curr, FILE* html_stream)
 {
     assert(lexeme_array);
@@ -68,9 +72,10 @@ node_t* get_Assignment(lexeme_t* lexeme_array, size_t* curr, FILE* html_stream)
     node_t* var  = NULL;
     node_t* expression = NULL;
 
-    if (var = get_Var(lexeme_array, curr, html_stream) == NULL) { return NULL; }
-    GRAMMAR_CHECK(ASSIGNMENT_GRAMMAR);
-    if (! (expression = get_Expression(lexeme_array, curr, html_stream))) { SYNTAX_ERROR(Expression); }
+    SOFT_GRAMMAR_CHECK(ASSIGNMENT_PREFIX);
+    if ((var = get_Var(lexeme_array, curr, html_stream)) == NULL) { return NULL; }
+    GRAMMAR_CHECK(ASSIGNMENT_INFIX);
+    if (not (expression = get_Expression(lexeme_array, curr, html_stream))) { SYNTAX_ERROR(Expression); }
 
     return _ASSIGNMENT(var, expression);
 }
@@ -87,17 +92,19 @@ node_t* get_IF(lexeme_t* lexeme_array, size_t* curr, FILE* html_stream)
 
     SOFT_GRAMMAR_CHECK(IF_PREFIX);
 
-    if (condition = get_Expression(lexeme_array, curr, html_stream)) { SYNTAX_ERROR(Expression); }
+    if ((condition = get_Expression(lexeme_array, curr, html_stream)) == NULL) { SYNTAX_ERROR(Expression); }
     GRAMMAR_CHECK(',');
     GRAMMAR_CHECK(IF_POSTFIX);
     GRAMMAR_CHECK('{');
 
     action = get_Operation(lexeme_array, curr, html_stream);
+    GRAMMAR_CHECK(';');
+
     node_t* temp = NULL;
-    while (temp = get_Operation(lexeme_array, curr, html_stream))
+    while ((temp = get_Operation(lexeme_array, curr, html_stream)) != NULL)
     {
         action = _BOND(action, temp);
-        CHECK_GRAMMAR(';');
+        GRAMMAR_CHECK(';');
     }
 
     GRAMMAR_CHECK('}');
@@ -113,15 +120,18 @@ node_t* get_While(lexeme_t* lexeme_array, size_t* curr, FILE* html_stream)
     assert(html_stream);
 
     node_t* condition = NULL;
+    node_t* action    = NULL;
 
     SOFT_GRAMMAR_CHECK('{');
 
-    node_t* action = get_Operation(lexeme_array, curr, html_stream);
+    if ((action = get_Operation(lexeme_array, curr, html_stream)) == NULL) { SYNTAX_ERROR(Operation); }
+    GRAMMAR_CHECK(';');
+
     node_t* temp = NULL;
-    while (temp = get_Operation(lexeme_array, curr, html_stream))
+    while ((temp = get_Operation(lexeme_array, curr, html_stream)) != NULL)
     {
         action = _BOND(action, temp);
-        CHECK_GRAMMAR(';');
+        GRAMMAR_CHECK(';');
     }
 
     GRAMMAR_CHECK('}');
@@ -141,7 +151,7 @@ node_t* get_Var_Definition(lexeme_t* lexeme_array, size_t* curr, FILE* html_stre
     if ((var = get_Var(lexeme_array, curr, html_stream)) == NULL) { return NULL; }
     GRAMMAR_CHECK(VAR_DEFINITION_POSTFIX);
 
-    return var;
+    return _VAR_DEFINITION(var);
 }
 
 //<Function_definition> ::= "The grace of" <space> <ID> <space> "upon the" <Var> ("," <Var>)* "{" <space> (<Operation> ";")+ <space> "}"
@@ -151,11 +161,11 @@ node_t* get_Function_Definition(lexeme_t* lexeme_array, size_t* curr, FILE* html
     assert(curr);
     assert(html_stream);
 
-    node_t* id = NULL;
     SOFT_GRAMMAR_CHECK(FUNCTION_DEFINITION_PREFIX);
 
     if (not (lexeme_array[*curr].type == ID)) { SYNTAX_ERROR(ID); }
-    id = _ID(lexeme_array[*curr].value);
+    node_t* id = _ID(lexeme_array[*curr].value);
+    (*curr)++;
 
     GRAMMAR_CHECK(FUNCTION_DEFINITION_POSTFIX);
 
@@ -176,11 +186,11 @@ node_t* get_Function_Call(lexeme_t* lexeme_array, size_t* curr, FILE* html_strea
     assert(curr);
     assert(html_stream);
 
-    node_t* id = NULL;
     SOFT_GRAMMAR_CHECK(FUNCTION_CALL_PREFIX);
 
     if (not (lexeme_array[*curr].type == ID)) { SYNTAX_ERROR(ID); }
-    id = _ID(lexeme_array[*curr].value);
+    node_t* id = _ID(lexeme_array[*curr].value);
+    (*curr)++;
 
     GRAMMAR_CHECK(FUNCTION_CALL_POSTFIX);
 
@@ -207,6 +217,51 @@ node_t* get_Return(lexeme_t* lexeme_array, size_t* curr, FILE* html_stream)
     return _RETURN(return_expression);
 }
 
+//<Scan>  ::= "In the Lands Between we found" <Var>
+node_t* get_Scan(lexeme_t* lexeme_array, size_t* curr, FILE* html_stream)
+{
+    assert(lexeme_array);
+    assert(curr);
+    assert(html_stream);
+
+    SOFT_GRAMMAR_CHECK(SCAN_PREFIX);
+
+    node_t* var = get_Var(lexeme_array, curr, html_stream);
+    if (var == NULL) { SYNTAX_ERROR(var); }
+
+    return _ID(lexeme_array[*curr].value);
+}
+
+//<Print> ::= "In the age of Duskborn" <space> ( <Var> | <Expression> ) <space> "will thunder in the darkest night"
+node_t* get_Print(lexeme_t* lexeme_array, size_t* curr, FILE* html_stream)
+{
+    assert(lexeme_array);
+    assert(curr);
+    assert(html_stream);
+
+    SOFT_GRAMMAR_CHECK(PRINT_PREFIX);
+
+    if (not (lexeme_array[*curr].type == ID)) { SYNTAX_ERROR(ID); }
+    node_t* id = _ID(lexeme_array[*curr].value);
+
+    GRAMMAR_CHECK(PRINT_POSTFIX);
+    return id;
+}
+
+//<Var> ::= "the ring of " <ID>
+node_t* get_Var(lexeme_t* lexeme_array, size_t* curr, FILE* html_stream)
+{
+    assert(lexeme_array);
+    assert(curr);
+    assert(html_stream);
+
+    SOFT_GRAMMAR_CHECK(VAR_USAGE_PREFIX);
+
+    if (not (lexeme_array[*curr].type == ID)) { SYNTAX_ERROR(ID); }
+    (*curr)++;
+    return _ID(lexeme_array[*curr].value);
+}
+
 //<Expression> ::= <space> <T> <space> (("smelted with" | "shadowed by") <space> <T>)*
 node_t* get_Expression(lexeme_t* lexeme_array, size_t* curr, FILE* html_stream)
 {
@@ -216,14 +271,14 @@ node_t* get_Expression(lexeme_t* lexeme_array, size_t* curr, FILE* html_stream)
 
     node_t* node = get_T(lexeme_array, curr, html_stream);
 
-    while(lexeme_array[*curr].value == ADD || lexeme_array[*curr].value == SUB)
+    while(lexeme_array[*curr].value == ADD_LEX || lexeme_array[*curr].value == SUB_LEX)
     {
         int op = lexeme_array[*curr].value;
         (*curr)++;
         node_t* node2 = get_T(lexeme_array, curr, html_stream);
 
-        if (op == ADD) { node = _ADD(node, node2); }
-        else           { node = _SUB(node, node2); }
+        if (op == ADD_LEX)  { node = _ADD(node, node2); }
+        else                { node = _SUB(node, node2); }
     }
 
     return node;
@@ -237,14 +292,14 @@ node_t* get_T(lexeme_t* lexeme_array, size_t* curr, FILE* html_stream)
     assert(html_stream);
 
     node_t* node = get_Primary(lexeme_array, curr, html_stream);
-    while(lexeme_array[*curr].value == MUL || lexeme_array[*curr].value == DIV)
+    while(lexeme_array[*curr].value == MUL_LEX || lexeme_array[*curr].value == DIV_LEX)
     {
         char op = (char)lexeme_array[*curr].value;
         (*curr)++;
         node_t* node2 = get_Primary(lexeme_array, curr, html_stream);
 
-        if (op == MUL) { node = _MUL(node, node2); }
-        else           { node = _DIV(node, node2); }
+        if (op == MUL_LEX)  { node = _MUL(node, node2); }
+        else                { node = _DIV(node, node2); }
     }
     return node;
 }
@@ -258,17 +313,18 @@ node_t* get_Primary(lexeme_t* lexeme_array, size_t* curr, FILE* html_stream)
 
     switch(lexeme_array[*curr].type)
     {
-        case LEX_OP:
+        case OP:
         {
             if ((char)lexeme_array[*curr].value == '(')
             {
                 (*curr)++;
-                GRAMMAR_DEBUG_PRINT();
-                node_t* node = GetE(lexeme_array, curr, html_stream);
-                GRAMMAR_DEBUG_PRINT();
-                if ((char)lexeme_array[*curr].value != ')') { assert(0); }
+                //GRAMMAR_DEBUG_PRINT();
+                node_t* node = get_Expression(lexeme_array, curr, html_stream);
+                //GRAMMAR_DEBUG_PRINT();
+
+                GRAMMAR_CHECK(')');
                 (*curr)++;
-                GRAMMAR_DEBUG_PRINT();
+                //GRAMMAR_DEBUG_PRINT();
                 return node;
             }
             else
@@ -282,10 +338,10 @@ node_t* get_Primary(lexeme_t* lexeme_array, size_t* curr, FILE* html_stream)
                 */
             }
         }
-        case ID:      { return _VAR(lexeme_array[(*curr)++].value); }
-        case LEX_NUM: { return _NUM(lexeme_array[(*curr)++].value); }
+        case ID:  { return _ID(lexeme_array[(*curr)++].value); }
+        case NUM: { return _NUM(lexeme_array[(*curr)++].value); }
 
-        default: SYNTAX_ERROR(LEX_OP | ID | LEX_NUM);
+        default: SYNTAX_ERROR(OP | ID | NUM);
                  //fprintf(stderr, "ERROR: Invalid lexeme type: %d\n", lexeme_array[*curr].type);
                  break;
     }

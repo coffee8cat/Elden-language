@@ -46,15 +46,14 @@ void dump_ids_table(identificator* ids_table)
 {
     assert(ids_table);
 
-    printf("---VARIABLES TABLE DUMP---\n");
+    printf("\n---VARIABLES TABLE DUMP---\n");
     size_t i = 0;
-    printf("var in %p\n", &ids_table[i]);
     while (ids_table[i].name && i < max_num_of_ids)
     {
+        printf("var in %p\n", &ids_table[i]);
         printf ("id%d: name: [%.*s] len = %d value: [%lg]\n",
                 i, ids_table[i].name_len, ids_table[i].name, ids_table[i].name_len, ids_table[i].value);
         i++;
-        printf("var in %p\n", &ids_table[i]);
     }
-    printf("\n--- END ---\n");
+    printf("\n--- DUMP END ---\n\n");
 }
