@@ -51,8 +51,8 @@ void dump_ids_table(identificator* ids_table)
     while (ids_table[i].name && i < max_num_of_ids)
     {
         printf("var in %p\n", &ids_table[i]);
-        printf ("id%d: name: [%.*s] len = %d value: [%lg]\n",
-                i, ids_table[i].name_len, ids_table[i].name, ids_table[i].name_len, ids_table[i].value);
+        printf ("id = %d: name: [%.*s] len = %d\n",
+                i, ids_table[i].name_len, ids_table[i].name, ids_table[i].name_len);
         i++;
     }
     printf("\n--- DUMP END ---\n\n");

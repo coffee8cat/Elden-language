@@ -11,8 +11,9 @@
 #include "comp_tree.h"
 #include "lexical_analysis.h"
 #include "id_table.h"
+#include "tree_dump.h"
 
-typedef node_t* (syntax_func)(lexeme_t*, size_t*, FILE*);
+typedef node_t* (syntax_func)(lexeme_t*, identificator*, size_t*, FILE*);
 syntax_func get_General;
 syntax_func get_Operation;
 

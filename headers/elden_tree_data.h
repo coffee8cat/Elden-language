@@ -19,8 +19,12 @@ enum operation
 
     VAR_DEFINITION,
     FUNCTION_DEFINITION,
+    FUNCTION_SPECIFICATION,
     FUNCTION_CALL,
     RETURN,
+
+    SCAN,
+    PRINT,
 
     ADD,
     SUB,

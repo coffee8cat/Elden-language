@@ -3,10 +3,11 @@
 #define _IF(a, b)    new_node(OP, OP_VALUE(IF),    a, b)
 #define _WHILE(a, b) new_node(OP, OP_VALUE(WHILE), a, b)
 
-#define _ASSIGNMENT(a, b)           new_node(OP, OP_VALUE(ASSIGNMENT),          a, b)
-#define _VAR_DEFINITION(a)          new_node(OP, OP_VALUE(VAR_DEFINITION),      a, NULL)
-#define _FUNCTION_DEFINITION(a, b)  new_node(OP, OP_VALUE(FUNCTION_DEFINITION), a, b)
-#define _FUNCTION_CALL(a, b)        new_node(OP, OP_VALUE(FUNCTION_CALL),       a, b)
+#define _ASSIGNMENT(a, b)               new_node(OP, OP_VALUE(ASSIGNMENT),              a, b)
+#define _VAR_DEFINITION(a)              new_node(OP, OP_VALUE(VAR_DEFINITION),          a, NULL)
+#define _FUNCTION_DEFINITION(a, b)      new_node(OP, OP_VALUE(FUNCTION_DEFINITION),     a, b)
+#define _FUNCTION_SPECIFICATION(a, b)   new_node(OP, OP_VALUE(FUNCTION_SPECIFICATION),  a, b)
+#define _FUNCTION_CALL(a, b)            new_node(OP, OP_VALUE(FUNCTION_CALL),           a, b)
 
 #define _RETURN(a) new_node(OP, OP_VALUE(RETURN), a, NULL)
 #define _PRINT(a)  new_node(OP, OP_VALUE(PRINT),  a, NULL)

@@ -80,10 +80,14 @@ const char* dump_operations_list[] =
     "IF",
     "WHILE",
 
-    "VAR_DEFINITION",
-    "FUNCTION_DEFINITION",
+    "VAR_DEF",
+    "FUNC_DEF",
+    "SPECIFICATION",
     "FUNCTION_CALL",
     "RETURN",
+
+    "SCAN",
+    "PRINT",
 
     "ADD",
     "SUB",

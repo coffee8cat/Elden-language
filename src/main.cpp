@@ -21,8 +21,9 @@ int main()
     FILE* html_stream = prepare_to_dump();
     assert(html_stream);
 
-    node_t* root = get_General(cmds, &curr, html_stream);
+    node_t* root = get_General(cmds, ids_table, &curr, html_stream);
 
+    //написать функцию распечатки синтаксического дерева
     tree_dump(root, ids_table, html_stream, root);
     return 0;
 }
