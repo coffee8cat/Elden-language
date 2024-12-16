@@ -26,6 +26,9 @@ elden_to_asm_translation_func translate_Return;
 elden_to_asm_translation_func translate_Function_Call;
 elden_to_asm_translation_func push_call_params;
 
+elden_to_asm_translation_func translate_Print;
+elden_to_asm_translation_func translate_Scan;
+
 elden_to_asm_translation_func translate_Expression;
 elden_to_asm_translation_func translate_push_node_value;
 elden_to_asm_translation_func translate_pop_var;

@@ -34,5 +34,9 @@ int main()
     printf("number of global vars: %d\n", global_vars_counter);
     dump_ids_table(ids_table);
 
+    FILE* fact_fp = fopen("data\\fact.txt", "w");
+
+    translate_OP(root, ids_table, fact_fp);
+
     return 0;
 }

@@ -1,0 +1,68 @@
+ELEM_IN
+
+; Assignment
+PUSH 1.000000
+POP [1]
+
+; Assignment End
+;CALL
+PUSH [0]
+
+CALL FACTORIAL:
+PUSH AX
+; CALL END
+
+; FUNCTION DEFINITION
+FACTORIAL:
+
+PUSH BX
+POP [BX+0]
+PUSH 2
+PUSH BX
+ADD
+POP BX
+
+; IF
+; condition
+PUSH [BX+0]
+
+; test condition
+PUSH 0
+JA endif0:
+; body
+
+; RETURN
+PUSH 1.000000
+POP AX
+POP BX
+RTN
+
+endif0:
+
+; Assignment
+PUSH [BX+0]
+PUSH 1.000000
+
+SUB
+POP [BX+0]
+
+; Assignment End
+
+; Assignment
+PUSH [0]
+PUSH [BX+0]
+;CALL
+PUSH [BX+0]
+
+CALL FACTORIAL:
+PUSH AX
+; CALL END
+POP [BX+1]
+
+; Assignment End
+
+; RETURN
+PUSH [BX+1]
+POP AX
+POP BX
+RTN
