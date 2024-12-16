@@ -216,7 +216,7 @@ node_t* get_Function_Call(lexeme_t* lexeme_array, identificator* ids_table, size
     {
         params = _BOND(params, temp);
     }
-    return _FUNCTION_CALL(params, temp);
+    return _FUNCTION_CALL(id, params);
 }
 
 //<Return> ::= "Bless thy tarnished with" <space> <Expression>
@@ -318,7 +318,7 @@ node_t* get_T(lexeme_t* lexeme_array, identificator* ids_table, size_t* curr, FI
     return node;
 }
 
-//<Primary> ::= "(" <Expression> ")" | <Number> | <Var>
+//<Primary> ::= "(" <Expression> ")" | <Number> | <Var> | <Call>
 node_t* get_Primary(lexeme_t* lexeme_array, identificator* ids_table, size_t* curr, FILE* html_stream)
 {
     assert(lexeme_array);

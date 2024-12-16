@@ -21,6 +21,7 @@ struct identificator
 
     // for functions
     size_t      num_of_params;
+    size_t      BX_shift;
     bool        is_defined;
 };
 

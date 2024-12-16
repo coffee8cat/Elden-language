@@ -3,6 +3,8 @@
 #include "files_usage.h"
 #include "tree_dump.h"
 #include "syntax_analysis.h"
+#include "middleend.h"
+#include "backend.h"
 
 int main()
 {
@@ -25,5 +27,12 @@ int main()
 
     //написать функцию распечатки синтаксического дерева
     tree_dump(root, ids_table, html_stream, root);
+
+    size_t global_vars_counter = 0;
+    prepare_to_compile(root, ids_table, &global_vars_counter);
+
+    printf("number of global vars: %d\n", global_vars_counter);
+    dump_ids_table(ids_table);
+
     return 0;
 }
