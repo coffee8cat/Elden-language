@@ -73,28 +73,13 @@ int make_dot_file(node_t* root, identificator* ids_table, FILE* fp, node_t* curr
     return 0;
 }
 
+#define DEF_OPERATION(enum_name, dump_name) dump_name,
+
 const char* dump_operations_list[] =
 {
-    "BOND",
-    "ASSIGNMENT",
-    "IF",
-    "WHILE",
-
-    "VAR_DEF",
-    "FUNC_DEF",
-    "SPECIFICATION",
-    "FUNCTION_CALL",
-    "RETURN",
-
-    "SCAN",
-    "PRINT",
-
-    "ADD",
-    "SUB",
-    "MUL",
-    "DIV",
-    "SQRT"
+    #include "DSL_elden_operations.h"
 };
+#undef DEF_OPERATION
 
 int write_node_info(node_t* node, identificator* ids_table, FILE* fp, node_t* curr)
 {

@@ -9,30 +9,14 @@
 #include <math.h>
 #include <ctype.h>
 
+#define DEF_OPERATION(enum_name, dump_name) enum_name,
 // THIS MUST BE IN DSL!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 enum operation
 {
-    BOND,
-    ASSIGNMENT,
-    IF,
-    WHILE,
-
-    VAR_DEFINITION,
-    FUNCTION_DEFINITION,
-    FUNCTION_SPECIFICATION,
-    FUNCTION_CALL,
-    RETURN,
-
-    SCAN,
-    PRINT,
-
-    ADD,
-    SUB,
-    MUL,
-    DIV,
-    SQRT,
+    #include "DSL_elden_operations.h"
     END
 };
+#undef DEF_OPERATION
 
 enum node_type {OP, NUM, ID};
 

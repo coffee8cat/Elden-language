@@ -210,15 +210,13 @@ node_t* get_Function_Call(lexeme_t* lexeme_array, identificator* ids_table, size
     (*curr)++;
 
     GRAMMAR_CHECK(FUNCTION_CALL_POSTFIX);
-
-    node_t* params  = get_Var(lexeme_array, ids_table, curr, html_stream);
-    node_t* temp = params -> right;
+    node_t* params = get_Var(lexeme_array, ids_table, curr, html_stream);
+    node_t* temp = NULL;
     while (CHECK_WORD(',') && (temp = get_Var(lexeme_array, ids_table, curr, html_stream)))
     {
-        temp = temp -> right;
+        params = _BOND(params, temp);
     }
-
-    return _FUNCTION_CALL(id, params);
+    return _FUNCTION_CALL(params, temp);
 }
 
 //<Return> ::= "Bless thy tarnished with" <space> <Expression>
@@ -344,3 +342,9 @@ node_t* get_Primary(lexeme_t* lexeme_array, identificator* ids_table, size_t* cu
 
     return NULL;
 }
+
+#undef SYNTAX_ERROR
+#undef CHECK_WORD
+#undef GRAMMAR_CHECK
+#undef SOFT_GRAMMAR_CHECK
+

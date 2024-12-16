@@ -33,9 +33,9 @@ DEF_TOKEN("Let thy grace of", OP, FUNCTION_CALL_PREFIX)
 DEF_TOKEN("shine again upon", OP, FUNCTION_CALL_POSTFIX)
 
 //== MATH OPERATIONS ===================================================================//
-DEF_TOKEN("smelted with",   OP, ADD_LEX)
-DEF_TOKEN("shadowed by",    OP, SUB_LEX)
-DEF_TOKEN("enchanted with", OP, MUL_LEX)
-DEF_TOKEN("fractured by",   OP, DIV_LEX)
-DEF_TOKEN("faded",          OP, SQRT_LEX)
+DEF_TOKEN("smelted with",                   OP, ADD_LEX)
+DEF_TOKEN("shadowed by",                    OP, SUB_LEX)
+DEF_TOKEN("enchanted with",                 OP, MUL_LEX)
+DEF_TOKEN("fractured by",                   OP, DIV_LEX)
+DEF_TOKEN("arised with rune arc made from", OP, POW_LEX)
 

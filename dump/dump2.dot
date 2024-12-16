@@ -2,89 +2,89 @@ digraph
 {
     rankdir=TP
 
-        node00B7DAE8[shape=record,style="rounded,filled",fillcolor="#BF62FC",label="{ ptr: 00B7DAE8 | type: OP | value: BOND| { left: 00B7A100 | right: 00B7D9A8 }}"];
-    node00B7DAE8 -> node00B7A100[color="#0855F0"]
-    node00B7A100[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00B7A100 | type: OP | value: BOND| { left: 00B7A060 | right: 00B7A0D8 }}"];
-    node00B7A100 -> node00B7A060[color="#0855F0"]
-    node00B7A060[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00B7A060 | type: OP | value: BOND| { left: 00B79FC0 | right: 00B7A038 }}"];
-    node00B7A060 -> node00B79FC0[color="#0855F0"]
-    node00B79FC0[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00B79FC0 | type: OP | value: BOND| { left: 00B79F48 | right: 00B79F98 }}"];
-    node00B79FC0 -> node00B79F48[color="#0855F0"]
-    node00B79F48[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00B79F48 | type: OP | value: BOND| { left: 00B79ED0 | right: 00B79F20 }}"];
-    node00B79F48 -> node00B79ED0[color="#0855F0"]
-    node00B79ED0[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00B79ED0 | type: OP | value: VAR_DEF| { left: 00B79EA8 | right: 00000000 }}"];
-    node00B79ED0 -> node00B79EA8[color="#0855F0"]
-    node00B79EA8[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00B79EA8 | type: ID | value: Michella| { left: 00000000 | right: 00000000 }}"];
-    node00B79F48 -> node00B79F20[color="#0855F0"]
-    node00B79F20[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00B79F20 | type: OP | value: SCAN| { left: 00B79EF8 | right: 00000000 }}"];
-    node00B79F20 -> node00B79EF8[color="#0855F0"]
-    node00B79EF8[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00B79EF8 | type: ID | value: Michella| { left: 00000000 | right: 00000000 }}"];
-    node00B79FC0 -> node00B79F98[color="#0855F0"]
-    node00B79F98[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00B79F98 | type: OP | value: VAR_DEF| { left: 00B79F70 | right: 00000000 }}"];
-    node00B79F98 -> node00B79F70[color="#0855F0"]
-    node00B79F70[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00B79F70 | type: ID | value: Maliketh| { left: 00000000 | right: 00000000 }}"];
-    node00B7A060 -> node00B7A038[color="#0855F0"]
-    node00B7A038[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00B7A038 | type: OP | value: ASSIGNMENT| { left: 00B79FE8 | right: 00B7A010 }}"];
-    node00B7A038 -> node00B79FE8[color="#0855F0"]
-    node00B79FE8[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00B79FE8 | type: ID | value: Maliketh| { left: 00000000 | right: 00000000 }}"];
-    node00B7A038 -> node00B7A010[color="#0855F0"]
-    node00B7A010[shape=record,style="rounded,filled",fillcolor="#ECC51B",label="{ ptr: 00B7A010 | type: NUM | value: 1.000000| { left: 00000000 | right: 00000000 }}"];
-    node00B7A100 -> node00B7A0D8[color="#0855F0"]
-    node00B7A0D8[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00B7A0D8 | type: OP | value: FUNCTION_CALL| { left: 00B7A088 | right: 00B7A0B0 }}"];
-    node00B7A0D8 -> node00B7A088[color="#0855F0"]
-    node00B7A088[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00B7A088 | type: ID | value: FACTORIAL| { left: 00000000 | right: 00000000 }}"];
-    node00B7A0D8 -> node00B7A0B0[color="#0855F0"]
-    node00B7A0B0[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00B7A0B0 | type: ID | value: Michella| { left: 00000000 | right: 00000000 }}"];
-    node00B7DAE8 -> node00B7D9A8[color="#0855F0"]
-    node00B7D9A8[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00B7D9A8 | type: OP | value: FUNC_DEF| { left: 00B7D170 | right: 00B7D0F8 }}"];
-    node00B7D9A8 -> node00B7D170[color="#0855F0"]
-    node00B7D170[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00B7D170 | type: OP | value: SPECIFICATION| { left: 00B7A128 | right: 00B704B0 }}"];
-    node00B7D170 -> node00B7A128[color="#0855F0"]
-    node00B7A128[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00B7A128 | type: ID | value: FACTORIAL| { left: 00000000 | right: 00000000 }}"];
-    node00B7D170 -> node00B704B0[color="#0855F0"]
-    node00B704B0[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00B704B0 | type: ID | value: Tarnished| { left: 00000000 | right: 00000000 }}"];
-    node00B7D9A8 -> node00B7D0F8[color="#0855F0"]
-    node00B7D0F8[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00B7D0F8 | type: OP | value: BOND| { left: 00B7D3A0 | right: 00B7D1E8 }}"];
-    node00B7D0F8 -> node00B7D3A0[color="#0855F0"]
-    node00B7D3A0[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00B7D3A0 | type: OP | value: BOND| { left: 00B7D1C0 | right: 00B7D418 }}"];
-    node00B7D3A0 -> node00B7D1C0[color="#0855F0"]
-    node00B7D1C0[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00B7D1C0 | type: OP | value: BOND| { left: 00B7D120 | right: 00B7D210 }}"];
-    node00B7D1C0 -> node00B7D120[color="#0855F0"]
-    node00B7D120[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00B7D120 | type: OP | value: BOND| { left: 00B7D0D0 | right: 00B7D3F0 }}"];
-    node00B7D120 -> node00B7D0D0[color="#0855F0"]
-    node00B7D0D0[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00B7D0D0 | type: OP | value: IF| { left: 00B7D260 | right: 00B7D328 }}"];
-    node00B7D0D0 -> node00B7D260[color="#0855F0"]
-    node00B7D260[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00B7D260 | type: ID | value: Tarnished| { left: 00000000 | right: 00000000 }}"];
-    node00B7D0D0 -> node00B7D328[color="#0855F0"]
-    node00B7D328[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00B7D328 | type: OP | value: RETURN| { left: 00B7D148 | right: 00000000 }}"];
-    node00B7D328 -> node00B7D148[color="#0855F0"]
-    node00B7D148[shape=record,style="rounded,filled",fillcolor="#ECC51B",label="{ ptr: 00B7D148 | type: NUM | value: 1.000000| { left: 00000000 | right: 00000000 }}"];
-    node00B7D120 -> node00B7D3F0[color="#0855F0"]
-    node00B7D3F0[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00B7D3F0 | type: OP | value: VAR_DEF| { left: 00B7D198 | right: 00000000 }}"];
-    node00B7D3F0 -> node00B7D198[color="#0855F0"]
-    node00B7D198[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00B7D198 | type: ID | value: Malenia| { left: 00000000 | right: 00000000 }}"];
-    node00B7D1C0 -> node00B7D210[color="#0855F0"]
-    node00B7D210[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00B7D210 | type: OP | value: ASSIGNMENT| { left: 00B7D300 | right: 00B7D440 }}"];
-    node00B7D210 -> node00B7D300[color="#0855F0"]
-    node00B7D300[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00B7D300 | type: ID | value: Tarnished| { left: 00000000 | right: 00000000 }}"];
-    node00B7D210 -> node00B7D440[color="#0855F0"]
-    node00B7D440[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00B7D440 | type: OP | value: SUB| { left: 00B7D288 | right: 00B7D238 }}"];
-    node00B7D440 -> node00B7D288[color="#0855F0"]
-    node00B7D288[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00B7D288 | type: ID | value: Tarnished| { left: 00000000 | right: 00000000 }}"];
-    node00B7D440 -> node00B7D238[color="#0855F0"]
-    node00B7D238[shape=record,style="rounded,filled",fillcolor="#ECC51B",label="{ ptr: 00B7D238 | type: NUM | value: 1.000000| { left: 00000000 | right: 00000000 }}"];
-    node00B7D3A0 -> node00B7D418[color="#0855F0"]
-    node00B7D418[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00B7D418 | type: OP | value: ASSIGNMENT| { left: 00B7D2B0 | right: 00B7D0A8 }}"];
-    node00B7D418 -> node00B7D2B0[color="#0855F0"]
-    node00B7D2B0[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00B7D2B0 | type: ID | value: Malenia| { left: 00000000 | right: 00000000 }}"];
-    node00B7D418 -> node00B7D0A8[color="#0855F0"]
-    node00B7D0A8[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00B7D0A8 | type: OP | value: FUNCTION_CALL| { left: 00B7D350 | right: 00B7D2D8 }}"];
-    node00B7D0A8 -> node00B7D350[color="#0855F0"]
-    node00B7D350[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00B7D350 | type: ID | value: FACTORIAL| { left: 00000000 | right: 00000000 }}"];
-    node00B7D0A8 -> node00B7D2D8[color="#0855F0"]
-    node00B7D2D8[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00B7D2D8 | type: ID | value: Tarnished| { left: 00000000 | right: 00000000 }}"];
-    node00B7D0F8 -> node00B7D1E8[color="#0855F0"]
-    node00B7D1E8[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00B7D1E8 | type: OP | value: RETURN| { left: 00B7D378 | right: 00000000 }}"];
-    node00B7D1E8 -> node00B7D378[color="#0855F0"]
-    node00B7D378[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00B7D378 | type: ID | value: Malenia| { left: 00000000 | right: 00000000 }}"];
+        node00C1DC00[shape=record,style="rounded,filled",fillcolor="#BF62FC",label="{ ptr: 00C1DC00 | type: OP | value: ;| { left: 00C1A100 | right: 00C1DBD8 }}"];
+    node00C1DC00 -> node00C1A100[color="#0855F0"]
+    node00C1A100[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00C1A100 | type: OP | value: ;| { left: 00C1A060 | right: 00C1A0D8 }}"];
+    node00C1A100 -> node00C1A060[color="#0855F0"]
+    node00C1A060[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00C1A060 | type: OP | value: ;| { left: 00C19FC0 | right: 00C1A038 }}"];
+    node00C1A060 -> node00C19FC0[color="#0855F0"]
+    node00C19FC0[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00C19FC0 | type: OP | value: ;| { left: 00C19F48 | right: 00C19F98 }}"];
+    node00C19FC0 -> node00C19F48[color="#0855F0"]
+    node00C19F48[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00C19F48 | type: OP | value: ;| { left: 00C19ED0 | right: 00C19F20 }}"];
+    node00C19F48 -> node00C19ED0[color="#0855F0"]
+    node00C19ED0[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00C19ED0 | type: OP | value: var_def| { left: 00C19EA8 | right: 00000000 }}"];
+    node00C19ED0 -> node00C19EA8[color="#0855F0"]
+    node00C19EA8[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00C19EA8 | type: ID | value: Michella| { left: 00000000 | right: 00000000 }}"];
+    node00C19F48 -> node00C19F20[color="#0855F0"]
+    node00C19F20[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00C19F20 | type: OP | value: scan| { left: 00C19EF8 | right: 00000000 }}"];
+    node00C19F20 -> node00C19EF8[color="#0855F0"]
+    node00C19EF8[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00C19EF8 | type: ID | value: Michella| { left: 00000000 | right: 00000000 }}"];
+    node00C19FC0 -> node00C19F98[color="#0855F0"]
+    node00C19F98[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00C19F98 | type: OP | value: var_def| { left: 00C19F70 | right: 00000000 }}"];
+    node00C19F98 -> node00C19F70[color="#0855F0"]
+    node00C19F70[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00C19F70 | type: ID | value: Maliketh| { left: 00000000 | right: 00000000 }}"];
+    node00C1A060 -> node00C1A038[color="#0855F0"]
+    node00C1A038[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00C1A038 | type: OP | value: =| { left: 00C19FE8 | right: 00C1A010 }}"];
+    node00C1A038 -> node00C19FE8[color="#0855F0"]
+    node00C19FE8[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00C19FE8 | type: ID | value: Maliketh| { left: 00000000 | right: 00000000 }}"];
+    node00C1A038 -> node00C1A010[color="#0855F0"]
+    node00C1A010[shape=record,style="rounded,filled",fillcolor="#ECC51B",label="{ ptr: 00C1A010 | type: NUM | value: 1.000000| { left: 00000000 | right: 00000000 }}"];
+    node00C1A100 -> node00C1A0D8[color="#0855F0"]
+    node00C1A0D8[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00C1A0D8 | type: OP | value: call| { left: 00C1A088 | right: 00C1A0B0 }}"];
+    node00C1A0D8 -> node00C1A088[color="#0855F0"]
+    node00C1A088[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00C1A088 | type: ID | value: FACTORIAL| { left: 00000000 | right: 00000000 }}"];
+    node00C1A0D8 -> node00C1A0B0[color="#0855F0"]
+    node00C1A0B0[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00C1A0B0 | type: ID | value: Michella| { left: 00000000 | right: 00000000 }}"];
+    node00C1DC00 -> node00C1DBD8[color="#0855F0"]
+    node00C1DBD8[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00C1DBD8 | type: OP | value: func_def| { left: 00C1D2D8 | right: 00C1D288 }}"];
+    node00C1DBD8 -> node00C1D2D8[color="#0855F0"]
+    node00C1D2D8[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00C1D2D8 | type: OP | value: spec| { left: 00C1A128 | right: 00C104B0 }}"];
+    node00C1D2D8 -> node00C1A128[color="#0855F0"]
+    node00C1A128[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00C1A128 | type: ID | value: FACTORIAL| { left: 00000000 | right: 00000000 }}"];
+    node00C1D2D8 -> node00C104B0[color="#0855F0"]
+    node00C104B0[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00C104B0 | type: ID | value: Tarnished| { left: 00000000 | right: 00000000 }}"];
+    node00C1DBD8 -> node00C1D288[color="#0855F0"]
+    node00C1D288[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00C1D288 | type: OP | value: ;| { left: 00C1D120 | right: 00C1D210 }}"];
+    node00C1D288 -> node00C1D120[color="#0855F0"]
+    node00C1D120[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00C1D120 | type: OP | value: ;| { left: 00C1D3A0 | right: 00C1D0D0 }}"];
+    node00C1D120 -> node00C1D3A0[color="#0855F0"]
+    node00C1D3A0[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00C1D3A0 | type: OP | value: ;| { left: 00C1D378 | right: 00C1D418 }}"];
+    node00C1D3A0 -> node00C1D378[color="#0855F0"]
+    node00C1D378[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00C1D378 | type: OP | value: ;| { left: 00C1D238 | right: 00C1D350 }}"];
+    node00C1D378 -> node00C1D238[color="#0855F0"]
+    node00C1D238[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00C1D238 | type: OP | value: if| { left: 00C1D170 | right: 00C1D3C8 }}"];
+    node00C1D238 -> node00C1D170[color="#0855F0"]
+    node00C1D170[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00C1D170 | type: ID | value: Tarnished| { left: 00000000 | right: 00000000 }}"];
+    node00C1D238 -> node00C1D3C8[color="#0855F0"]
+    node00C1D3C8[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00C1D3C8 | type: OP | value: return| { left: 00C1D328 | right: 00000000 }}"];
+    node00C1D3C8 -> node00C1D328[color="#0855F0"]
+    node00C1D328[shape=record,style="rounded,filled",fillcolor="#ECC51B",label="{ ptr: 00C1D328 | type: NUM | value: 1.000000| { left: 00000000 | right: 00000000 }}"];
+    node00C1D378 -> node00C1D350[color="#0855F0"]
+    node00C1D350[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00C1D350 | type: OP | value: var_def| { left: 00C1D198 | right: 00000000 }}"];
+    node00C1D350 -> node00C1D198[color="#0855F0"]
+    node00C1D198[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00C1D198 | type: ID | value: Malenia| { left: 00000000 | right: 00000000 }}"];
+    node00C1D3A0 -> node00C1D418[color="#0855F0"]
+    node00C1D418[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00C1D418 | type: OP | value: =| { left: 00C1D260 | right: 00C1D1C0 }}"];
+    node00C1D418 -> node00C1D260[color="#0855F0"]
+    node00C1D260[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00C1D260 | type: ID | value: Tarnished| { left: 00000000 | right: 00000000 }}"];
+    node00C1D418 -> node00C1D1C0[color="#0855F0"]
+    node00C1D1C0[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00C1D1C0 | type: OP | value: -| { left: 00C1D3F0 | right: 00C1D0A8 }}"];
+    node00C1D1C0 -> node00C1D3F0[color="#0855F0"]
+    node00C1D3F0[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00C1D3F0 | type: ID | value: Tarnished| { left: 00000000 | right: 00000000 }}"];
+    node00C1D1C0 -> node00C1D0A8[color="#0855F0"]
+    node00C1D0A8[shape=record,style="rounded,filled",fillcolor="#ECC51B",label="{ ptr: 00C1D0A8 | type: NUM | value: 1.000000| { left: 00000000 | right: 00000000 }}"];
+    node00C1D120 -> node00C1D0D0[color="#0855F0"]
+    node00C1D0D0[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00C1D0D0 | type: OP | value: =| { left: 00C1D0F8 | right: 00C1D300 }}"];
+    node00C1D0D0 -> node00C1D0F8[color="#0855F0"]
+    node00C1D0F8[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00C1D0F8 | type: ID | value: Malenia| { left: 00000000 | right: 00000000 }}"];
+    node00C1D0D0 -> node00C1D300[color="#0855F0"]
+    node00C1D300[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00C1D300 | type: OP | value: call| { left: 00C1D2B0 | right: 00C1D1E8 }}"];
+    node00C1D300 -> node00C1D2B0[color="#0855F0"]
+    node00C1D2B0[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00C1D2B0 | type: ID | value: FACTORIAL| { left: 00000000 | right: 00000000 }}"];
+    node00C1D300 -> node00C1D1E8[color="#0855F0"]
+    node00C1D1E8[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00C1D1E8 | type: ID | value: Tarnished| { left: 00000000 | right: 00000000 }}"];
+    node00C1D288 -> node00C1D210[color="#0855F0"]
+    node00C1D210[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00C1D210 | type: OP | value: return| { left: 00C1D148 | right: 00000000 }}"];
+    node00C1D210 -> node00C1D148[color="#0855F0"]
+    node00C1D148[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00C1D148 | type: ID | value: Malenia| { left: 00000000 | right: 00000000 }}"];
 }

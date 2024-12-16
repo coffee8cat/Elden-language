@@ -6,12 +6,22 @@
 #include <assert.h>
 #include <string.h>
 
-//== VARIABLES TABLE ========================================================================//
+enum scope_type {GLOBAL, LOCAL};
+
+//== IDS TABLE ========================================================================//
 struct identificator
 {
+    // general
     const char* name;
-    size_t name_len;
-    double value;
+    size_t      name_len;
+
+    // for variables
+    size_t      address;
+    scope_type  scope;
+
+    // for functions
+    size_t      num_of_params;
+    bool        is_defined;
 };
 
 const size_t max_num_of_ids = 128;

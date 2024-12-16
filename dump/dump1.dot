@@ -2,9 +2,9 @@ digraph
 {
     rankdir=TP
 
-        node00B7D3C8[shape=record,style="rounded,filled",fillcolor="#BF62FC",label="{ ptr: 00B7D3C8 | type: OP | value: SPECIFICATION| { left: 00B7A128 | right: 00B704B0 }}"];
-    node00B7D3C8 -> node00B7A128[color="#0855F0"]
-    node00B7A128[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00B7A128 | type: ID | value: FACTORIAL| { left: 00000000 | right: 00000000 }}"];
-    node00B7D3C8 -> node00B704B0[color="#0855F0"]
-    node00B704B0[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00B704B0 | type: ID | value: Tarnished| { left: 00000000 | right: 00000000 }}"];
+        node00C1D440[shape=record,style="rounded,filled",fillcolor="#BF62FC",label="{ ptr: 00C1D440 | type: OP | value: spec| { left: 00C1A128 | right: 00C104B0 }}"];
+    node00C1D440 -> node00C1A128[color="#0855F0"]
+    node00C1A128[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00C1A128 | type: ID | value: FACTORIAL| { left: 00000000 | right: 00000000 }}"];
+    node00C1D440 -> node00C104B0[color="#0855F0"]
+    node00C104B0[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00C104B0 | type: ID | value: Tarnished| { left: 00000000 | right: 00000000 }}"];
 }
