@@ -38,7 +38,6 @@ void write_func_def_info(node_t* node, identificator* ids_table)
 
     // TODO: DSL FOR FCKNG node -> LEFT -> LEFT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-
     if (node -> left -> type == OP && node -> left -> value.op == FUNCTION_SPECIFICATION)
     {
         if ((node -> left -> left) -> type == ID)
@@ -69,7 +68,8 @@ void write_func_def_info(node_t* node, identificator* ids_table)
 
 void count_params(node_t* node, identificator* ids_table, size_t* num_of_params)
 {
-    assert(node);
+    if (node == NULL) { return; }
+
     assert(ids_table);
     assert(num_of_params);
 

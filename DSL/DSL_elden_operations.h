@@ -5,6 +5,7 @@ DEF_OPERATION(IF,             "if")
 DEF_OPERATION(WHILE,          "while")
 DEF_OPERATION(VAR_DEFINITION, "var_def")
 
+DEF_OPERATION(MAIN,                   "main")
 DEF_OPERATION(FUNCTION_DEFINITION,    "func_def")
 DEF_OPERATION(FUNCTION_SPECIFICATION, "spec")
 DEF_OPERATION(CALL,                   "call")

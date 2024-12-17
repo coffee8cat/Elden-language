@@ -49,15 +49,15 @@ node_t* get_Operation(lexeme_t* lexeme_array, identificator* ids_table, size_t* 
     assert(html_stream);
 
     node_t* node = NULL;
-    if      ((node = get_Assignment(lexeme_array, ids_table, curr, html_stream))           != NULL) { return node; }
-    else if ((node = get_IF(lexeme_array, ids_table, curr, html_stream))                   != NULL) { return node; }
-    else if ((node = get_While(lexeme_array, ids_table, curr, html_stream))                != NULL) { return node; }
-    else if ((node = get_Var_Definition(lexeme_array, ids_table, curr, html_stream))       != NULL) { return node; }
-    else if ((node = get_Function_Definition(lexeme_array, ids_table, curr, html_stream))  != NULL) { return node; }
-    else if ((node = get_Function_Call(lexeme_array, ids_table, curr, html_stream))        != NULL) { return node; }
-    else if ((node = get_Return(lexeme_array, ids_table, curr, html_stream))               != NULL) { return node; }
-    else if ((node = get_Scan(lexeme_array, ids_table, curr, html_stream))                 != NULL) { return node; }
-    else if ((node = get_Print(lexeme_array, ids_table, curr, html_stream))                != NULL) { return node; }
+    if      ((node = get_Assignment         (lexeme_array, ids_table, curr, html_stream)) != NULL) { return node; }
+    else if ((node = get_IF                 (lexeme_array, ids_table, curr, html_stream)) != NULL) { return node; }
+    else if ((node = get_While              (lexeme_array, ids_table, curr, html_stream)) != NULL) { return node; }
+    else if ((node = get_Var_Definition     (lexeme_array, ids_table, curr, html_stream)) != NULL) { return node; }
+    else if ((node = get_Function_Definition(lexeme_array, ids_table, curr, html_stream)) != NULL) { return node; }
+    else if ((node = get_Function_Call      (lexeme_array, ids_table, curr, html_stream)) != NULL) { return node; }
+    else if ((node = get_Return             (lexeme_array, ids_table, curr, html_stream)) != NULL) { return node; }
+    else if ((node = get_Scan               (lexeme_array, ids_table, curr, html_stream)) != NULL) { return node; }
+    else if ((node = get_Print              (lexeme_array, ids_table, curr, html_stream)) != NULL) { return node; }
 
     return NULL;
 }
@@ -147,6 +147,7 @@ node_t* get_Var_Definition(lexeme_t* lexeme_array, identificator* ids_table, siz
     assert(lexeme_array);
     assert(curr);
     assert(html_stream);
+
     node_t* var = NULL;
 
     if ((var = get_Var(lexeme_array, ids_table, curr, html_stream)) == NULL) { return NULL; }
@@ -162,20 +163,27 @@ node_t* get_Function_Definition(lexeme_t* lexeme_array, identificator* ids_table
     assert(curr);
     assert(html_stream);
 
+    node_t* id      = NULL;
+    node_t* params  = NULL;
+    node_t* temp    = NULL;
     SOFT_GRAMMAR_CHECK(FUNCTION_DEFINITION_PREFIX);
 
     if (not (lexeme_array[*curr].type == ID)) { SYNTAX_ERROR(ID); }
-    node_t* id = _ID(lexeme_array[*curr].value);
+    id = _ID(lexeme_array[*curr].value);
     (*curr)++;
 
-    GRAMMAR_CHECK(FUNCTION_DEFINITION_POSTFIX);
-
-    node_t* params = get_Var(lexeme_array, ids_table, curr, html_stream);
-    node_t* temp = NULL;
-    while (CHECK_WORD(',') && (temp = get_Var(lexeme_array, ids_table, curr, html_stream)))
+    if (CHECK_WORD(FUNCTION_DEFINITION_POSTFIX))
     {
-        params = _BOND(params, temp);
+        (*curr)++;
+        params = get_Var(lexeme_array, ids_table, curr, html_stream);
+        temp = NULL;
+        while (CHECK_WORD(',') && (temp = get_Var(lexeme_array, ids_table, curr, html_stream)))
+        {
+            params = _BOND(params, temp);
+        }
+
     }
+
     node_t* specification = _FUNCTION_SPECIFICATION(id, params);
 
     tree_dump(specification, ids_table, html_stream, specification);
@@ -192,7 +200,7 @@ node_t* get_Function_Definition(lexeme_t* lexeme_array, identificator* ids_table
     }
     GRAMMAR_CHECK('}');
 
-    return _FUNCTION_DEFINITION( _FUNCTION_SPECIFICATION(id, params), body);
+    return _FUNCTION_DEFINITION( specification, body);
 }
 
 //<Function_call> ::= "Let thy grace of" <space> <ID> <space> "shine again upon" <space> <Var> ("," <space> <Var> )*
@@ -297,22 +305,39 @@ node_t* get_Expression(lexeme_t* lexeme_array, identificator* ids_table, size_t*
     return node;
 }
 
-//<T> ::= <Primary> <space> (("enchanted with" | "fractured by") <space> <Primary>)*
+//<T> ::= <POWER> <space> (("enchanted with" | "fractured by") <space> <POWER>)*
 node_t* get_T(lexeme_t* lexeme_array, identificator* ids_table, size_t* curr, FILE* html_stream)
 {
     assert(lexeme_array);
     assert(curr);
     assert(html_stream);
 
-    node_t* node = get_Primary(lexeme_array, ids_table, curr, html_stream);
+    node_t* node = get_POW(lexeme_array, ids_table, curr, html_stream);
     while(lexeme_array[*curr].value == MUL_LEX || lexeme_array[*curr].value == DIV_LEX)
     {
         char op = (char)lexeme_array[*curr].value;
         (*curr)++;
-        node_t* node2 = get_Primary(lexeme_array, ids_table, curr, html_stream);
+        node_t* node2 = get_POW(lexeme_array, ids_table, curr, html_stream);
 
         if (op == MUL_LEX)  { node = _MUL(node, node2); }
         else                { node = _DIV(node, node2); }
+    }
+    return node;
+}
+
+//<POWER> ::= <Primary> <space> (("enchanted with" | "fractured by") <space> <Primary>)*
+node_t* get_POW(lexeme_t* lexeme_array, identificator* ids_table, size_t* curr, FILE* html_stream)
+{
+    assert(lexeme_array);
+    assert(curr);
+    assert(html_stream);
+
+    node_t* node = get_Primary(lexeme_array, ids_table, curr, html_stream);
+    while(lexeme_array[*curr].value == POW)
+    {
+        (*curr)++;
+        node_t* node2 = get_Primary(lexeme_array, ids_table, curr, html_stream);
+        node = _POW(node, node2);
     }
     return node;
 }

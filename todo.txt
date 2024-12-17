@@ -1,1 +1,9 @@
-// добавить в expression вызов функции
+1. COMPILER
+    - Multiple of functions and variables definition handling
+    - Check the accuracy of types for different operations in tree
+    - All called functions are defined
+    - All used in scope variables are either defined in higher scopes or GLOBAL
+    -
+2. Disassembler
+3. Saving  tree
+4. Reading tree

@@ -36,6 +36,9 @@ int main()
 
     FILE* fact_fp = fopen("data\\fact.txt", "w");
 
+
+    fprintf(fact_fp, "CALL EldenLord:\n");
+    fprintf(fact_fp, "HLT\n\n");
     fprintf(fact_fp, "; Preparation\n");
     fprintf(fact_fp, "PUSH %d\n", global_vars_counter);
     fprintf(fact_fp, "POP BX\n");

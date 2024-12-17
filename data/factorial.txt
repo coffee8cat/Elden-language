@@ -1,13 +1,16 @@
-the ring of Michella forged;
-In the Lands Between we found the ring of Michella;
+The fallen leaves tell us a story of the EldenLord
+{
+    the ring of Michella forged;
+    In the Lands Between we found the ring of Michella;
 
-the ring of Maliketh forged;
-And now the ring of Maliketh is Let thy grace of FACTORIAL shine again upon the ring of Michella;
+    the ring of Maliketh forged;
+    And now the ring of Maliketh is Let thy grace of FACTORIAL shine again upon the ring of Michella;
 
-In the age of Duskborn the ring of Maliketh will thunder in the darkest night;
+    In the age of Duskborn the ring of Maliketh will thunder in the darkest night;
+    Bless thy tarnished with rune of Death;
+};
 
-The grace of FACTORIAL upon the ring of Tarnished
-
+The fallen leaves tell us a story of the FACTORIAL and the ring of Tarnished
 {
     And when the stars will fall along with the ring of Tarnished, bless them with
     {

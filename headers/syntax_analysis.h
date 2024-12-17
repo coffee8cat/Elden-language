@@ -31,6 +31,7 @@ syntax_func get_Print;
 syntax_func get_Var;
 syntax_func get_Expression;
 syntax_func get_T;
+syntax_func get_POW;
 syntax_func get_Primary;
 
 #endif
