@@ -25,12 +25,10 @@ DEF_TOKEN("will thunder in the darkest night",  OP, PRINT_POSTFIX)
 
 //== FUNCTIONS =========================================================================//
 DEF_TOKEN("The fallen leaves tell us a story of the",   OP, FUNCTION_DEFINITION_PREFIX)
-DEF_TOKEN("and",                                        OP, FUNCTION_DEFINITION_POSTFIX)
+DEF_TOKEN("Let thy grace of",                           OP, FUNCTION_CALL_PREFIX)
+DEF_TOKEN("shine upon",                                 OP, SPECIFICATION_INFIX)
 
-DEF_TOKEN("Bless thy tarnished with", OP, RETURN_PREFIX)
-
-DEF_TOKEN("Let thy grace of", OP, FUNCTION_CALL_PREFIX)
-DEF_TOKEN("shine again upon", OP, FUNCTION_CALL_POSTFIX)
+DEF_TOKEN("Bless thy tarnished with",                   OP, RETURN_PREFIX)
 
 //== MATH OPERATIONS ===================================================================//
 DEF_TOKEN("smelted with",                   OP, ADD_LEX)
