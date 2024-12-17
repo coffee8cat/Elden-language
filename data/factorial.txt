@@ -2,9 +2,9 @@ the ring of Michella forged;
 In the Lands Between we found the ring of Michella;
 
 the ring of Maliketh forged;
-And now the ring of Maliketh is Starling amber;
+And now the ring of Maliketh is Let thy grace of FACTORIAL shine again upon the ring of Michella;
 
-Let thy grace of FACTORIAL shine again upon the ring of Michella;
+In the age of Duskborn the ring of Maliketh will thunder in the darkest night;
 
 The grace of FACTORIAL upon the ring of Tarnished
 
@@ -15,8 +15,10 @@ The grace of FACTORIAL upon the ring of Tarnished
     };
 
     the ring of Malenia forged;
+    And now the ring of Malenia is the ring of Tarnished;
     And now the ring of Tarnished is the ring of Tarnished shadowed by Starling amber;
-    And now the ring of Malenia is Let thy grace of FACTORIAL shine again upon the ring of Tarnished;
+
+    And now the ring of Malenia is the ring of Malenia enchanted with Let thy grace of FACTORIAL shine again upon the ring of Tarnished;
 
     Bless thy tarnished with the ring of Malenia;
 };

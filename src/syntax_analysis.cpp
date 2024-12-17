@@ -62,7 +62,7 @@ node_t* get_Operation(lexeme_t* lexeme_array, identificator* ids_table, size_t* 
     return NULL;
 }
 
-//<Assignment> ::= "And now" <space> <Var> <space> "is" <space> <Expression> ";"
+//<Assignment> ::= "And now" <space> <Var> <space> "is" <space> <Expression>
 node_t* get_Assignment(lexeme_t* lexeme_array, identificator* ids_table, size_t* curr, FILE* html_stream)
 {
     assert(lexeme_array);
@@ -76,7 +76,6 @@ node_t* get_Assignment(lexeme_t* lexeme_array, identificator* ids_table, size_t*
     if ((var = get_Var(lexeme_array, ids_table, curr, html_stream)) == NULL) { return NULL; }
     GRAMMAR_CHECK(ASSIGNMENT_INFIX);
     if      ((node = get_Expression(lexeme_array, ids_table, curr, html_stream))    != NULL) { return _ASSIGNMENT(var, node); }
-    else if ((node = get_Function_Call(lexeme_array, ids_table, curr, html_stream)) != NULL) { return _ASSIGNMENT(var, node); }
 
     SYNTAX_ERROR(Expression or function call);
     return NULL;
@@ -326,7 +325,8 @@ node_t* get_Primary(lexeme_t* lexeme_array, identificator* ids_table, size_t* cu
     assert(html_stream);
 
     node_t* node = NULL;
-    if ((node = get_Var(lexeme_array, ids_table, curr, html_stream)) != NULL) { return node; }
+    if ((node = get_Var           (lexeme_array, ids_table, curr, html_stream)) != NULL) { return node; }
+    if ((node = get_Function_Call (lexeme_array, ids_table, curr, html_stream)) != NULL) { return node; }
 
     if (lexeme_array[*curr].type == NUM) { return _NUM(lexeme_array[(*curr)++].value); }
 

@@ -112,7 +112,6 @@ void translate_Function_Definition(node_t* node, identificator* ids_table, FILE*
 
     fprintf(output, "\n; FUNCTION DEFINITION\n");
     fprintf(output, "%.*s:\n\n", ids_table[node -> left -> left -> value.id].name_len, ids_table[node -> left -> left -> value.id].name);
-    fprintf(output, "PUSH BX\n");
 
     //параметры функции лежат в стэке в нужном порядке
     get_params(node -> left, ids_table, output);
@@ -132,7 +131,8 @@ void get_params(node_t* func_spec_node, identificator* ids_table, FILE* output)
     {
         fprintf(output, "POP [BX+%d]\n", i);
     }
-    fprintf(output, "PUSH %d\n"
+    fprintf(output, "\nPUSH BX\n"
+                    "PUSH %d\n"
                     "PUSH BX\n"
                     "ADD\n"
                     "POP BX\n", ids_table[(func_spec_node -> left) -> value.id].BX_shift);
@@ -201,6 +201,7 @@ void translate_Print(node_t* node, identificator* ids_table, FILE* output)
     assert(ids_table);
     assert(output);
 
+    translate_push_node_value(node -> left, ids_table, output);
     fprintf(output, "ELEM_OUT\n");
 }
 
@@ -211,6 +212,7 @@ void translate_Scan(node_t* node, identificator* ids_table, FILE* output)
     assert(output);
 
     fprintf(output, "ELEM_IN\n");
+    translate_pop_var(node -> left, ids_table, output);
 }
 
 #define DEF_OPERATION(enum_name, dump_name) #enum_name,
@@ -229,9 +231,6 @@ void translate_Expression(node_t* node, identificator* ids_table, FILE* output)
 
     if (node -> type == OP)
     {
-        translate_Expression(node -> left,  ids_table, output);
-        translate_Expression(node -> right, ids_table, output);
-
         // TODO: Check if it is math function???
         if (node -> value.op == CALL)
         {
@@ -239,6 +238,9 @@ void translate_Expression(node_t* node, identificator* ids_table, FILE* output)
         }
         else
         {
+            translate_Expression(node -> left,  ids_table, output);
+            translate_Expression(node -> right, ids_table, output);
+
             fprintf(output, "\n%s\n", proc_operations_list[node -> value.op]);
         }
     }

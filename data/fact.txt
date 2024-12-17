@@ -1,22 +1,27 @@
+; Preparation
+PUSH 2
+POP BX
 ELEM_IN
+POP [0]
 
 ; Assignment
-PUSH 1.000000
-POP [1]
-
-; Assignment End
 ;CALL
 PUSH [0]
 
 CALL FACTORIAL:
 PUSH AX
 ; CALL END
+POP [1]
+
+; Assignment End
+PUSH [1]
+ELEM_OUT
 
 ; FUNCTION DEFINITION
 FACTORIAL:
 
-PUSH BX
 POP [BX+0]
+PUSH BX
 PUSH 2
 PUSH BX
 ADD
@@ -28,7 +33,7 @@ PUSH [BX+0]
 
 ; test condition
 PUSH 0
-JA endif0:
+ JA endif0:
 ; body
 
 ; RETURN
@@ -41,6 +46,12 @@ endif0:
 
 ; Assignment
 PUSH [BX+0]
+POP [BX+1]
+
+; Assignment End
+
+; Assignment
+PUSH [BX+0]
 PUSH 1.000000
 
 SUB
@@ -49,14 +60,15 @@ POP [BX+0]
 ; Assignment End
 
 ; Assignment
-PUSH [0]
-PUSH [BX+0]
+PUSH [BX+1]
 ;CALL
 PUSH [BX+0]
 
 CALL FACTORIAL:
 PUSH AX
 ; CALL END
+
+MUL
 POP [BX+1]
 
 ; Assignment End
