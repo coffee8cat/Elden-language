@@ -6,6 +6,7 @@
 #include "middleend.h"
 #include "backend.h"
 #include "reverse_frontend.h"
+#include "exchange_tree.h"
 
 int main()
 {
@@ -29,7 +30,14 @@ int main()
     //написать функцию распечатки синтаксического дерева
     tree_dump(root, ids_table, html_stream, root);
 
+    FILE* stream_for_save = fopen("data\\saved_tree.txt", "w");
+    if (!stream_for_save) { fprintf(stderr, "ERROR: Could not open stream_for_save\n"); }
+
+    fprintf(stream_for_save, "434-format v1.5\n");
+    save_tree(root, ids_table, stream_for_save);
     reverse_frontend(root, ids_table);
+
+    fclose(stream_for_save);
 
     size_t global_vars_counter = 0;
     prepare_to_compile(root, ids_table, &global_vars_counter);

@@ -203,7 +203,7 @@ node_t* get_Function_Definition(lexeme_t* lexeme_array, identificator* ids_table
     return _FUNCTION_DEFINITION( specification, body);
 }
 
-//<Function_call> ::= "Let thy grace of" <space> <ID> <space> "shine again upon" <space> <Var> ("," <space> <Var> )*
+//<Function_call> ::= "Let thy grace of" <space> <Expression> <space> "shine again upon" <space> <Var> ("," <space> <Var> )*
 node_t* get_Function_Call(lexeme_t* lexeme_array, identificator* ids_table, size_t* curr, FILE* html_stream)
 {
     assert(lexeme_array);
@@ -217,9 +217,9 @@ node_t* get_Function_Call(lexeme_t* lexeme_array, identificator* ids_table, size
     (*curr)++;
 
     GRAMMAR_CHECK(SPECIFICATION_INFIX);
-    node_t* params = get_Var(lexeme_array, ids_table, curr, html_stream);
+    node_t* params = get_Expression(lexeme_array, ids_table, curr, html_stream);
     node_t* temp = NULL;
-    while (CHECK_WORD(',') && (temp = get_Var(lexeme_array, ids_table, curr, html_stream)))
+    while (CHECK_WORD(',') && (temp = get_Expression(lexeme_array, ids_table, curr, html_stream)))
     {
         params = _BOND(params, temp);
     }

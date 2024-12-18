@@ -1,7 +1,7 @@
 #include "reverse_frontend.h"
 
-size_t tabs_shift = 0;
-bool is_first_param = true;
+static size_t tabs_shift = 0;
+static bool is_first_param = true;
 
 #define DEF_TOKEN(name, type, value) name,
 
