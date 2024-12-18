@@ -2,11 +2,15 @@ digraph
 {
     rankdir=TP
 
-        node00BB1370[shape=record,style="rounded,filled",fillcolor="#BF62FC",label="{ ptr: 00BB1370 | type: OP | value: spec| { left: 00BB14D8 | right: 00BB1438 }}"];
-    node00BB1370 -> node00BB14D8[color="#0855F0"]
-    node00BB14D8[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00BB14D8 | type: ID | value: FACTORIAL| { left: 00000000 | right: 00000000 }}"];
-    node00BB1370 -> node00BB1438[color="#0855F0"]
-    node00BB1438[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00BB1438 | type: OP | value: ;| { left: 00BB1348 | right: 00000000 }}"];
-    node00BB1438 -> node00BB1348[color="#0855F0"]
-    node00BB1348[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00BB1348 | type: ID | value: Tarnished| { left: 00000000 | right: 00000000 }}"];
+        node00AF05C8[shape=record,style="rounded,filled",fillcolor="#BF62FC",label="{ ptr: 00AF05C8 | type: OP | value: spec| { left: 00AF0640 | right: 00AF06B8 }}"];
+    node00AF05C8 -> node00AF0640[color="#0855F0"]
+    node00AF0640[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00AF0640 | type: ID | value: LINEAR| { left: 00000000 | right: 00000000 }}"];
+    node00AF05C8 -> node00AF06B8[color="#0855F0"]
+    node00AF06B8[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00AF06B8 | type: OP | value: ;| { left: 00AF05A0 | right: 00AF0690 }}"];
+    node00AF06B8 -> node00AF05A0[color="#0855F0"]
+    node00AF05A0[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00AF05A0 | type: ID | value: LinC| { left: 00000000 | right: 00000000 }}"];
+    node00AF06B8 -> node00AF0690[color="#0855F0"]
+    node00AF0690[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00AF0690 | type: OP | value: ;| { left: 00AF0730 | right: 00000000 }}"];
+    node00AF0690 -> node00AF0730[color="#0855F0"]
+    node00AF0730[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00AF0730 | type: ID | value: LinB| { left: 00000000 | right: 00000000 }}"];
 }

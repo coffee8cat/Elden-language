@@ -2,111 +2,19 @@ digraph
 {
     rankdir=TP
 
-        node00BBE730[shape=record,style="rounded,filled",fillcolor="#BF62FC",label="{ ptr: 00BBE730 | type: OP | value: ;| { left: 00BB1550 | right: 00BBE6B8 }}"];
-    node00BBE730 -> node00BB1550[color="#0855F0"]
-    node00BB1550[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00BB1550 | type: OP | value: ;| { left: 00BB12F8 | right: 00BB14B0 }}"];
-    node00BB1550 -> node00BB12F8[color="#0855F0"]
-    node00BB12F8[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00BB12F8 | type: OP | value: ;| { left: 00BB11B8 | right: 00BB12D0 }}"];
-    node00BB12F8 -> node00BB11B8[color="#0855F0"]
-    node00BB11B8[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00BB11B8 | type: OP | value: ;| { left: 00BB1140 | right: 00BB1190 }}"];
-    node00BB11B8 -> node00BB1140[color="#0855F0"]
-    node00BB1140[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00BB1140 | type: OP | value: ;| { left: 00BB10A0 | right: 00BB1118 }}"];
-    node00BB1140 -> node00BB10A0[color="#0855F0"]
-    node00BB10A0[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00BB10A0 | type: OP | value: var_def| { left: 00BB1078 | right: 00000000 }}"];
-    node00BB10A0 -> node00BB1078[color="#0855F0"]
-    node00BB1078[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00BB1078 | type: ID | value: Michella| { left: 00000000 | right: 00000000 }}"];
-    node00BB1140 -> node00BB1118[color="#0855F0"]
-    node00BB1118[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00BB1118 | type: OP | value: =| { left: 00BB10C8 | right: 00BB10F0 }}"];
-    node00BB1118 -> node00BB10C8[color="#0855F0"]
-    node00BB10C8[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00BB10C8 | type: ID | value: Michella| { left: 00000000 | right: 00000000 }}"];
-    node00BB1118 -> node00BB10F0[color="#0855F0"]
-    node00BB10F0[shape=record,style="rounded,filled",fillcolor="#ECC51B",label="{ ptr: 00BB10F0 | type: NUM | value: 4.000000| { left: 00000000 | right: 00000000 }}"];
-    node00BB11B8 -> node00BB1190[color="#0855F0"]
-    node00BB1190[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00BB1190 | type: OP | value: var_def| { left: 00BB1168 | right: 00000000 }}"];
-    node00BB1190 -> node00BB1168[color="#0855F0"]
-    node00BB1168[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00BB1168 | type: ID | value: Maliketh| { left: 00000000 | right: 00000000 }}"];
-    node00BB12F8 -> node00BB12D0[color="#0855F0"]
-    node00BB12D0[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00BB12D0 | type: OP | value: =| { left: 00BB11E0 | right: 00BB12A8 }}"];
-    node00BB12D0 -> node00BB11E0[color="#0855F0"]
-    node00BB11E0[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00BB11E0 | type: ID | value: Maliketh| { left: 00000000 | right: 00000000 }}"];
-    node00BB12D0 -> node00BB12A8[color="#0855F0"]
-    node00BB12A8[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00BB12A8 | type: OP | value: call| { left: 00BB1280 | right: 00000000 }}"];
-    node00BB12A8 -> node00BB1280[color="#0855F0"]
-    node00BB1280[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00BB1280 | type: OP | value: spec| { left: 00BB1208 | right: 00BB1258 }}"];
-    node00BB1280 -> node00BB1208[color="#0855F0"]
-    node00BB1208[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00BB1208 | type: ID | value: FACTORIAL| { left: 00000000 | right: 00000000 }}"];
-    node00BB1280 -> node00BB1258[color="#0855F0"]
-    node00BB1258[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00BB1258 | type: OP | value: ;| { left: 00BB1230 | right: 00000000 }}"];
-    node00BB1258 -> node00BB1230[color="#0855F0"]
-    node00BB1230[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00BB1230 | type: ID | value: Michella| { left: 00000000 | right: 00000000 }}"];
-    node00BB1550 -> node00BB14B0[color="#0855F0"]
-    node00BB14B0[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00BB14B0 | type: OP | value: print| { left: 00BB04B0 | right: 00000000 }}"];
-    node00BB14B0 -> node00BB04B0[color="#0855F0"]
-    node00BB04B0[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00BB04B0 | type: ID | value: Maliketh| { left: 00000000 | right: 00000000 }}"];
-    node00BBE730 -> node00BBE6B8[color="#0855F0"]
-    node00BBE6B8[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00BBE6B8 | type: OP | value: def| { left: 00BB1370 | right: 00BBE6E0 }}"];
-    node00BBE6B8 -> node00BB1370[color="#0855F0"]
-    node00BB1370[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00BB1370 | type: OP | value: spec| { left: 00BB14D8 | right: 00BB1438 }}"];
-    node00BB1370 -> node00BB14D8[color="#0855F0"]
-    node00BB14D8[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00BB14D8 | type: ID | value: FACTORIAL| { left: 00000000 | right: 00000000 }}"];
-    node00BB1370 -> node00BB1438[color="#0855F0"]
-    node00BB1438[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00BB1438 | type: OP | value: ;| { left: 00BB1348 | right: 00000000 }}"];
-    node00BB1438 -> node00BB1348[color="#0855F0"]
-    node00BB1348[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00BB1348 | type: ID | value: Tarnished| { left: 00000000 | right: 00000000 }}"];
-    node00BBE6B8 -> node00BBE6E0[color="#0855F0"]
-    node00BBE6E0[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00BBE6E0 | type: OP | value: ;| { left: 00BBE7A8 | right: 00BBE668 }}"];
-    node00BBE6E0 -> node00BBE7A8[color="#0855F0"]
-    node00BBE7A8[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00BBE7A8 | type: OP | value: ;| { left: 00BB1500 | right: 00BBE7F8 }}"];
-    node00BBE7A8 -> node00BB1500[color="#0855F0"]
-    node00BB1500[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00BB1500 | type: OP | value: ;| { left: 00BB1640 | right: 00BB1690 }}"];
-    node00BB1500 -> node00BB1640[color="#0855F0"]
-    node00BB1640[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00BB1640 | type: OP | value: ;| { left: 00BB16B8 | right: 00BB1460 }}"];
-    node00BB1640 -> node00BB16B8[color="#0855F0"]
-    node00BB16B8[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00BB16B8 | type: OP | value: if| { left: 00BB1618 | right: 00BB13C0 }}"];
-    node00BB16B8 -> node00BB1618[color="#0855F0"]
-    node00BB1618[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00BB1618 | type: OP | value: ==| { left: 00BB15C8 | right: 00BB15F0 }}"];
-    node00BB1618 -> node00BB15C8[color="#0855F0"]
-    node00BB15C8[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00BB15C8 | type: ID | value: Tarnished| { left: 00000000 | right: 00000000 }}"];
-    node00BB1618 -> node00BB15F0[color="#0855F0"]
-    node00BB15F0[shape=record,style="rounded,filled",fillcolor="#ECC51B",label="{ ptr: 00BB15F0 | type: NUM | value: 1.000000| { left: 00000000 | right: 00000000 }}"];
-    node00BB16B8 -> node00BB13C0[color="#0855F0"]
-    node00BB13C0[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00BB13C0 | type: OP | value: return| { left: 00BB1398 | right: 00000000 }}"];
-    node00BB13C0 -> node00BB1398[color="#0855F0"]
-    node00BB1398[shape=record,style="rounded,filled",fillcolor="#ECC51B",label="{ ptr: 00BB1398 | type: NUM | value: 1.000000| { left: 00000000 | right: 00000000 }}"];
-    node00BB1640 -> node00BB1460[color="#0855F0"]
-    node00BB1460[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00BB1460 | type: OP | value: var_def| { left: 00BB16E0 | right: 00000000 }}"];
-    node00BB1460 -> node00BB16E0[color="#0855F0"]
-    node00BB16E0[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00BB16E0 | type: ID | value: Malenia| { left: 00000000 | right: 00000000 }}"];
-    node00BB1500 -> node00BB1690[color="#0855F0"]
-    node00BB1690[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00BB1690 | type: OP | value: =| { left: 00BB15A0 | right: 00BB13E8 }}"];
-    node00BB1690 -> node00BB15A0[color="#0855F0"]
-    node00BB15A0[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00BB15A0 | type: ID | value: Malenia| { left: 00000000 | right: 00000000 }}"];
-    node00BB1690 -> node00BB13E8[color="#0855F0"]
-    node00BB13E8[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00BB13E8 | type: OP | value: -| { left: 00BB1578 | right: 00BB1668 }}"];
-    node00BB13E8 -> node00BB1578[color="#0855F0"]
-    node00BB1578[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00BB1578 | type: ID | value: Tarnished| { left: 00000000 | right: 00000000 }}"];
-    node00BB13E8 -> node00BB1668[color="#0855F0"]
-    node00BB1668[shape=record,style="rounded,filled",fillcolor="#ECC51B",label="{ ptr: 00BB1668 | type: NUM | value: 1.000000| { left: 00000000 | right: 00000000 }}"];
-    node00BBE7A8 -> node00BBE7F8[color="#0855F0"]
-    node00BBE7F8[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00BBE7F8 | type: OP | value: =| { left: 00BB1528 | right: 00BBE690 }}"];
-    node00BBE7F8 -> node00BB1528[color="#0855F0"]
-    node00BB1528[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00BB1528 | type: ID | value: Malenia| { left: 00000000 | right: 00000000 }}"];
-    node00BBE7F8 -> node00BBE690[color="#0855F0"]
-    node00BBE690[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00BBE690 | type: OP | value: *| { left: 00BB1488 | right: 00BBE758 }}"];
-    node00BBE690 -> node00BB1488[color="#0855F0"]
-    node00BB1488[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00BB1488 | type: ID | value: Tarnished| { left: 00000000 | right: 00000000 }}"];
-    node00BBE690 -> node00BBE758[color="#0855F0"]
-    node00BBE758[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00BBE758 | type: OP | value: call| { left: 00BBE640 | right: 00000000 }}"];
-    node00BBE758 -> node00BBE640[color="#0855F0"]
-    node00BBE640[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00BBE640 | type: OP | value: spec| { left: 00BB1410 | right: 00BBE618 }}"];
-    node00BBE640 -> node00BB1410[color="#0855F0"]
-    node00BB1410[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00BB1410 | type: ID | value: FACTORIAL| { left: 00000000 | right: 00000000 }}"];
-    node00BBE640 -> node00BBE618[color="#0855F0"]
-    node00BBE618[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00BBE618 | type: OP | value: ;| { left: 00BBE708 | right: 00000000 }}"];
-    node00BBE618 -> node00BBE708[color="#0855F0"]
-    node00BBE708[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00BBE708 | type: ID | value: Malenia| { left: 00000000 | right: 00000000 }}"];
-    node00BBE6E0 -> node00BBE668[color="#0855F0"]
-    node00BBE668[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00BBE668 | type: OP | value: return| { left: 00BBE780 | right: 00000000 }}"];
-    node00BBE668 -> node00BBE780[color="#0855F0"]
-    node00BBE780[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00BBE780 | type: ID | value: Malenia| { left: 00000000 | right: 00000000 }}"];
+        node00AF00C8[shape=record,style="rounded,filled",fillcolor="#BF62FC",label="{ ptr: 00AF00C8 | type: OP | value: spec| { left: 00AF0410 | right: 00AF04B0 }}"];
+    node00AF00C8 -> node00AF0410[color="#0855F0"]
+    node00AF0410[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00AF0410 | type: ID | value: SQSOLVER| { left: 00000000 | right: 00000000 }}"];
+    node00AF00C8 -> node00AF04B0[color="#0855F0"]
+    node00AF04B0[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00AF04B0 | type: OP | value: ;| { left: 00AF0460 | right: 00AF00A0 }}"];
+    node00AF04B0 -> node00AF0460[color="#0855F0"]
+    node00AF0460[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00AF0460 | type: ID | value: c| { left: 00000000 | right: 00000000 }}"];
+    node00AF04B0 -> node00AF00A0[color="#0855F0"]
+    node00AF00A0[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00AF00A0 | type: OP | value: ;| { left: 00AF0398 | right: 00AF0118 }}"];
+    node00AF00A0 -> node00AF0398[color="#0855F0"]
+    node00AF0398[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00AF0398 | type: ID | value: b| { left: 00000000 | right: 00000000 }}"];
+    node00AF00A0 -> node00AF0118[color="#0855F0"]
+    node00AF0118[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00AF0118 | type: OP | value: ;| { left: 00AF0348 | right: 00000000 }}"];
+    node00AF0118 -> node00AF0348[color="#0855F0"]
+    node00AF0348[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00AF0348 | type: ID | value: a| { left: 00000000 | right: 00000000 }}"];
 }

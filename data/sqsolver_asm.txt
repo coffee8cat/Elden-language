@@ -21,16 +21,21 @@ POP [2]
 ; Assignment End
 
 ; Assignment
-;CALL
+
+;CALL Save current BX
 PUSH BX
 
+
+;push call params
+PUSH [0]
+PUSH [1]
+PUSH [2]
+
+; BX_shift
 PUSH 6
 PUSH BX
 ADD
 POP BX
-PUSH [0]
-PUSH [1]
-PUSH [2]
 
 CALL SQSOLVER:
 PUSH AX
@@ -120,19 +125,24 @@ PUSH [BX+2]
 
 ; test condition
 
-JNE endif0:
+JNE endif4:
 ; body
 
 ; RETURN
-;CALL
+
+;CALL Save current BX
 PUSH BX
 
+
+;push call params
+PUSH [BX+1]
+PUSH [BX+0]
+
+; BX_shift
 PUSH 4
 PUSH BX
 ADD
 POP BX
-PUSH [BX+1]
-PUSH [BX+0]
 
 CALL LINEAR:
 PUSH AX
@@ -141,7 +151,7 @@ POP AX
 POP BX
 RTN
 
-endif0:
+endif4:
 
 ; Assignment
 PUSH [BX+1]
@@ -168,7 +178,7 @@ PUSH [BX+3]
 
 ; test condition
 
-JNE endif0:
+JNE endif6:
 ; body
 
 ; Assignment
@@ -189,7 +199,7 @@ POP AX
 POP BX
 RTN
 
-endif0:
+endif6:
 
 ; IF
 ; condition
@@ -198,7 +208,7 @@ PUSH [BX+3]
 
 ; test condition
 
-JA endif0:
+JA endif8:
 ; body
 
 ; Assignment
@@ -255,7 +265,7 @@ POP AX
 POP BX
 RTN
 
-endif0:
+endif8:
 
 ; RETURN
 PUSH [BX+3]

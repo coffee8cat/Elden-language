@@ -15,13 +15,13 @@
 typedef void (elden_to_asm_translation_func)(node_t*, identificator*, FILE*);
 
 
-void translate_OP(node_t* node, identificator* ids_table, FILE* output, size_t BX_shift, size_t IF_counter);
+void translate_OP(node_t* node, identificator* ids_table, FILE* output, size_t BX_shift);
 
 void translate_Assignment   (node_t* node, identificator* ids_table, FILE* output, size_t BX_shift);
-void translate_IF           (node_t* node, identificator* ids_table, FILE* output, size_t BX_shift, size_t IF_counter);
-void translate_While        (node_t* node, identificator* ids_table, FILE* output, size_t BX_shift, size_t IF_counter);
+void translate_IF           (node_t* node, identificator* ids_table, FILE* output, size_t BX_shift);
+void translate_While        (node_t* node, identificator* ids_table, FILE* output, size_t BX_shift);
 
-void translate_Function_Definition(node_t* node, identificator* ids_table, FILE* output, size_t IF_counter);
+void translate_Function_Definition(node_t* node, identificator* ids_table, FILE* output);
 elden_to_asm_translation_func get_params;
 
 void translate_Return       (node_t* node, identificator* ids_table, FILE* output, size_t BX_shift);
