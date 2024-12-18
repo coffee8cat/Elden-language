@@ -1,62 +1,66 @@
 434-format v1.5
 {OP:";"
-	{OP:"func_def"
-		{OP:"spec"
-			{ID:"EldenLord"}
-		}
+	{OP:";"
 		{OP:";"
 			{OP:";"
 				{OP:";"
-					{OP:";"
-						{OP:";"
-							{OP:"scan"
-								{ID:"Michella"}
-							}
-						}
+					{OP:"="
+						{ID:"Michella"}
+						{NUM:"0"}
 					}
 					{OP:"="
-						{ID:"Maliketh"}
-						{OP:"call"
-							{OP:"spec"
-								{ID:"FACTORIAL"}
-								{ID:"Michella"}
-							}
+						{ID:"Michella"}
+						{NUM:"4"}
+					}
+				}
+				{OP:"="
+					{ID:"Maliketh"}
+					{NUM:"0"}
+				}
+			}
+			{OP:"="
+				{ID:"Maliketh"}
+				{OP:"call"
+					{OP:"spec"
+						{ID:"FACTORIAL"}
+						{OP:","
+							{ID:"Michella"}
 						}
 					}
 				}
-				{OP:"print"
-					{ID:"Maliketh"}
-				}
-			}
-			{OP:"return"
-				{NUM:"0"}
 			}
 		}
+		{OP:"print"
+			{ID:"Maliketh"}
+		}
 	}
-	{OP:"func_def"
+	{OP:"def"
 		{OP:"spec"
 			{ID:"FACTORIAL"}
-			{ID:"Tarnished"}
+			{OP:","
+				{ID:"Tarnished"}
+			}
 		}
 		{OP:";"
 			{OP:";"
 				{OP:";"
 					{OP:";"
-						{OP:";"
-							{OP:"if"
+						{OP:"if"
+							{OP:"=="
 								{ID:"Tarnished"}
-								{OP:"return"
-									{NUM:"1"}
-								}
+								{NUM:"1"}
+							}
+							{OP:"return"
+								{NUM:"1"}
 							}
 						}
 						{OP:"="
 							{ID:"Malenia"}
-							{ID:"Tarnished"}
+							{NUM:"0"}
 						}
 					}
 					{OP:"="
-						{ID:"Tarnished"}
+						{ID:"Malenia"}
 						{OP:"-"
 							{ID:"Tarnished"}
 							{NUM:"1"}
@@ -66,11 +70,13 @@
 				{OP:"="
 					{ID:"Malenia"}
 					{OP:"*"
-						{ID:"Malenia"}
+						{ID:"Tarnished"}
 						{OP:"call"
 							{OP:"spec"
 								{ID:"FACTORIAL"}
-								{ID:"Tarnished"}
+								{OP:","
+									{ID:"Malenia"}
+								}
 							}
 						}
 					}

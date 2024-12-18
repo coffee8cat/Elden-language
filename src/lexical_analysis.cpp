@@ -123,7 +123,7 @@ void dump_lexemes_array(lexeme_t* cmds, identificator* ids_table)
     assert(cmds);
     assert(ids_table);
 
-    for (size_t i = 0; i < 100; i++)
+    for (size_t i = 0; i < 300; i++)
     {
         if (cmds[i].type == ID)
         {

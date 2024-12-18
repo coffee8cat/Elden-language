@@ -16,6 +16,9 @@ int main()
     assert(input);
     const char* buff = readfile(input);
 
+    printf("%s\n", buff);
+
+    printf("\nStaring translating to lexemes\n\n");
     lexeme_t* cmds = string_to_lexemes(buff, ids_table);
 
     dump_lexemes_array(cmds, ids_table);
@@ -45,15 +48,21 @@ int main()
     printf("number of global vars: %d\n", global_vars_counter);
     dump_ids_table(ids_table);
 
-    FILE* fact_fp = fopen("data\\fact.txt", "w");
+    FILE* fact_fp = fopen("data\\fact_asm.txt", "w");
 
-
+/*
     fprintf(fact_fp, "CALL EldenLord:\n");
     fprintf(fact_fp, "HLT\n\n");
+*/
+/*
     fprintf(fact_fp, "; Preparation\n");
     fprintf(fact_fp, "PUSH %d\n", global_vars_counter);
     fprintf(fact_fp, "POP BX\n");
-    translate_OP(root, ids_table, fact_fp, 0);
+*/
+    translate_OP(root, ids_table, fact_fp, global_vars_counter, 0);
 
+    fprintf(fact_fp, "\n\nHLT\n");
+
+    fclose(fact_fp);
     return 0;
 }

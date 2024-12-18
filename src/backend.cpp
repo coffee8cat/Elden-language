@@ -5,7 +5,7 @@
                     __FILE__, __LINE__, __func__, #expected);                       \
     assert(0)                                                                       \
 
-void translate_OP(node_t* node, identificator* ids_table, FILE* output, size_t BX_shift)
+void translate_OP(node_t* node, identificator* ids_table, FILE* output, size_t BX_shift, size_t IF_counter)
 {
     assert(node);
     assert(ids_table);
@@ -17,17 +17,17 @@ void translate_OP(node_t* node, identificator* ids_table, FILE* output, size_t B
         {
             case BOND:
             {
-                translate_OP(node -> left,  ids_table, output, BX_shift);
-                translate_OP(node -> right, ids_table, output, BX_shift);
+                translate_OP(node -> left,  ids_table, output, BX_shift, IF_counter);
+                translate_OP(node -> right, ids_table, output, BX_shift, IF_counter);
                 break;
             }
             case ASSIGNMENT:    { translate_Assignment  (node, ids_table, output, BX_shift); break; }
-            case IF:            { translate_IF          (node, ids_table, output, BX_shift); break; }
-            case WHILE:         { translate_While       (node, ids_table, output, BX_shift); break; }
+            case IF:            { translate_IF          (node, ids_table, output, BX_shift, IF_counter); break; }
+            case WHILE:         { translate_While       (node, ids_table, output, BX_shift, IF_counter); break; }
             case RTN:           { translate_Return      (node, ids_table, output, BX_shift); break; }
 
-            case FUNCTION_DEFINITION:   { translate_Function_Definition (node, ids_table, output);           break; }
-            case CALL:                  { translate_Function_Call       (node, ids_table, output, BX_shift); break; }
+            case FUNCTION_DEFINITION:   { translate_Function_Definition (node, ids_table, output, IF_counter);  break; }
+            case CALL:                  { translate_Function_Call       (node, ids_table, output, BX_shift);    break; }
 
             case ELEM_IN:  { translate_Scan  (node, ids_table, output); break;}
             case ELEM_OUT: { translate_Print (node, ids_table, output); break;}
@@ -53,29 +53,36 @@ void translate_Assignment(node_t* node, identificator* ids_table, FILE* output, 
     fprintf(output, "\n; Assignment End\n");
 }
 
-void translate_IF(node_t* node, identificator* ids_table, FILE* output, size_t BX_shift)
+void translate_IF(node_t* node, identificator* ids_table, FILE* output, size_t BX_shift, size_t IF_counter)
 {
     assert(node);
     assert(ids_table);
     assert(output);
 
-    static size_t IF_counter = 0;
-
     fprintf(output, "\n; IF\n; condition\n");
-    translate_Expression(node -> left, ids_table, output, BX_shift);
+    translate_Expression(node -> left -> right, ids_table, output, BX_shift);
+    translate_Expression(node -> left -> left, ids_table, output, BX_shift);
 
     fprintf(output, "\n; test condition\n");
-    fprintf(output, "PUSH 0\n JA endif%d:", IF_counter);
+    if (node -> left -> value.op == EQUAL)
+    {
+        fprintf(output, "\nJNE endif%d:", IF_counter);
+    }
+    else if (node -> left -> value.op == GREATER)
+    {
+        fprintf(output, "\nJA endif%d:", IF_counter);
+    }
+    else { fprintf(stderr, "ERROR: Invalid operation for condition in IF: %d\n"); assert(0); }
 
     fprintf(output, "\n; body\n");
-    translate_OP(node -> right, ids_table, output, BX_shift);
+    translate_OP(node -> right, ids_table, output, BX_shift, IF_counter + 1);
 
     fprintf(output, "\nendif%d:\n", IF_counter);
 
     IF_counter++;
 }
 
-void translate_While(node_t* node, identificator* ids_table, FILE* output, size_t BX_shift)
+void translate_While(node_t* node, identificator* ids_table, FILE* output, size_t BX_shift, size_t IF_counter)
 {
     assert(node);
     assert(ids_table);
@@ -93,16 +100,15 @@ void translate_While(node_t* node, identificator* ids_table, FILE* output, size_
     fprintf(output, "PUSH 0\n JA end_while%d:", while_counter); // change to JE
 
     fprintf(output, "\n; body\n");
-    translate_OP(node -> right, ids_table, output, BX_shift);
+    translate_OP(node -> right, ids_table, output, BX_shift, IF_counter);
 
     fprintf(output, "\nJMP while_start%d:",  while_counter);
     fprintf(output, "\nendwhile%d:\n",       while_counter);
 
     while_counter++;
-
 }
 
-void translate_Function_Definition(node_t* node, identificator* ids_table, FILE* output)
+void translate_Function_Definition(node_t* node, identificator* ids_table, FILE* output, size_t IF_counter)
 {
     assert(node);
     assert(node -> left);
@@ -110,6 +116,9 @@ void translate_Function_Definition(node_t* node, identificator* ids_table, FILE*
     assert(ids_table);
     assert(output);
 
+    static size_t func_counter = 0;
+
+    fprintf(output, "JMP func%d:\n", func_counter);
     fprintf(output, "\n; FUNCTION DEFINITION\n");
     fprintf(output, "%.*s:\n\n", ids_table[node -> left -> left -> value.id].name_len, ids_table[node -> left -> left -> value.id].name);
 
@@ -118,7 +127,10 @@ void translate_Function_Definition(node_t* node, identificator* ids_table, FILE*
 
     // больше проверок на типы узлов
 
-    translate_OP(node -> right, ids_table, output, ids_table[node -> left -> left -> value.id].BX_shift);
+    translate_OP(node -> right, ids_table, output, ids_table[node -> left -> left -> value.id].BX_shift, IF_counter);
+
+    fprintf(output, "\nfunc%d:\n", func_counter);
+    func_counter++;
 }
 
 void get_params(node_t* func_spec_node, identificator* ids_table, FILE* output)
@@ -169,13 +181,8 @@ void translate_Function_Call(node_t* node, identificator* ids_table, FILE* outpu
 
     PUSH AX*/
 
-    fprintf(output, ";CALL\n");
-
-    fprintf(output, "PUSH BX\n\n"
-                    "PUSH %d\n"
-                    "PUSH BX\n"
-                    "ADD\n"
-                    "POP BX\n", BX_shift);
+    fprintf(output, "\n;CALL Save current BX\n");
+    fprintf(output, "PUSH BX\n\n");
 
     // check function
     if (not ids_table[node -> left -> left -> value.id].is_defined)
@@ -184,8 +191,14 @@ void translate_Function_Call(node_t* node, identificator* ids_table, FILE* outpu
                         ids_table[node -> left -> left -> value.id].name_len,
                         ids_table[node -> left -> left -> value.id].name);
     }
-
+    fprintf(output, "\n;push call params\n");
     push_call_params(node -> left -> right, ids_table, output);
+
+    fprintf(output, "\n; BX_shift\n");
+    fprintf(output, "PUSH %d\n"
+                    "PUSH BX\n"
+                    "ADD\n"
+                    "POP BX\n", BX_shift);
 
     //if (node -> right -> type != ID) { COMPILER_ERROR(ID type node);}
 
@@ -284,7 +297,7 @@ void translate_push_node_value(node_t* node, identificator* ids_table, FILE* out
     }
     else if (node -> type == NUM)
     {
-        fprintf(output, "%lf\n", node -> value.num);
+        fprintf(output, "%lg\n", node -> value.num);
     }
 }
 

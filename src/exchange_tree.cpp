@@ -26,6 +26,23 @@ void save_tree(node_t* node, identificator* ids_table, FILE* output)
     {
         if (node -> value.op == VAR_DEFINITION)
         {
+
+            PRINT_OUT("{OP:\"=\"\n");
+            tabs_shift++;
+            save_tree(node -> left,  ids_table, output);
+            PRINT_OUT("{NUM:\"0\"}\n");
+            tabs_shift--;
+            PRINT_OUT("}\n");
+            return;
+        }
+        if (node -> value.op == FUNCTION_SPECIFICATION)
+        {
+            PRINT_OUT("{OP:\"spec\"\n");
+            tabs_shift++;
+            save_tree   (node -> left,  ids_table, output);
+            save_params (node -> right, ids_table, output);
+            tabs_shift--;
+            PRINT_OUT("}\n");
             return;
         }
         switch (node -> value.op)
@@ -39,7 +56,7 @@ void save_tree(node_t* node, identificator* ids_table, FILE* output)
                     save_tree(node -> left,  ids_table, output);        \
                     save_tree(node -> right, ids_table, output);        \
                     tabs_shift--;                                       \
-                    PRINT_OUT("}\n", name_for_save);                    \
+                    PRINT_OUT("}\n");                                   \
                     break;                                              \
                 }                                                       \
 
@@ -48,6 +65,39 @@ void save_tree(node_t* node, identificator* ids_table, FILE* output)
 
             default: { fprintf(stderr, "ERROR: No such operation\n"); }
         }
+    }
+    else
+    {
+        if (node -> type == ID)
+        {
+            PRINT_OUT("{ID:\"%.*s\"}\n", ids_table[node -> value.id].name_len, ids_table[node -> value.id].name);
+        }
+        else if (node -> type == NUM)
+        {
+            PRINT_OUT("{NUM:\"%lg\"}\n", node -> value.num);
+        }
+        else
+        {
+            fprintf(stderr, "ERROR: Invalid type: %lg\n", node -> value.num);
+        }
+    }
+}
+
+void save_params(node_t* node, identificator* ids_table, FILE* output)
+{
+    if (not node) { return; }
+
+    assert(ids_table);
+    assert(output);
+
+    if (node -> type == OP)
+    {
+        PRINT_OUT("{OP:\",\"\n");
+        tabs_shift++;
+        save_params(node -> left,  ids_table, output);
+        save_params(node -> right, ids_table, output);
+        tabs_shift--;
+        PRINT_OUT("}\n");
     }
     else
     {

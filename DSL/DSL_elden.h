@@ -10,6 +10,8 @@ DEF_TOKEN("Michella's needle",  NUM, FIVE)
 //== OPERATIONS ========================================================================//
 DEF_TOKEN("And when the stars will fall along with",    OP, IF_PREFIX)
 DEF_TOKEN("bless them with",                            OP, IF_POSTFIX)
+DEF_TOKEN("equal with",                                 OP, COMP_EQUAL)
+DEF_TOKEN("greater than",                               OP, COMP_GREATER)
 DEF_TOKEN("As I awaited",       OP, WHILE_PREFIX)
 DEF_TOKEN("return",             OP, WHILE_POSTFIX)
 
@@ -19,7 +21,7 @@ DEF_TOKEN("is",                 OP, ASSIGNMENT_INFIX)
 DEF_TOKEN("forged",             OP, VAR_DEFINITION_POSTFIX)
 DEF_TOKEN("the ring of",        OP, VAR_USAGE_PREFIX)
 
-DEF_TOKEN("In the Lands Between was found",      OP, SCAN_PREFIX)
+DEF_TOKEN("In the Lands Between was found",     OP, SCAN_PREFIX)
 DEF_TOKEN("In the age of Duskborn",             OP, PRINT_PREFIX)
 DEF_TOKEN("will thunder in the darkest night",  OP, PRINT_POSTFIX)
 

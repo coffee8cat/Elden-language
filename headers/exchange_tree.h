@@ -15,6 +15,7 @@
 #include "tree_dump.h"
 
 void save_tree(node_t* root, identificator* ids_table, FILE* output);
+void save_params(node_t* node, identificator* ids_table, FILE* output);
 void read_tree(node_t* root, identificator* ids_table, FILE* input);
 
 #endif

@@ -1,7 +1,9 @@
 
-#define _BOND(a, b)  new_node(OP, OP_VALUE(BOND),  a, b)
-#define _IF(a, b)    new_node(OP, OP_VALUE(IF),    a, b)
-#define _WHILE(a, b) new_node(OP, OP_VALUE(WHILE), a, b)
+#define _BOND(a, b)     new_node(OP, OP_VALUE(BOND),    a, b)
+#define _IF(a, b)       new_node(OP, OP_VALUE(IF),      a, b)
+#define _EQUAL(a, b)    new_node(OP, OP_VALUE(EQUAL),   a, b)
+#define _GREATER(a, b)  new_node(OP, OP_VALUE(GREATER), a, b)
+#define _WHILE(a, b)    new_node(OP, OP_VALUE(WHILE),   a, b)
 
 #define _ASSIGNMENT(a, b)               new_node(OP, OP_VALUE(ASSIGNMENT),              a, b)
 #define _VAR_DEFINITION(a)              new_node(OP, OP_VALUE(VAR_DEFINITION),          a, NULL)

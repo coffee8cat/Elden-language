@@ -1,3 +1,4 @@
+
 ; Assignment
 PUSH 0
 PUSH 5
@@ -23,7 +24,7 @@ POP [2]
 ;CALL
 PUSH BX
 
-PUSH 0
+PUSH 6
 PUSH BX
 ADD
 POP BX
@@ -43,7 +44,6 @@ PUSH [3]
 ELEM_OUT
 PUSH [4]
 ELEM_OUT
-
 JMP func0:
 
 ; FUNCTION DEFINITION
@@ -57,12 +57,9 @@ POP [BX+1]
 PUSH 0
 PUSH [BX+1]
 
-; IF
-; condition
-
 ; test condition
-PUSH 0
- JA endif0:
+
+JNE endif0:
 ; body
 
 ; IF
@@ -70,12 +67,9 @@ PUSH 0
 PUSH 0
 PUSH [BX+0]
 
-; IF
-; condition
-
 ; test condition
-PUSH 0
- JA endif0:
+
+JNE endif1:
 ; body
 
 ; RETURN
@@ -84,7 +78,7 @@ POP AX
 POP BX
 RTN
 
-endif0:
+endif1:
 
 ; RETURN
 PUSH 0
@@ -92,7 +86,7 @@ POP AX
 POP BX
 RTN
 
-endif1:
+endif0:
 
 ; Assignment
 PUSH [BX+0]
@@ -110,8 +104,6 @@ POP BX
 RTN
 
 func0:
-
-
 JMP func1:
 
 ; FUNCTION DEFINITION
@@ -126,12 +118,9 @@ POP [BX+2]
 PUSH 0
 PUSH [BX+2]
 
-; IF
-; condition
-
 ; test condition
-PUSH 0
- JA endif2:
+
+JNE endif0:
 ; body
 
 ; RETURN
@@ -152,7 +141,7 @@ POP AX
 POP BX
 RTN
 
-endif2:
+endif0:
 
 ; Assignment
 PUSH [BX+1]
@@ -177,12 +166,9 @@ POP [BX+3]
 PUSH 0
 PUSH [BX+3]
 
-; IF
-; condition
-
 ; test condition
-PUSH 0
- JA endif3:
+
+JNE endif0:
 ; body
 
 ; Assignment
@@ -203,11 +189,81 @@ POP AX
 POP BX
 RTN
 
-endif3:
+endif0:
 
 ; IF
 ; condition
 PUSH 0
 PUSH [BX+3]
+
+; test condition
+
+JA endif0:
+; body
+
+; Assignment
+PUSH [BX+3]
+PUSH 1
+PUSH 2
+
+DIV
+
+POW
+POP [BX+3]
+
+; Assignment End
+
+; Assignment
+PUSH 0
+PUSH [BX+1]
+PUSH [BX+3]
+
+ADD
+PUSH 2
+PUSH [BX+2]
+
+MUL
+
+DIV
+
+SUB
+POP [3]
+
+; Assignment End
+
+; Assignment
+PUSH 0
+PUSH [BX+1]
+PUSH [BX+3]
+
+SUB
+PUSH 2
+PUSH [BX+2]
+
+MUL
+
+DIV
+
+SUB
+POP [4]
+
+; Assignment End
+
+; RETURN
+PUSH 2
+POP AX
+POP BX
+RTN
+
+endif0:
+
+; RETURN
+PUSH [BX+3]
+POP AX
+POP BX
+RTN
+
+func1:
+
 
 HLT

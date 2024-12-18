@@ -81,19 +81,36 @@ node_t* get_Assignment(lexeme_t* lexeme_array, identificator* ids_table, size_t*
     return NULL;
 }
 
-//<If> ::= "And when the stars will fall along with" <Expression> "," "bless them with" "{" (<Operation> ";")+ "}"
+//<If> ::= "And when the stars will fall along with" <Expression> <Comparison Operator> <Expression>
+//"," "bless them with" "{" (<Operation> ";")+ "}"
 node_t* get_IF(lexeme_t* lexeme_array, identificator* ids_table, size_t* curr, FILE* html_stream)
 {
     assert(lexeme_array);
     assert(curr);
     assert(html_stream);
 
+    node_t* left_cond_part  = NULL;
+    node_t* right_cond_part = NULL;
     node_t* condition = NULL;
     node_t* action    = NULL;
 
     SOFT_GRAMMAR_CHECK(IF_PREFIX);
 
-    if ((condition = get_Expression(lexeme_array, ids_table, curr, html_stream)) == NULL) { SYNTAX_ERROR(Expression); }
+    if ((left_cond_part = get_Expression(lexeme_array, ids_table, curr, html_stream)) == NULL) { SYNTAX_ERROR(Expression); }
+    if (CHECK_WORD(COMP_EQUAL))
+    {
+        (*curr)++;
+        if ((right_cond_part = get_Expression(lexeme_array, ids_table, curr, html_stream)) == NULL) { SYNTAX_ERROR(Expression); }
+        condition = _EQUAL(left_cond_part, right_cond_part);
+    }
+    else if (CHECK_WORD(COMP_GREATER))
+    {
+        (*curr)++;
+        if ((right_cond_part = get_Expression(lexeme_array, ids_table, curr, html_stream)) == NULL) { SYNTAX_ERROR(Expression); }
+        condition = _GREATER(left_cond_part, right_cond_part);
+    }
+    else { SYNTAX_ERROR(comparison operator: (equal) or (greater)); }
+
     GRAMMAR_CHECK(',');
     GRAMMAR_CHECK(IF_POSTFIX);
     GRAMMAR_CHECK('{');
@@ -175,15 +192,21 @@ node_t* get_Function_Definition(lexeme_t* lexeme_array, identificator* ids_table
     if (CHECK_WORD(SPECIFICATION_INFIX))
     {
         (*curr)++;
-        params = get_Var(lexeme_array, ids_table, curr, html_stream);
+        params = get_Expression(lexeme_array, ids_table, curr, html_stream);
         temp = NULL;
-        while (CHECK_WORD(',') && (temp = get_Var(lexeme_array, ids_table, curr, html_stream)))
+        params = _BOND(params, NULL);
+        while (true)
         {
-            params = _BOND(params, temp);
+            if (CHECK_WORD(','))
+            {
+                (*curr)++;
+                temp = get_Expression(lexeme_array, ids_table, curr, html_stream);
+                if (temp == NULL) { SYNTAX_ERROR(Expression); }
+            }
+            else { break; }
+            params = _BOND(temp, params);
         }
-
     }
-
     node_t* specification = _FUNCTION_SPECIFICATION(id, params);
 
     tree_dump(specification, ids_table, html_stream, specification);
@@ -212,16 +235,31 @@ node_t* get_Function_Call(lexeme_t* lexeme_array, identificator* ids_table, size
 
     SOFT_GRAMMAR_CHECK(FUNCTION_CALL_PREFIX);
 
+    node_t* id = NULL;
+    node_t* params = NULL;
+    node_t* temp = NULL;
+
     if (not (lexeme_array[*curr].type == ID)) { SYNTAX_ERROR(ID); }
-    node_t* id = _ID(lexeme_array[*curr].value);
+    id = _ID(lexeme_array[*curr].value);
     (*curr)++;
 
-    GRAMMAR_CHECK(SPECIFICATION_INFIX);
-    node_t* params = get_Expression(lexeme_array, ids_table, curr, html_stream);
-    node_t* temp = NULL;
-    while (CHECK_WORD(',') && (temp = get_Expression(lexeme_array, ids_table, curr, html_stream)))
+    if (CHECK_WORD(SPECIFICATION_INFIX))
     {
-        params = _BOND(params, temp);
+        (*curr)++;
+        params = get_Expression(lexeme_array, ids_table, curr, html_stream);
+        temp = NULL;
+        params = _BOND(params, NULL);
+        while (true)
+        {
+            if (CHECK_WORD(','))
+            {
+                (*curr)++;
+                temp = get_Expression(lexeme_array, ids_table, curr, html_stream);
+                if (temp == NULL) { SYNTAX_ERROR(Expression); }
+            }
+            else { break; }
+            params = _BOND(temp, params);
+        }
     }
     return _FUNCTION_CALL( _FUNCTION_SPECIFICATION(id, params), NULL);
 }
@@ -333,7 +371,7 @@ node_t* get_POW(lexeme_t* lexeme_array, identificator* ids_table, size_t* curr, 
     assert(html_stream);
 
     node_t* node = get_Primary(lexeme_array, ids_table, curr, html_stream);
-    while(lexeme_array[*curr].value == POW)
+    while(lexeme_array[*curr].value == POW_LEX)
     {
         (*curr)++;
         node_t* node2 = get_Primary(lexeme_array, ids_table, curr, html_stream);
@@ -361,7 +399,6 @@ node_t* get_Primary(lexeme_t* lexeme_array, identificator* ids_table, size_t* cu
         node = get_Expression(lexeme_array, ids_table, curr, html_stream);
 
         GRAMMAR_CHECK(')');
-        (*curr)++;
         return node;
     }
 

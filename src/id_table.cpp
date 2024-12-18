@@ -35,7 +35,7 @@ size_t lookup(identificator* ids_table, const char* name, size_t name_length)
     size_t curr = 0;
     while (ids_table[curr].name && curr < max_num_of_ids)
     {
-        if (strncmp(name, ids_table[curr].name, name_length) == 0)
+        if (strncmp(name, ids_table[curr].name, name_length) == 0 && name_length == ids_table[curr].name_len)
             break;
         curr++;
     }
