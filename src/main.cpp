@@ -42,7 +42,7 @@ int main()
     fprintf(fact_fp, "; Preparation\n");
     fprintf(fact_fp, "PUSH %d\n", global_vars_counter);
     fprintf(fact_fp, "POP BX\n");
-    translate_OP(root, ids_table, fact_fp);
+    translate_OP(root, ids_table, fact_fp, 0);
 
     return 0;
 }

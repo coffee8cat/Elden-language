@@ -10,6 +10,7 @@
 typedef void (reverse_func_t)(node_t*, identificator*, FILE*);
 
 void reverse_frontend(node_t* root, identificator* ids_table);
+reverse_func_t reverse_node;
 reverse_func_t reverse_Assignment;
 reverse_func_t reverse_IF;
 reverse_func_t reverse_While;
@@ -24,8 +25,8 @@ reverse_func_t reverse_Scan;
 reverse_func_t reverse_Print;
 
 reverse_func_t reverse_Expression;
-reverse_func_t reverse_Var;
-reverse_func_t reverse_NUM;
-reverse_func_t reverse_Var_Definition;
 
+reverse_func_t reverse_Var_Definition;
+reverse_func_t reverse_node_value;
+reverse_func_t reverse_Var;
 #endif

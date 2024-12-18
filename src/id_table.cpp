@@ -53,7 +53,8 @@ void dump_ids_table(identificator* ids_table)
         printf("var in %p\n", &ids_table[i]);
         printf ("id = %3d: name: [%.*s] len = %3d\n",
                 i, ids_table[i].name_len, ids_table[i].name, ids_table[i].name_len);
-        printf("address = %3d num_of params = %2d scope = %d\n\n", ids_table[i].address, ids_table[i].num_of_params, ids_table[i].scope);
+        printf("address = %3d scope = %d\n", ids_table[i].address, ids_table[i].scope);
+        printf("num_of params = %2d BX_shift = %2d\n\n", ids_table[i].num_of_params, ids_table[i].BX_shift);
         i++;
     }
     printf("\n--- DUMP END ---\n\n");

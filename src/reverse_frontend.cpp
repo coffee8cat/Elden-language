@@ -1,9 +1,11 @@
 #include "reverse_frontend.h"
 
-#define DEF_TOKEN(name, ...) name,
+#define DEF_TOKEN(name, type, value) name,
+
 const char* operations_names[] =
 {
     #include "DSL_elden.h"
+    "empty"
 };
 
 #undef DEF_TOKEN
@@ -19,7 +21,7 @@ void reverse_frontend(node_t* root, identificator* ids_table)
     FILE* fp = fopen("data\\reversed_elden.txt", "w");
     if (fp == NULL) { fprintf(stderr, "ERROR: Could not open file for reversed_frontend\n"); assert(0); }
 
-    reverse_node(root, ids_table);
+    reverse_node(root, ids_table, fp);
     fclose(fp);
 }
 
@@ -67,7 +69,7 @@ void reverse_Assignment(node_t* node, identificator* ids_table, FILE* output)
     reverse_Var(node -> left, ids_table, output);
     PRINT_GRAMMAR(ASSIGNMENT_INFIX);
 
-    reverse_Expression(node -> var, ids_table, output);
+    reverse_Expression(node -> right, ids_table, output);
 }
 
 void reverse_IF(node_t* node, identificator* ids_table, FILE* output)
@@ -77,7 +79,7 @@ void reverse_IF(node_t* node, identificator* ids_table, FILE* output)
     assert(output);
 
     PRINT_GRAMMAR(IF_PREFIX);
-    reverse_Expression(node -> var, ids_table, output);
+    reverse_Expression(node -> left, ids_table, output);
 
     fprintf(output, ", ");
     PRINT_GRAMMAR(IF_POSTFIX);
@@ -98,7 +100,7 @@ void reverse_While(node_t* node, identificator* ids_table, FILE* output)
     fprintf(output, "\n}\n");
 
     PRINT_GRAMMAR(WHILE_PREFIX);
-    reverse_Expression(node -> var, ids_table, output);
+    reverse_Expression(node -> left, ids_table, output);
     PRINT_GRAMMAR(WHILE_POSTFIX);
 }
 
@@ -110,7 +112,7 @@ void reverse_Return(node_t* node, identificator* ids_table, FILE* output)
     assert(output);
 
     PRINT_GRAMMAR(RETURN_PREFIX);
-    reverse_Expression(node -> var, ids_table, output);
+    reverse_Expression(node -> left, ids_table, output);
 }
 
 void reverse_Function_Definition(node_t* node, identificator* ids_table, FILE* output)
@@ -223,4 +225,34 @@ void reverse_Expression(node_t* node, identificator* ids_table, FILE* output)
     {
         reverse_node_value(node, ids_table, output);
     }
+}
+
+void reverse_node_value(node_t* node, identificator* ids_table, FILE* output)
+{
+    assert(node);
+    assert(ids_table);
+    assert(output);
+
+    if (node -> type == ID)
+    {
+        reverse_Var(node, ids_table, output);
+    }
+    else
+    {
+        if ( 0 <= (int)node -> value.num && (int)node -> value.num <= 5)
+        {
+            PRINT_GRAMMAR((size_t)node -> value.num);
+        }
+        else { fprintf(stderr, "ERROR: Cannot print number less then 0 or more then 5 in elden language\n"); }
+    }
+}
+
+void reverse_Var(node_t* node, identificator* ids_table, FILE* output)
+{
+    assert(node);
+    assert(ids_table);
+    assert(output);
+
+    PRINT_GRAMMAR(VAR_USAGE_PREFIX);
+    fprintf(output, ", %.*s", ids_table[node -> left-> value.id].name_len, ids_table[node -> left -> value.id].name);
 }

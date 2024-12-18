@@ -172,7 +172,7 @@ node_t* get_Function_Definition(lexeme_t* lexeme_array, identificator* ids_table
     id = _ID(lexeme_array[*curr].value);
     (*curr)++;
 
-    if (CHECK_WORD(FUNCTION_DEFINITION_POSTFIX))
+    if (CHECK_WORD(SPECIFICATION_INFIX))
     {
         (*curr)++;
         params = get_Var(lexeme_array, ids_table, curr, html_stream);
@@ -216,7 +216,7 @@ node_t* get_Function_Call(lexeme_t* lexeme_array, identificator* ids_table, size
     node_t* id = _ID(lexeme_array[*curr].value);
     (*curr)++;
 
-    GRAMMAR_CHECK(FUNCTION_CALL_POSTFIX);
+    GRAMMAR_CHECK(SPECIFICATION_INFIX);
     node_t* params = get_Var(lexeme_array, ids_table, curr, html_stream);
     node_t* temp = NULL;
     while (CHECK_WORD(',') && (temp = get_Var(lexeme_array, ids_table, curr, html_stream)))
