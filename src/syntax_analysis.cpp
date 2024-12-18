@@ -223,7 +223,7 @@ node_t* get_Function_Call(lexeme_t* lexeme_array, identificator* ids_table, size
     {
         params = _BOND(params, temp);
     }
-    return _FUNCTION_CALL(id, params);
+    return _FUNCTION_CALL( _FUNCTION_SPECIFICATION(id, params), NULL);
 }
 
 //<Return> ::= "Bless thy tarnished with" <space> <Expression>

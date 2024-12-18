@@ -2,7 +2,7 @@ digraph
 {
     rankdir=TP
 
-        node00AC1138[shape=record,style="rounded,filled",fillcolor="#BF62FC",label="{ ptr: 00AC1138 | type: OP | value: spec| { left: 00AC1110 | right: 00000000 }}"];
-    node00AC1138 -> node00AC1110[color="#0855F0"]
-    node00AC1110[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00AC1110 | type: ID | value: EldenLord| { left: 00000000 | right: 00000000 }}"];
+        node006B1138[shape=record,style="rounded,filled",fillcolor="#BF62FC",label="{ ptr: 006B1138 | type: OP | value: spec| { left: 006B1110 | right: 00000000 }}"];
+    node006B1138 -> node006B1110[color="#0855F0"]
+    node006B1110[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 006B1110 | type: ID | value: EldenLord| { left: 00000000 | right: 00000000 }}"];
 }

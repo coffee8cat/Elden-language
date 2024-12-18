@@ -178,18 +178,21 @@ void translate_Function_Call(node_t* node, identificator* ids_table, FILE* outpu
                     "POP BX\n", BX_shift);
 
     // check function
-    if (not ids_table[node -> left -> value.id].is_defined)
+    if (not ids_table[node -> left -> left -> value.id].is_defined)
     {
         fprintf(stderr, "ERROR: Function %.*s was not defined in this scope\n",
-                        ids_table[node -> left -> value.id].name_len,
-                        ids_table[node -> left -> value.id].name);
+                        ids_table[node -> left -> left -> value.id].name_len,
+                        ids_table[node -> left -> left -> value.id].name);
     }
 
-    push_call_params(node -> right, ids_table, output);
+    push_call_params(node -> left -> right, ids_table, output);
 
     //if (node -> right -> type != ID) { COMPILER_ERROR(ID type node);}
 
-    fprintf(output, "\nCALL %.*s:\n", ids_table[node -> left -> value.id].name_len, ids_table[node -> left -> value.id].name);
+    fprintf(output, "\nCALL %.*s:\n",
+            ids_table[node -> left -> left -> value.id].name_len,
+            ids_table[node -> left -> left -> value.id].name);
+
     fprintf(output, "PUSH AX\n");
     fprintf(output, "; CALL END\n");
 }

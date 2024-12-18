@@ -5,6 +5,7 @@
 #include "syntax_analysis.h"
 #include "middleend.h"
 #include "backend.h"
+#include "reverse_frontend.h"
 
 int main()
 {
@@ -27,6 +28,8 @@ int main()
 
     //написать функцию распечатки синтаксического дерева
     tree_dump(root, ids_table, html_stream, root);
+
+    reverse_frontend(root, ids_table);
 
     size_t global_vars_counter = 0;
     prepare_to_compile(root, ids_table, &global_vars_counter);

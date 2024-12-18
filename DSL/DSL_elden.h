@@ -17,9 +17,9 @@ DEF_TOKEN("And now",            OP, ASSIGNMENT_PREFIX)
 DEF_TOKEN("is",                 OP, ASSIGNMENT_INFIX)
 
 DEF_TOKEN("forged",             OP, VAR_DEFINITION_POSTFIX)
-DEF_TOKEN("the ring of ",       OP, VAR_USAGE_PREFIX)
+DEF_TOKEN("the ring of",        OP, VAR_USAGE_PREFIX)
 
-DEF_TOKEN("In the Lands Between we found",      OP, SCAN_PREFIX)
+DEF_TOKEN("In the Lands Between was found",      OP, SCAN_PREFIX)
 DEF_TOKEN("In the age of Duskborn",             OP, PRINT_PREFIX)
 DEF_TOKEN("will thunder in the darkest night",  OP, PRINT_POSTFIX)
 

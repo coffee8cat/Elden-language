@@ -26,7 +26,8 @@ reverse_func_t reverse_Print;
 
 reverse_func_t reverse_Expression;
 
-reverse_func_t reverse_Var_Definition;
 reverse_func_t reverse_node_value;
 reverse_func_t reverse_Var;
+reverse_func_t reverse_Var_Definition;
+
 #endif

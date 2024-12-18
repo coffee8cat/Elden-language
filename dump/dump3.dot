@@ -2,115 +2,119 @@ digraph
 {
     rankdir=TP
 
-        node00ACE280[shape=record,style="rounded,filled",fillcolor="#BF62FC",label="{ ptr: 00ACE280 | type: OP | value: ;| { left: 00AC1630 | right: 00ACE438 }}"];
-    node00ACE280 -> node00AC1630[color="#0855F0"]
-    node00AC1630[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00AC1630 | type: OP | value: func_def| { left: 00AC1138 | right: 00AC1658 }}"];
-    node00AC1630 -> node00AC1138[color="#0855F0"]
-    node00AC1138[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00AC1138 | type: OP | value: spec| { left: 00AC1110 | right: 00000000 }}"];
-    node00AC1138 -> node00AC1110[color="#0855F0"]
-    node00AC1110[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00AC1110 | type: ID | value: EldenLord| { left: 00000000 | right: 00000000 }}"];
-    node00AC1630 -> node00AC1658[color="#0855F0"]
-    node00AC1658[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00AC1658 | type: OP | value: ;| { left: 00AC1568 | right: 00AC1518 }}"];
-    node00AC1658 -> node00AC1568[color="#0855F0"]
-    node00AC1568[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00AC1568 | type: OP | value: ;| { left: 00AC1388 | right: 00AC04B0 }}"];
-    node00AC1568 -> node00AC1388[color="#0855F0"]
-    node00AC1388[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00AC1388 | type: OP | value: ;| { left: 00AC1298 | right: 00AC1360 }}"];
-    node00AC1388 -> node00AC1298[color="#0855F0"]
-    node00AC1298[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00AC1298 | type: OP | value: ;| { left: 00AC1220 | right: 00AC1270 }}"];
-    node00AC1298 -> node00AC1220[color="#0855F0"]
-    node00AC1220[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00AC1220 | type: OP | value: ;| { left: 00AC11A8 | right: 00AC11F8 }}"];
-    node00AC1220 -> node00AC11A8[color="#0855F0"]
-    node00AC11A8[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00AC11A8 | type: OP | value: var_def| { left: 00AC1180 | right: 00000000 }}"];
-    node00AC11A8 -> node00AC1180[color="#0855F0"]
-    node00AC1180[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00AC1180 | type: ID | value: Michella| { left: 00000000 | right: 00000000 }}"];
-    node00AC1220 -> node00AC11F8[color="#0855F0"]
-    node00AC11F8[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00AC11F8 | type: OP | value: scan| { left: 00AC11D0 | right: 00000000 }}"];
-    node00AC11F8 -> node00AC11D0[color="#0855F0"]
-    node00AC11D0[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00AC11D0 | type: ID | value: Michella| { left: 00000000 | right: 00000000 }}"];
-    node00AC1298 -> node00AC1270[color="#0855F0"]
-    node00AC1270[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00AC1270 | type: OP | value: var_def| { left: 00AC1248 | right: 00000000 }}"];
-    node00AC1270 -> node00AC1248[color="#0855F0"]
-    node00AC1248[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00AC1248 | type: ID | value: Maliketh| { left: 00000000 | right: 00000000 }}"];
-    node00AC1388 -> node00AC1360[color="#0855F0"]
-    node00AC1360[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00AC1360 | type: OP | value: =| { left: 00AC12C0 | right: 00AC1338 }}"];
-    node00AC1360 -> node00AC12C0[color="#0855F0"]
-    node00AC12C0[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00AC12C0 | type: ID | value: Maliketh| { left: 00000000 | right: 00000000 }}"];
-    node00AC1360 -> node00AC1338[color="#0855F0"]
-    node00AC1338[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00AC1338 | type: OP | value: call| { left: 00AC12E8 | right: 00AC1310 }}"];
-    node00AC1338 -> node00AC12E8[color="#0855F0"]
-    node00AC12E8[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00AC12E8 | type: ID | value: FACTORIAL| { left: 00000000 | right: 00000000 }}"];
-    node00AC1338 -> node00AC1310[color="#0855F0"]
-    node00AC1310[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00AC1310 | type: ID | value: Michella| { left: 00000000 | right: 00000000 }}"];
-    node00AC1568 -> node00AC04B0[color="#0855F0"]
-    node00AC04B0[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00AC04B0 | type: OP | value: print| { left: 00AC13B0 | right: 00000000 }}"];
-    node00AC04B0 -> node00AC13B0[color="#0855F0"]
-    node00AC13B0[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00AC13B0 | type: ID | value: Maliketh| { left: 00000000 | right: 00000000 }}"];
-    node00AC1658 -> node00AC1518[color="#0855F0"]
-    node00AC1518[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00AC1518 | type: OP | value: return| { left: 00AC1770 | right: 00000000 }}"];
-    node00AC1518 -> node00AC1770[color="#0855F0"]
-    node00AC1770[shape=record,style="rounded,filled",fillcolor="#ECC51B",label="{ ptr: 00AC1770 | type: NUM | value: 0.000000| { left: 00000000 | right: 00000000 }}"];
-    node00ACE280 -> node00ACE438[color="#0855F0"]
-    node00ACE438[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00ACE438 | type: OP | value: func_def| { left: 00AC14A0 | right: 00ACE3E8 }}"];
-    node00ACE438 -> node00AC14A0[color="#0855F0"]
-    node00AC14A0[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00AC14A0 | type: OP | value: spec| { left: 00AC1798 | right: 00AC1478 }}"];
-    node00AC14A0 -> node00AC1798[color="#0855F0"]
-    node00AC1798[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00AC1798 | type: ID | value: FACTORIAL| { left: 00000000 | right: 00000000 }}"];
-    node00AC14A0 -> node00AC1478[color="#0855F0"]
-    node00AC1478[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00AC1478 | type: ID | value: Tarnished| { left: 00000000 | right: 00000000 }}"];
-    node00ACE438 -> node00ACE3E8[color="#0855F0"]
-    node00ACE3E8[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00ACE3E8 | type: OP | value: ;| { left: 00ACE410 | right: 00ACE4B0 }}"];
-    node00ACE3E8 -> node00ACE410[color="#0855F0"]
-    node00ACE410[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00ACE410 | type: OP | value: ;| { left: 00ACE398 | right: 00ACE2D0 }}"];
-    node00ACE410 -> node00ACE398[color="#0855F0"]
-    node00ACE398[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00ACE398 | type: OP | value: ;| { left: 00AC14F0 | right: 00AC1608 }}"];
-    node00ACE398 -> node00AC14F0[color="#0855F0"]
-    node00AC14F0[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00AC14F0 | type: OP | value: ;| { left: 00AC15B8 | right: 00AC1450 }}"];
-    node00AC14F0 -> node00AC15B8[color="#0855F0"]
-    node00AC15B8[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00AC15B8 | type: OP | value: ;| { left: 00AC1748 | right: 00AC1590 }}"];
-    node00AC15B8 -> node00AC1748[color="#0855F0"]
-    node00AC1748[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00AC1748 | type: OP | value: if| { left: 00AC16F8 | right: 00AC1680 }}"];
-    node00AC1748 -> node00AC16F8[color="#0855F0"]
-    node00AC16F8[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00AC16F8 | type: ID | value: Tarnished| { left: 00000000 | right: 00000000 }}"];
-    node00AC1748 -> node00AC1680[color="#0855F0"]
-    node00AC1680[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00AC1680 | type: OP | value: return| { left: 00AC1720 | right: 00000000 }}"];
-    node00AC1680 -> node00AC1720[color="#0855F0"]
-    node00AC1720[shape=record,style="rounded,filled",fillcolor="#ECC51B",label="{ ptr: 00AC1720 | type: NUM | value: 1.000000| { left: 00000000 | right: 00000000 }}"];
-    node00AC15B8 -> node00AC1590[color="#0855F0"]
-    node00AC1590[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00AC1590 | type: OP | value: var_def| { left: 00AC1400 | right: 00000000 }}"];
-    node00AC1590 -> node00AC1400[color="#0855F0"]
-    node00AC1400[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00AC1400 | type: ID | value: Malenia| { left: 00000000 | right: 00000000 }}"];
-    node00AC14F0 -> node00AC1450[color="#0855F0"]
-    node00AC1450[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00AC1450 | type: OP | value: =| { left: 00AC14C8 | right: 00AC1428 }}"];
-    node00AC1450 -> node00AC14C8[color="#0855F0"]
-    node00AC14C8[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00AC14C8 | type: ID | value: Malenia| { left: 00000000 | right: 00000000 }}"];
-    node00AC1450 -> node00AC1428[color="#0855F0"]
-    node00AC1428[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00AC1428 | type: ID | value: Tarnished| { left: 00000000 | right: 00000000 }}"];
-    node00ACE398 -> node00AC1608[color="#0855F0"]
-    node00AC1608[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00AC1608 | type: OP | value: =| { left: 00AC16A8 | right: 00AC15E0 }}"];
-    node00AC1608 -> node00AC16A8[color="#0855F0"]
-    node00AC16A8[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00AC16A8 | type: ID | value: Tarnished| { left: 00000000 | right: 00000000 }}"];
-    node00AC1608 -> node00AC15E0[color="#0855F0"]
-    node00AC15E0[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00AC15E0 | type: OP | value: -| { left: 00AC1540 | right: 00AC16D0 }}"];
-    node00AC15E0 -> node00AC1540[color="#0855F0"]
-    node00AC1540[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00AC1540 | type: ID | value: Tarnished| { left: 00000000 | right: 00000000 }}"];
-    node00AC15E0 -> node00AC16D0[color="#0855F0"]
-    node00AC16D0[shape=record,style="rounded,filled",fillcolor="#ECC51B",label="{ ptr: 00AC16D0 | type: NUM | value: 1.000000| { left: 00000000 | right: 00000000 }}"];
-    node00ACE410 -> node00ACE2D0[color="#0855F0"]
-    node00ACE2D0[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00ACE2D0 | type: OP | value: =| { left: 00ACE528 | right: 00ACE2A8 }}"];
-    node00ACE2D0 -> node00ACE528[color="#0855F0"]
-    node00ACE528[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00ACE528 | type: ID | value: Malenia| { left: 00000000 | right: 00000000 }}"];
-    node00ACE2D0 -> node00ACE2A8[color="#0855F0"]
-    node00ACE2A8[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00ACE2A8 | type: OP | value: *| { left: 00ACE370 | right: 00ACE050 }}"];
-    node00ACE2A8 -> node00ACE370[color="#0855F0"]
-    node00ACE370[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00ACE370 | type: ID | value: Malenia| { left: 00000000 | right: 00000000 }}"];
-    node00ACE2A8 -> node00ACE050[color="#0855F0"]
-    node00ACE050[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00ACE050 | type: OP | value: call| { left: 00ACE3C0 | right: 00ACE168 }}"];
-    node00ACE050 -> node00ACE3C0[color="#0855F0"]
-    node00ACE3C0[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00ACE3C0 | type: ID | value: FACTORIAL| { left: 00000000 | right: 00000000 }}"];
-    node00ACE050 -> node00ACE168[color="#0855F0"]
-    node00ACE168[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00ACE168 | type: ID | value: Tarnished| { left: 00000000 | right: 00000000 }}"];
-    node00ACE3E8 -> node00ACE4B0[color="#0855F0"]
-    node00ACE4B0[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00ACE4B0 | type: OP | value: return| { left: 00ACE320 | right: 00000000 }}"];
-    node00ACE4B0 -> node00ACE320[color="#0855F0"]
-    node00ACE320[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00ACE320 | type: ID | value: Malenia| { left: 00000000 | right: 00000000 }}"];
+        node006BE208[shape=record,style="rounded,filled",fillcolor="#BF62FC",label="{ ptr: 006BE208 | type: OP | value: ;| { left: 006B1568 | right: 006BE3E8 }}"];
+    node006BE208 -> node006B1568[color="#0855F0"]
+    node006B1568[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 006B1568 | type: OP | value: func_def| { left: 006B1138 | right: 006B14F0 }}"];
+    node006B1568 -> node006B1138[color="#0855F0"]
+    node006B1138[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 006B1138 | type: OP | value: spec| { left: 006B1110 | right: 00000000 }}"];
+    node006B1138 -> node006B1110[color="#0855F0"]
+    node006B1110[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 006B1110 | type: ID | value: EldenLord| { left: 00000000 | right: 00000000 }}"];
+    node006B1568 -> node006B14F0[color="#0855F0"]
+    node006B14F0[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 006B14F0 | type: OP | value: ;| { left: 006B14A0 | right: 006B1590 }}"];
+    node006B14F0 -> node006B14A0[color="#0855F0"]
+    node006B14A0[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 006B14A0 | type: OP | value: ;| { left: 006B13B0 | right: 006B14C8 }}"];
+    node006B14A0 -> node006B13B0[color="#0855F0"]
+    node006B13B0[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 006B13B0 | type: OP | value: ;| { left: 006B1298 | right: 006B1388 }}"];
+    node006B13B0 -> node006B1298[color="#0855F0"]
+    node006B1298[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 006B1298 | type: OP | value: ;| { left: 006B1220 | right: 006B1270 }}"];
+    node006B1298 -> node006B1220[color="#0855F0"]
+    node006B1220[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 006B1220 | type: OP | value: ;| { left: 006B11A8 | right: 006B11F8 }}"];
+    node006B1220 -> node006B11A8[color="#0855F0"]
+    node006B11A8[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 006B11A8 | type: OP | value: var_def| { left: 006B1180 | right: 00000000 }}"];
+    node006B11A8 -> node006B1180[color="#0855F0"]
+    node006B1180[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 006B1180 | type: ID | value: Michella| { left: 00000000 | right: 00000000 }}"];
+    node006B1220 -> node006B11F8[color="#0855F0"]
+    node006B11F8[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 006B11F8 | type: OP | value: scan| { left: 006B11D0 | right: 00000000 }}"];
+    node006B11F8 -> node006B11D0[color="#0855F0"]
+    node006B11D0[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 006B11D0 | type: ID | value: Michella| { left: 00000000 | right: 00000000 }}"];
+    node006B1298 -> node006B1270[color="#0855F0"]
+    node006B1270[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 006B1270 | type: OP | value: var_def| { left: 006B1248 | right: 00000000 }}"];
+    node006B1270 -> node006B1248[color="#0855F0"]
+    node006B1248[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 006B1248 | type: ID | value: Maliketh| { left: 00000000 | right: 00000000 }}"];
+    node006B13B0 -> node006B1388[color="#0855F0"]
+    node006B1388[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 006B1388 | type: OP | value: =| { left: 006B12C0 | right: 006B1360 }}"];
+    node006B1388 -> node006B12C0[color="#0855F0"]
+    node006B12C0[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 006B12C0 | type: ID | value: Maliketh| { left: 00000000 | right: 00000000 }}"];
+    node006B1388 -> node006B1360[color="#0855F0"]
+    node006B1360[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 006B1360 | type: OP | value: call| { left: 006B1338 | right: 00000000 }}"];
+    node006B1360 -> node006B1338[color="#0855F0"]
+    node006B1338[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 006B1338 | type: OP | value: spec| { left: 006B12E8 | right: 006B1310 }}"];
+    node006B1338 -> node006B12E8[color="#0855F0"]
+    node006B12E8[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 006B12E8 | type: ID | value: FACTORIAL| { left: 00000000 | right: 00000000 }}"];
+    node006B1338 -> node006B1310[color="#0855F0"]
+    node006B1310[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 006B1310 | type: ID | value: Michella| { left: 00000000 | right: 00000000 }}"];
+    node006B14A0 -> node006B14C8[color="#0855F0"]
+    node006B14C8[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 006B14C8 | type: OP | value: print| { left: 006B04B0 | right: 00000000 }}"];
+    node006B14C8 -> node006B04B0[color="#0855F0"]
+    node006B04B0[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 006B04B0 | type: ID | value: Maliketh| { left: 00000000 | right: 00000000 }}"];
+    node006B14F0 -> node006B1590[color="#0855F0"]
+    node006B1590[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 006B1590 | type: OP | value: return| { left: 006B1630 | right: 00000000 }}"];
+    node006B1590 -> node006B1630[color="#0855F0"]
+    node006B1630[shape=record,style="rounded,filled",fillcolor="#ECC51B",label="{ ptr: 006B1630 | type: NUM | value: 0.000000| { left: 00000000 | right: 00000000 }}"];
+    node006BE208 -> node006BE3E8[color="#0855F0"]
+    node006BE3E8[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 006BE3E8 | type: OP | value: func_def| { left: 006B15E0 | right: 006BE4D8 }}"];
+    node006BE3E8 -> node006B15E0[color="#0855F0"]
+    node006B15E0[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 006B15E0 | type: OP | value: spec| { left: 006B15B8 | right: 006B1680 }}"];
+    node006B15E0 -> node006B15B8[color="#0855F0"]
+    node006B15B8[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 006B15B8 | type: ID | value: FACTORIAL| { left: 00000000 | right: 00000000 }}"];
+    node006B15E0 -> node006B1680[color="#0855F0"]
+    node006B1680[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 006B1680 | type: ID | value: Tarnished| { left: 00000000 | right: 00000000 }}"];
+    node006BE3E8 -> node006BE4D8[color="#0855F0"]
+    node006BE4D8[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 006BE4D8 | type: OP | value: ;| { left: 006BE118 | right: 006BE4B0 }}"];
+    node006BE4D8 -> node006BE118[color="#0855F0"]
+    node006BE118[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 006BE118 | type: OP | value: ;| { left: 006BE460 | right: 006BE398 }}"];
+    node006BE118 -> node006BE460[color="#0855F0"]
+    node006BE460[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 006BE460 | type: OP | value: ;| { left: 006B1798 | right: 006BE2F8 }}"];
+    node006BE460 -> node006B1798[color="#0855F0"]
+    node006B1798[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 006B1798 | type: OP | value: ;| { left: 006B16D0 | right: 006B1770 }}"];
+    node006B1798 -> node006B16D0[color="#0855F0"]
+    node006B16D0[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 006B16D0 | type: OP | value: ;| { left: 006B1540 | right: 006B1608 }}"];
+    node006B16D0 -> node006B1540[color="#0855F0"]
+    node006B1540[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 006B1540 | type: OP | value: if| { left: 006B1518 | right: 006B16A8 }}"];
+    node006B1540 -> node006B1518[color="#0855F0"]
+    node006B1518[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 006B1518 | type: ID | value: Tarnished| { left: 00000000 | right: 00000000 }}"];
+    node006B1540 -> node006B16A8[color="#0855F0"]
+    node006B16A8[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 006B16A8 | type: OP | value: return| { left: 006B1658 | right: 00000000 }}"];
+    node006B16A8 -> node006B1658[color="#0855F0"]
+    node006B1658[shape=record,style="rounded,filled",fillcolor="#ECC51B",label="{ ptr: 006B1658 | type: NUM | value: 1.000000| { left: 00000000 | right: 00000000 }}"];
+    node006B16D0 -> node006B1608[color="#0855F0"]
+    node006B1608[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 006B1608 | type: OP | value: var_def| { left: 006B16F8 | right: 00000000 }}"];
+    node006B1608 -> node006B16F8[color="#0855F0"]
+    node006B16F8[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 006B16F8 | type: ID | value: Malenia| { left: 00000000 | right: 00000000 }}"];
+    node006B1798 -> node006B1770[color="#0855F0"]
+    node006B1770[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 006B1770 | type: OP | value: =| { left: 006B1720 | right: 006B1748 }}"];
+    node006B1770 -> node006B1720[color="#0855F0"]
+    node006B1720[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 006B1720 | type: ID | value: Malenia| { left: 00000000 | right: 00000000 }}"];
+    node006B1770 -> node006B1748[color="#0855F0"]
+    node006B1748[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 006B1748 | type: ID | value: Tarnished| { left: 00000000 | right: 00000000 }}"];
+    node006BE460 -> node006BE2F8[color="#0855F0"]
+    node006BE2F8[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 006BE2F8 | type: OP | value: =| { left: 006B1400 | right: 006B1478 }}"];
+    node006BE2F8 -> node006B1400[color="#0855F0"]
+    node006B1400[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 006B1400 | type: ID | value: Tarnished| { left: 00000000 | right: 00000000 }}"];
+    node006BE2F8 -> node006B1478[color="#0855F0"]
+    node006B1478[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 006B1478 | type: OP | value: -| { left: 006B1428 | right: 006B1450 }}"];
+    node006B1478 -> node006B1428[color="#0855F0"]
+    node006B1428[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 006B1428 | type: ID | value: Tarnished| { left: 00000000 | right: 00000000 }}"];
+    node006B1478 -> node006B1450[color="#0855F0"]
+    node006B1450[shape=record,style="rounded,filled",fillcolor="#ECC51B",label="{ ptr: 006B1450 | type: NUM | value: 1.000000| { left: 00000000 | right: 00000000 }}"];
+    node006BE118 -> node006BE398[color="#0855F0"]
+    node006BE398[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 006BE398 | type: OP | value: =| { left: 006BE348 | right: 006BE370 }}"];
+    node006BE398 -> node006BE348[color="#0855F0"]
+    node006BE348[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 006BE348 | type: ID | value: Malenia| { left: 00000000 | right: 00000000 }}"];
+    node006BE398 -> node006BE370[color="#0855F0"]
+    node006BE370[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 006BE370 | type: OP | value: *| { left: 006BE488 | right: 006BE258 }}"];
+    node006BE370 -> node006BE488[color="#0855F0"]
+    node006BE488[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 006BE488 | type: ID | value: Malenia| { left: 00000000 | right: 00000000 }}"];
+    node006BE370 -> node006BE258[color="#0855F0"]
+    node006BE258[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 006BE258 | type: OP | value: call| { left: 006BE1E0 | right: 00000000 }}"];
+    node006BE258 -> node006BE1E0[color="#0855F0"]
+    node006BE1E0[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 006BE1E0 | type: OP | value: spec| { left: 006BE320 | right: 006BE190 }}"];
+    node006BE1E0 -> node006BE320[color="#0855F0"]
+    node006BE320[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 006BE320 | type: ID | value: FACTORIAL| { left: 00000000 | right: 00000000 }}"];
+    node006BE1E0 -> node006BE190[color="#0855F0"]
+    node006BE190[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 006BE190 | type: ID | value: Tarnished| { left: 00000000 | right: 00000000 }}"];
+    node006BE4D8 -> node006BE4B0[color="#0855F0"]
+    node006BE4B0[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 006BE4B0 | type: OP | value: return| { left: 006BE3C0 | right: 00000000 }}"];
+    node006BE4B0 -> node006BE3C0[color="#0855F0"]
+    node006BE3C0[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 006BE3C0 | type: ID | value: Malenia| { left: 00000000 | right: 00000000 }}"];
 }
