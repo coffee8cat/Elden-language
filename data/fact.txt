@@ -1,213 +1,93 @@
-; Assignment
-PUSH 0
-PUSH 5
 
-SUB
-POP [0]
-
-; Assignment End
-
-; Assignment
-PUSH 1
-POP [1]
-
-; Assignment End
-
-; Assignment
-PUSH 2
-POP [2]
-
-; Assignment End
-
-; Assignment
-;CALL
+;CALL Save current BX
 PUSH BX
 
+
+;push call params
+PUSH 4
+
+; BX_shift
 PUSH 0
 PUSH BX
 ADD
 POP BX
-PUSH [0]
-PUSH [1]
-PUSH [2]
 
-CALL SQSOLVER:
+CALL feed:
 PUSH AX
 ; CALL END
-POP [5]
-
-; Assignment End
-PUSH [5]
 ELEM_OUT
-PUSH [3]
-ELEM_OUT
-PUSH [4]
-ELEM_OUT
-
 JMP func0:
 
 ; FUNCTION DEFINITION
-LINEAR:
+feed:
 
 POP [BX+0]
-POP [BX+1]
-
-; IF
-; condition
-PUSH 0
-PUSH [BX+1]
-
-; IF
-; condition
-
-; test condition
-PUSH 0
- JA endif0:
-; body
 
 ; IF
 ; condition
 PUSH 0
 PUSH [BX+0]
 
-; IF
-; condition
-
 ; test condition
-PUSH 0
- JA endif0:
+
+JNE endif0:
 ; body
 
 ; RETURN
-PUSH 5
+PUSH 1
 POP AX
 POP BX
 RTN
 
 endif0:
 
-; RETURN
-PUSH 0
-POP AX
-POP BX
-RTN
-
-endif1:
-
-; Assignment
-PUSH [BX+0]
-PUSH [BX+1]
-
-DIV
-POP [3]
-
-; Assignment End
-
-; RETURN
+; IF
+; condition
 PUSH 1
-POP AX
-POP BX
-RTN
-
-func0:
-
-
-JMP func1:
-
-; FUNCTION DEFINITION
-SQSOLVER:
-
-POP [BX+0]
-POP [BX+1]
-POP [BX+2]
-
-; IF
-; condition
-PUSH 0
-PUSH [BX+2]
-
-; IF
-; condition
+PUSH [BX+0]
 
 ; test condition
-PUSH 0
- JA endif2:
+
+JNE endif2:
 ; body
 
 ; RETURN
-;CALL
-PUSH BX
-
-PUSH 4
-PUSH BX
-ADD
-POP BX
-PUSH [BX+1]
-PUSH [BX+0]
-
-CALL LINEAR:
-PUSH AX
-; CALL END
+PUSH 1
 POP AX
 POP BX
 RTN
 
 endif2:
 
-; Assignment
-PUSH [BX+1]
-PUSH [BX+1]
-
-MUL
-PUSH [BX+0]
-PUSH [BX+2]
-
-MUL
-PUSH 4
-
-MUL
-
-SUB
-POP [BX+3]
-
-; Assignment End
-
-; IF
-; condition
-PUSH 0
-PUSH [BX+3]
-
-; IF
-; condition
-
-; test condition
-PUSH 0
- JA endif3:
-; body
-
-; Assignment
-PUSH 0
-PUSH [BX+1]
-PUSH 2
-
-DIV
-
-SUB
-POP [3]
-
-; Assignment End
-
 ; RETURN
+PUSH [BX+0]
+
+;CALL Save current BX
+PUSH BX
+
+
+;push call params
+PUSH [BX+0]
 PUSH 1
+
+SUB
+
+; BX_shift
+PUSH 1
+PUSH BX
+ADD
+POP BX
+
+CALL feed:
+PUSH AX
+; CALL END
+
+MUL
 POP AX
 POP BX
 RTN
 
-endif3:
+func0:
 
-; IF
-; condition
-PUSH 0
-PUSH [BX+3]
 
 HLT

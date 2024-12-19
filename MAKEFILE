@@ -27,33 +27,16 @@ EXECUTABLE = elden.exe
 all: $(SOURCES) $(BUILD_DIR)
 	$(CC) $(SOURCES) -o $(BUILD_DIR)/$(EXECUTABLE) -I$(HEADERS_DIR) -D$(DEBUG) $(CFLAGS)
 
-setup:
-	mkdir $(BUILD_DIR)
-	mkdir $(OBJ_DIR)
-	mkdir $(SOURCES_DIR)
-	mkdir $(HEADERS_DIR)
+front:
+	make -C frontend compile
+	make -C frontend run
 
-clean_exe:
-	rm $(BUILD_DIR)/*.exe
+back:
+	make -C backend compile
+	make -C backend run
 
-clean_obj:
-	rm $(OBJ_DIR)/*.o
+asm:
+	make -C assembler compile
 
-clean_dump:
-	rm dump/*.png
-	rm dump/*.dot
-
-clean:
-	rm $(BUILD_DIR)
-	rm $(OBJ_DIR)
-
-create_obj:
-	$(CC) $(SOURCES) -c -I$(HEADERS_DIR) -I$(DSL) -D$(DEBUG) $(CFLAGS)
-	mv *.o $(OBJ_DIR)
-
-linkage:
-	$(CC) $(OBJECTS) -o $(BUILD_DIR)/$(EXECUTABLE)
-
-compile:
-	make create_obj
-	make linkage
+proc:
+	make -C processor compile

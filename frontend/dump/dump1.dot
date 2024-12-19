@@ -1,0 +1,16 @@
+digraph
+{
+    rankdir=TP
+
+        node00B8E048[shape=record,style="rounded,filled",fillcolor="#BF62FC",label="{ ptr: 00B8E048 | type: OP | value: spec| { left: 00B8DBC0 | right: 00B8DF58 }}"];
+    node00B8E048 -> node00B8DBC0[color="#0855F0"]
+    node00B8DBC0[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00B8DBC0 | type: ID | value: LINEAR| { left: 00000000 | right: 00000000 }}"];
+    node00B8E048 -> node00B8DF58[color="#0855F0"]
+    node00B8DF58[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00B8DF58 | type: OP | value: ;| { left: 00B8DF08 | right: 00B8DF80 }}"];
+    node00B8DF58 -> node00B8DF08[color="#0855F0"]
+    node00B8DF08[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00B8DF08 | type: ID | value: LinC| { left: 00000000 | right: 00000000 }}"];
+    node00B8DF58 -> node00B8DF80[color="#0855F0"]
+    node00B8DF80[shape=record,style="rounded,filled",fillcolor="#C51BEC",label="{ ptr: 00B8DF80 | type: OP | value: ;| { left: 00B8DC60 | right: 00000000 }}"];
+    node00B8DF80 -> node00B8DC60[color="#0855F0"]
+    node00B8DC60[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00B8DC60 | type: ID | value: LinB| { left: 00000000 | right: 00000000 }}"];
+}

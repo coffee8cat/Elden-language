@@ -7,15 +7,15 @@ the ring of numofanswers forged ;
 And now the ring of  aCoeff is rune of Death shadowed by Michella's needle ;
 And now the ring of  bCoeff is Starling amber ;
 And now the ring of  cCoeff is Lost ashes of war ;
-And now the ring of  numofanswers is Letting thy grace of SQSOLVER shine upon cCoeff, bCoeff, aCoeff;
+And now the ring of  numofanswers is Letting thy grace of SQSOLVER shine upon the ring of  cCoeff the ring of  bCoeff the ring of  aCoeff ;
 In the age of Duskborn the ring of  numofanswers will thunder in the darkest night ;
 In the age of Duskborn the ring of  first will thunder in the darkest night ;
 In the age of Duskborn the ring of  second will thunder in the darkest night ;
-The fallen leaves tell us a story of the LINEAR shine upon LinC, LinB
+The fallen leaves tell us a story of the LINEAR shine upon the ring of  LinC the ring of  LinB 
 {
-	And when the stars will fall along with the ring of  LinB rune of Death , bless them with 
+	And when the stars will fall along with the ring of  LinB equal with rune of Death , bless them with 
 	{
-		And when the stars will fall along with the ring of  LinC rune of Death , bless them with 
+		And when the stars will fall along with the ring of  LinC equal with rune of Death , bless them with 
 		{
 			Bless thy tarnished with Michella's needle ;
 		};
@@ -24,20 +24,20 @@ The fallen leaves tell us a story of the LINEAR shine upon LinC, LinB
 	And now the ring of  first is the ring of  LinC fractured by the ring of  LinB ;
 	Bless thy tarnished with Starling amber ;
 };
-The fallen leaves tell us a story of the SQSOLVER shine upon c, b, a
+The fallen leaves tell us a story of the SQSOLVER shine upon the ring of  c the ring of  b the ring of  a 
 {
-	And when the stars will fall along with the ring of  a rune of Death , bless them with 
+	And when the stars will fall along with the ring of  a equal with rune of Death , bless them with 
 	{
-		Bless thy tarnished with Letting thy grace of LINEAR shine upon c, b;
+		Bless thy tarnished with Letting thy grace of LINEAR shine upon the ring of  c the ring of  b ;
 	};
 	the ring of D forged ;
 	And now the ring of  D is the ring of  b enchanted with the ring of  b shadowed by the ring of  c enchanted with the ring of  a enchanted with pure golden needle ;
-	And when the stars will fall along with the ring of  D rune of Death , bless them with 
+	And when the stars will fall along with the ring of  D equal with rune of Death , bless them with 
 	{
 		And now the ring of  first is rune of Death shadowed by the ring of  b fractured by Lost ashes of war ;
 		Bless thy tarnished with Starling amber ;
 	};
-	And when the stars will fall along with the ring of  D rune of Death , bless them with 
+	And when the stars will fall along with the ring of  D greater than rune of Death , bless them with 
 	{
 		And now the ring of  D is the ring of  D arised with rune arc made from Starling amber fractured by Lost ashes of war ;
 		And now the ring of  first is rune of Death shadowed by the ring of  b smelted with the ring of  D fractured by Lost ashes of war enchanted with the ring of  a ;
@@ -46,3 +46,5 @@ The fallen leaves tell us a story of the SQSOLVER shine upon c, b, a
 	};
 	Bless thy tarnished with the ring of  D ;
 };
+
+$
