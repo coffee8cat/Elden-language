@@ -26,5 +26,6 @@
 #define NUM_VALUE(n)    node_value {.num = (n)}
 #define ID_VALUE(x)     node_value {.id = (x)}
 
-#define _NUM(n)  new_node(NUM,  NUM_VALUE(n), NULL, NULL)
-#define _ID(x)   new_node(ID,   ID_VALUE(x),  NULL, NULL)
+#define _NUM(n)                 new_node(NUM,  NUM_VALUE(n), NULL, NULL)
+#define _ID(x)                  new_node(ID,   ID_VALUE(x),  NULL, NULL)
+#define _OP(operation, a, b)    new_node(OP,   OP_VALUE(operation),  a, b)

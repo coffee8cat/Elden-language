@@ -26,9 +26,9 @@ elden_to_asm_translation_func get_params;
 
 void translate_Return       (node_t* node, identificator* ids_table, FILE* output, size_t BX_shift);
 void translate_Function_Call(node_t* node, identificator* ids_table, FILE* output, size_t BX_shift);
-elden_to_asm_translation_func push_call_params;
+void push_call_params       (node_t* node, identificator* ids_table, FILE* output, size_t BX_shift);
 
-elden_to_asm_translation_func translate_Print;
+void translate_Print        (node_t* node, identificator* ids_table, FILE* output, size_t BX_shift);
 elden_to_asm_translation_func translate_Scan;
 
 

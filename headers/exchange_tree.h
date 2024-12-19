@@ -16,6 +16,14 @@
 
 void save_tree(node_t* root, identificator* ids_table, FILE* output);
 void save_params(node_t* node, identificator* ids_table, FILE* output);
-void read_tree(node_t* root, identificator* ids_table, FILE* input);
+
+bool check_signatures(const char** curr);
+
+node_t* read_tree(identificator* ids_table, const char** curr);
+node_t* read_node(identificator* ids_table, const char** curr);
+
+void skip_spaces(const char** curr);
+
+void change_on_defs(node_t** node);
 
 #endif
