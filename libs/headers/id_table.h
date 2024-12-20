@@ -28,6 +28,7 @@ struct identificator
 const size_t max_num_of_ids = 128;
 
 identificator* prepare_ids_table();
+void ids_table_dtor(identificator* ids_table);
 size_t add_id(identificator* ids_table, const char* name, size_t name_length);
 //void ask_variables_values(identificator* ids_table);
 size_t lookup(identificator* ids_table, const char* name, size_t name_length);

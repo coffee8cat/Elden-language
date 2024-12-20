@@ -1,5 +1,6 @@
 #include "exchange_tree.h"
 #include "DSL_comp_tree.h"
+#include "files_usage.h"
 
 static size_t tabs_shift = 0;
 
@@ -12,6 +13,19 @@ static size_t tabs_shift = 0;
 #define PRINT_OUT(...)                                          \
     PRINT_TABS_SHIFT()                                          \
     fprintf(output, __VA_ARGS__);                               \
+
+void save_tree_data(node_t* node, identificator* ids_table)
+{
+    assert(node);
+    assert(ids_table);
+
+    FILE* stream_for_save = get_stream_for_save();
+    if (!stream_for_save) { fprintf(stderr, "ERROR: Could not open stream_for_save\n"); }
+
+    fprintf(stream_for_save, "434-format v1.5\n");
+    save_tree(node, ids_table, stream_for_save);
+    fclose(stream_for_save);
+}
 
 void save_tree(node_t* node, identificator* ids_table, FILE* output)
 {
@@ -112,6 +126,28 @@ void save_params(node_t* node, identificator* ids_table, FILE* output)
             fprintf(stderr, "ERROR: Invalid type: %lg\n", node -> value.num);
         }
     }
+}
+
+node_t* read_tree_data(identificator* ids_table, const char** curr, FILE* html_stream)
+{
+    assert(ids_table);
+    assert(curr);
+    assert(*curr);
+
+
+    check_signatures(curr);
+
+    node_t* node_read = read_tree(ids_table, curr);
+
+    if (node_read)
+    {
+        change_on_defs(&node_read);
+        dump_ids_table(ids_table);
+        tree_dump(node_read, ids_table, html_stream, node_read);
+    }
+    else { fprintf(stderr, "ERROR: node read from tree is a null_ptr\n"); assert(0); }
+
+    return node_read;
 }
 
 bool check_signatures(const char** curr)

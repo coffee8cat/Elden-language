@@ -8,6 +8,22 @@ static size_t IF_counter = 0;
                     __FILE__, __LINE__, __func__, #expected);                       \
     assert(0)                                                                       \
 
+void tree_to_asm(node_t* node, identificator* ids_table, size_t BX_shift)
+{
+    assert(node);
+    assert(ids_table);
+
+    printf("number of global vars: %d\n", BX_shift);
+    dump_ids_table(ids_table);
+
+    FILE* fp = get_stream_for_save();
+
+    translate_OP(node, ids_table, fp, BX_shift);
+    fprintf(fp, "\n\nHLT\n");
+
+    fclose(fp);
+}
+
 void translate_OP(node_t* node, identificator* ids_table, FILE* output, size_t BX_shift)
 {
     if (!node) { return; }
@@ -35,6 +51,7 @@ void translate_OP(node_t* node, identificator* ids_table, FILE* output, size_t B
             case ELEM_IN:  { translate_Scan  (node, ids_table, output); break;}
             case ELEM_OUT: { translate_Print (node, ids_table, output, BX_shift); break;}
 
+            case VAR_DEFINITION: { break; }
             default: { fprintf(stderr, "ERROR: No such operation\n"); }
         }
     }

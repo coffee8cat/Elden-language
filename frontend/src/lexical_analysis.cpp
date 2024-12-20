@@ -3,6 +3,8 @@
 lexeme_t* string_to_lexemes(const char* s, identificator* ids_table)
 {
     assert(s);
+    printf("\nStaring translating to lexemes\n\n");
+
     lexeme_t* lexeme_array = (lexeme_t*)calloc(1000, sizeof(lexeme_t));
     if (!lexeme_array)
     {
@@ -11,7 +13,8 @@ lexeme_t* string_to_lexemes(const char* s, identificator* ids_table)
     }
 
     const char* curr = s;
-    const char* buff_end  = 1 + strchr(s, '$'); // check buff end better!!!
+    const char* buff_end  = 1 + strchr(s, '$');
+    if (*(buff_end - 1) != '$') { fprintf(stderr, "Expexted ['$'] in the end of file, got ['%c'(%d)] instead\n", *(buff_end-1)); }
     printf("--- curr[%p] end[%p]\n", curr, buff_end);
     size_t lexeme_num = 0;
 
@@ -48,6 +51,9 @@ lexeme_t* string_to_lexemes(const char* s, identificator* ids_table)
         fprintf(stderr, "LEXICAL ERROR: No such lexical rule");
         return NULL;
     }
+
+    dump_lexemes_array(lexeme_array, ids_table);
+    dump_ids_table(ids_table);
 
     return lexeme_array;
 }

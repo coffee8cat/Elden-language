@@ -12,34 +12,22 @@ int main()
     FILE* html_stream = prepare_to_dump();
     assert(html_stream);
 
-    FILE* saved_tree = fopen("..\\data\\sqsolver_tree.txt", "r");
-    assert(saved_tree);
 
-    const char* buff_for_read = readfile(saved_tree);
-    fclose(saved_tree);
-    check_signatures(&buff_for_read);
+    identificator* ids_table = prepare_ids_table();
+    const char* buff_for_read = read_file_data();
 
-    identificator* ids_table_for_reading = prepare_ids_table();
-    node_t* node_read = read_tree(ids_table_for_reading, &buff_for_read);
-
-    change_on_defs(&node_read);
-    dump_ids_table(ids_table_for_reading);
-    tree_dump(node_read, ids_table_for_reading, html_stream, node_read);
-
+    node_t* node_read = read_tree_data(ids_table, &buff_for_read, html_stream);
 
     size_t global_vars_counter = 0;
-    prepare_to_compile(node_read, ids_table_for_reading, &global_vars_counter);
+    prepare_to_compile(node_read, ids_table, &global_vars_counter);
 
-    printf("number of global vars: %d\n", global_vars_counter);
-    dump_ids_table(ids_table_for_reading);
+    tree_to_asm(node_read, ids_table, global_vars_counter);
 
-    FILE* fact_fp = fopen("..\\data\\sqsolver.txt", "w");
+    reverse_frontend(node_read, ids_table);
 
-    translate_OP(node_read, ids_table_for_reading, fact_fp, global_vars_counter);
-    fprintf(fact_fp, "\n\nHLT\n");
+    fclose(html_stream);
+    tree_dtor(node_read);
+    ids_table_dtor(ids_table);
 
-    fclose(fact_fp);
-
-    reverse_frontend(node_read, ids_table_for_reading);
     return 0;
 }

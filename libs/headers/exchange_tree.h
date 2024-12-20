@@ -13,11 +13,12 @@
 #include "id_table.h"
 #include "tree_dump.h"
 
+void save_tree_data(node_t* node, identificator* ids_table);
 void save_tree(node_t* root, identificator* ids_table, FILE* output);
 void save_params(node_t* node, identificator* ids_table, FILE* output);
 
+node_t* read_tree_data(identificator* ids_table, const char** curr, FILE* html_stream);
 bool check_signatures(const char** curr);
-
 node_t* read_tree(identificator* ids_table, const char** curr);
 node_t* read_node(identificator* ids_table, const char** curr);
 

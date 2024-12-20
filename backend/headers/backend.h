@@ -11,10 +11,11 @@
 #include "elden_tree_data.h"
 #include "comp_tree.h"
 #include "id_table.h"
+#include "files_usage.h"
 
 typedef void (elden_to_asm_translation_func)(node_t*, identificator*, FILE*);
 
-
+void tree_to_asm(node_t* node, identificator* ids_table, size_t BX_shift);
 void translate_OP(node_t* node, identificator* ids_table, FILE* output, size_t BX_shift);
 
 void translate_Assignment   (node_t* node, identificator* ids_table, FILE* output, size_t BX_shift);

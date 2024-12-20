@@ -1,5 +1,47 @@
 #include "files_usage.h"
 
+const char* read_file_data()
+{
+    char file_name[BUFSIZ]  = {};
+    char input_name[BUFSIZ] = {};
+
+    printf("Enter file name for reading: ");
+    scanf("%s[^\n]\n", input_name);
+    sprintf(file_name, "..\\data\\%s", input_name);
+
+    FILE* input_file = fopen(file_name, "r");
+    if (input_file == NULL)
+    {
+        fprintf(stderr, "ERROR: Could not open file [%s] for reading\n", file_name);
+        assert(input_file);
+    }
+    const char* buff = readfile(input_file);
+
+    printf("file [%s] read succesfully\n", file_name);
+    fclose(input_file);
+
+    return buff;
+}
+
+FILE* get_stream_for_save()
+{
+    char file_name[BUFSIZ]  = {};
+    char output_name[BUFSIZ] = {};
+
+    printf("Enter file name for saving: ");
+    scanf("%s[^\n]\n", output_name);
+    sprintf(file_name, "..\\data\\%s", output_name);
+
+    FILE* output_file = fopen(file_name, "r");
+    if (output_file == NULL)
+    {
+        fprintf(stderr, "ERROR: Could not open file [%s] for reading\n", file_name);
+        assert(output_file);
+    }
+
+    return output_file;
+}
+
 const char* readfile(FILE* input)
 {
     assert(input);

@@ -93,7 +93,7 @@ int write_node_info(node_t* node, identificator* ids_table, FILE* fp, node_t* cu
 
     if (node -> type == OP)
     {
-        color = "#C51BEC";
+        color = "#F2900A";
         if (node -> value.op < END) { strcpy(value, dump_operations_list[node -> value.op]); }
         else { sprintf(value, "%c", node -> value.op); }
         strcpy(type, "OP");
@@ -106,7 +106,7 @@ int write_node_info(node_t* node, identificator* ids_table, FILE* fp, node_t* cu
     }
     if (node -> type == NUM)
     {
-        color = "#ECC51B";
+        color = "#0AF212";
         sprintf(value, "%lf", node -> value.num);
         strcpy(type, "NUM");
     }

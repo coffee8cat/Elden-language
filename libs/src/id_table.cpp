@@ -8,6 +8,12 @@ identificator* prepare_ids_table()
     return ids_table;
 }
 
+void ids_table_dtor(identificator* ids_table)
+{
+    if (ids_table == NULL) { fprintf(stderr, "ERROR: Invalid address for DTOR: [NULL]"); return; }
+    free(ids_table);
+}
+
 size_t add_id(identificator* ids_table, const char* name, size_t name_length)
 {
     assert(ids_table);
