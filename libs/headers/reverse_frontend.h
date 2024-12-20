@@ -5,6 +5,7 @@
 #include "id_table.h"
 #include "comp_tree.h"
 #include "tree_dump.h"
+#include "files_usage.h"
 
 typedef void (reverse_func_t)(node_t*, identificator*, FILE*);
 

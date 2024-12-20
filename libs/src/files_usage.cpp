@@ -32,7 +32,7 @@ FILE* get_stream_for_save()
     scanf("%s[^\n]\n", output_name);
     sprintf(file_name, "..\\data\\%s", output_name);
 
-    FILE* output_file = fopen(file_name, "r");
+    FILE* output_file = fopen(file_name, "w");
     if (output_file == NULL)
     {
         fprintf(stderr, "ERROR: Could not open file [%s] for reading\n", file_name);

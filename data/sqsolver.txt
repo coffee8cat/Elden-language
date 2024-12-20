@@ -1,24 +1,9 @@
-
-; Assignment
-PUSH 0
-PUSH 5
-
-SUB
+ELEM_IN
 POP [0]
-
-; Assignment End
-
-; Assignment
-PUSH 1
+ELEM_IN
 POP [1]
-
-; Assignment End
-
-; Assignment
-PUSH 2
+ELEM_IN
 POP [2]
-
-; Assignment End
 
 ; Assignment
 
@@ -94,10 +79,13 @@ RTN
 endif0:
 
 ; Assignment
+PUSH 0
 PUSH [BX+0]
 PUSH [BX+1]
 
 DIV
+
+SUB
 POP [3]
 
 ; Assignment End

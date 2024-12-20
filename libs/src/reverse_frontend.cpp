@@ -36,7 +36,9 @@ void reverse_frontend(node_t* root, identificator* ids_table)
     assert(root);
     assert(ids_table);
 
-    FILE* fp = fopen("..\\data\\reversed_elden.txt", "w");
+    printf("REVERSING FRONTEND\n");
+
+    FILE* fp = get_stream_for_save();
     if (fp == NULL) { fprintf(stderr, "ERROR: Could not open file for reversed_frontend\n"); assert(0); }
 
     reverse_node(root, ids_table, fp);
@@ -206,6 +208,7 @@ void reverse_Function_Call(node_t* node, identificator* ids_table, FILE* output)
     PRINT_GRAMMAR(FUNCTION_CALL_PREFIX);
 
     reverse_specification(node -> left, ids_table, output);
+    PRINT_GRAMMAR(FUNCTION_CALL_POSTFIX);
 }
 
 void reverse_specification(node_t* node, identificator* ids_table, FILE* output)
@@ -303,6 +306,7 @@ void reverse_Expression(node_t* node, identificator* ids_table, FILE* output)
         else
         {
             reverse_Expression(node -> left,  ids_table, output);
+            printf("%d", node -> left -> type);
             switch(node -> value.op)
             {
                 case ADD: { PRINT_GRAMMAR(ADD_LEX); break;}

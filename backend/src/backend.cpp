@@ -84,7 +84,7 @@ void translate_IF(node_t* node, identificator* ids_table, FILE* output, size_t B
 
     fprintf(output, "\n; IF\n; condition\n");
     translate_Expression(node -> left -> right, ids_table, output, BX_shift);
-    translate_Expression(node -> left -> left, ids_table, output, BX_shift);
+    translate_Expression(node -> left -> left,  ids_table, output, BX_shift);
 
     fprintf(output, "\n; test condition\n");
     if (node -> left -> value.op == EQUAL)

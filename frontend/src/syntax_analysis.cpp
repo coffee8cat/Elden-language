@@ -257,7 +257,11 @@ node_t* get_Function_Call(lexeme_t* lexeme_array, identificator* ids_table, size
                 temp = get_Expression(lexeme_array, ids_table, curr, html_stream);
                 if (temp == NULL) { SYNTAX_ERROR(Expression); }
             }
-            else { break; }
+            else
+            {
+                GRAMMAR_CHECK(FUNCTION_CALL_POSTFIX);
+                break;
+            }
             params = _BOND(temp, params);
         }
     }

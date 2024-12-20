@@ -6,14 +6,14 @@ the ring of first  forged;
 the ring of second forged;
 the ring of numofanswers forged;
 
-And now the ring of aCoeff is rune of Death shadowed by Michella's needle;
-And now the ring of bCoeff is Starling amber;
-And now the ring of cCoeff is Lost ashes of war;
+In the Lands Between was found the ring of aCoeff;
+In the Lands Between was found the ring of bCoeff;
+In the Lands Between was found the ring of cCoeff;
 
 And now the ring of numofanswers is
 Letting thy grace of SQSOLVER shine upon    the ring of aCoeff,
                                             the ring of bCoeff,
-                                            the ring of cCoeff;
+                                            the ring of cCoeff here;
 
 In the age of Duskborn the ring of numofanswers will thunder in the darkest night;
 In the age of Duskborn the ring of first        will thunder in the darkest night;
@@ -29,7 +29,7 @@ The fallen leaves tell us a story of the LINEAR shine upon the ring of LinB, the
         };
         Bless thy tarnished with rune of Death;
     };
-    And now the ring of first is the ring of LinC fractured by the ring of LinB;
+    And now the ring of first is rune of Death shadowed by the ring of LinC fractured by the ring of LinB;
     Bless thy tarnished with Starling amber;
 };
 
@@ -37,7 +37,7 @@ The fallen leaves tell us a story of the SQSOLVER shine upon the ring of a, the 
 {
     And when the stars will fall along with the ring of a equal with rune of Death, bless them with
     {
-        Bless thy tarnished with Letting thy grace of LINEAR shine upon the ring of b, the ring of c;
+        Bless thy tarnished with Letting thy grace of LINEAR shine upon the ring of b, the ring of c here;
     };
 
     the ring of D forged;

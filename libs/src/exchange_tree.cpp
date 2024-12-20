@@ -102,7 +102,7 @@ void save_params(node_t* node, identificator* ids_table, FILE* output)
     assert(ids_table);
     assert(output);
 
-    if (node -> type == OP)
+    if (node -> type == OP && node -> value.op == BOND)
     {
         PRINT_OUT("{OP:\",\"\n");
         tabs_shift++;
@@ -110,6 +110,28 @@ void save_params(node_t* node, identificator* ids_table, FILE* output)
         save_params(node -> right, ids_table, output);
         tabs_shift--;
         PRINT_OUT("}\n");
+    }
+    else if (node -> type == OP)
+    {
+        printf("SAVING OPERATION");
+        switch (node -> value.op)
+        {
+            #define DEF_OPERATION(name, name_for_save)              \
+            case name:                                              \
+            {                                                       \
+                PRINT_OUT("{OP:\"%s\"\n", name_for_save);           \
+                tabs_shift++;                                       \
+                save_params(node -> left,  ids_table, output);      \
+                save_params(node -> right, ids_table, output);      \
+                tabs_shift--;                                       \
+                PRINT_OUT("}\n");                                   \
+                break;                                              \
+            }                                                       \
+
+            #include "DSL_elden_operations.h"
+            #undef DEF_OPERATION
+            default: { fprintf(stderr, "ERROR: No such operation\n"); }
+        }
     }
     else
     {
@@ -219,7 +241,6 @@ node_t* read_node(identificator* ids_table, const char** curr)
         *curr = strchr(*curr, '\"') + 1;
         PRINT_CURR();
         size_t op_name_len = (size_t)(strchr(*curr, '\"') - *curr);
-
 
         if (**curr == ',')
         {
