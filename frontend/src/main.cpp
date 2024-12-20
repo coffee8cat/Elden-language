@@ -23,7 +23,6 @@ int main()
 
     save_tree_data(root, ids_table);
 
-
     fclose(html_stream);
     tree_dtor(root);
     ids_table_dtor(ids_table);

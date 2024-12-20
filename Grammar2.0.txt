@@ -1,20 +1,21 @@
-<General> ::= "The fallen leaves tell us a story" <space> (<Operation> ";")+ <space> "The Age of Fracture has come to the Lands Between"
+<General> ::= <space> (<Operation> ";")+ <space> "$"
 <Operation> ::= <Assignment> | <If> | <While> | <Var_definition> | <Function_definition> | <Function_call> | <Return> | <Scan> | <Print>
 
 <If> ::= "And when the stars will fall along with" <Expression> "," "bless them with" "{" (<Operation> ";")+ "}"
 <While> ::= "{" (<Operation> ";")+ "}" "As I awaited" <Expression> "return"
-<Assignment> ::= "And now" <space> <Var> <space> "is" <space> ( <Expression> | <Function call> )
+<Assignment> ::= "And now" <space> <Var> <space> "is" <space> <Expression>
 <Var_definition> ::= <Var> <space> "forged"
-<Function_definition> ::= "The grace of" <space> <ID> <space> "upon the" <Var> ("," <Var> )* "{" <space> (<Operation> ";")+ <space> "}"
-<Function_call> ::= "Let thy grace of" <space> <ID> <space> "shine again upon" <space> (<Var> "," <space>)*
+<Function_definition> ::= "The fallen leaves tell us a story of" <space> <ID> <space> "shine upon" <Expression> ("," <Expression> )* "here" "{" <space> (<Operation> ";")+ <space> "}"
+<Function_call> ::= "Let thy grace of" <space> <ID> <space> "shine upon" <Expression> ("," <Expression> )* "here"
 <Return> ::= "Bless thy tarnished with" <space> <Expression>
 <Scan>  ::= "In the Lands Between we found" <Var>
-<Print> ::= "In the age of Duskborn" <space> ( <Var> | <Expression> ) <space> "will thunder in the darkest night"
+<Print> ::= "In the age of Duskborn" <space> <Expression>  <space> "will thunder in the darkest night"
 
-	<Expression> ::= <space> <T> <space> (("smelted with" | "shadowed by") <space> <T>)*
+	<Expression> ::= <space> <Power> <space> (("smelted with" | "shadowed by") <space> <Power>)*
+    <Power> ::= <space> <T> <space> ("arised with rune arc made from" <space> <T>)*
 	<T> ::= <Primary> <space> (("enchanted with" | "fractured by") <space> <Primary>)*
     <SQRT> ::= "faded" <space> <Var>
-	<Primary> ::= "(" <Expression> ")" | <Number> | <SQRT> | <Var>
+	<Primary> ::= "(" <Expression> ")" | <Number> | <SQRT> | <Var> | <Function_call>
 	<Var> ::= "the ring of " <ID>
 	<ID> ::= ([a-z] | [A-Z])+
 	<Number> ::= "rune of death" | "Starling amber" | "Lost ashes of war" | "Messmer's splinter" | "pure golden needle" | "Michella's needle"

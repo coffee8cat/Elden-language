@@ -118,3 +118,244 @@ void write_local_vars(node_t* node, identificator* ids_table, size_t* BX_shift)
         (*BX_shift)++;
     }
 }
+
+/*
+double evaluate_tree(node_t* node, variable* vars_table)
+{
+    assert(node);
+    assert(vars_table);
+
+    if (node -> type == NUM) { printf("num: %lg\n", node -> value.num); return node -> value.num; }
+    if (node -> type == ID)  { return vars_table[node -> value.var].value; }
+    if (node -> type == OP)
+    {
+
+    }
+
+    return -1;
+}
+
+void const_folding(node_t* node, idsntificator* ids_table)
+{
+    if (!node) { return 0; }
+    assert(ids_table);
+
+    size_t opt_counter = 0;
+    if (node -> left)  { opt_counter += const_folding(node -> left,  vars_table, tex_stream, roots_stack, subs_stack); }
+    if (node -> right) { opt_counter += const_folding(node -> right, vars_table, tex_stream, roots_stack, subs_stack); }
+
+    if (node -> type == OP && node -> value.op >= ADD && !check_vars(node))
+    {
+        node -> value.num = evaluate_tree(node, vars_table);
+        node -> type  = NUM;
+
+        tree_dtor(node -> left,  true);  node -> left  = NULL;
+        tree_dtor(node -> right, true);  node -> right = NULL;
+        opt_counter++;
+
+        printf("EVALUATION: [%p] <- %lf", node -> value);
+    }
+}
+
+bool check_vars(node_t* node)
+{
+    if (!node) { return false;}
+
+    if (node -> type == ID) { return true; }
+    else {return (check_vars(node -> left) || check_vars(node -> right)); }
+}
+*/
+
+/*
+void optimize(node_t* node, identificator* ids_table)
+{
+    assert(node);
+    assert(ids_table);
+
+    size_t opt_counter = 1;
+    while (opt_counter > 0)
+    {
+        opt_counter = 0;
+        opt_counter += const_folding(node, ids_table);
+        opt_counter += remove_neutral_elems(&node, ids_table);
+    }
+}
+
+size_t const_folding(node_t* node, identificator* ids_table)
+{
+    assert(ids_table);
+    if (!node) { return 0; }
+
+    size_t opt_counter = 0;
+    if (node -> left)  { opt_counter += const_folding(node -> left,  ids_table); }
+    if (node -> right) { opt_counter += const_folding(node -> right, ids_table); }
+
+    if (node -> type == OP && !check_vars(node))
+    {
+        node -> value.num = evaluate_tree(node, ids_table);
+        node -> type  = NUM;
+
+        tree_dtor(node -> left,  true);  node -> left  = NULL;
+        tree_dtor(node -> right, true); node -> right = NULL;
+        opt_counter++;
+
+        printf("EVALUATION: [%p] <- %lf", node -> value);
+    }
+
+    return opt_counter;
+}
+
+size_t remove_neutral_elems(node_t** node, variable* vars_table, FILE* tex_stream, stack_t* roots_stack, stack_t* subs_stack)
+{
+    assert(vars_table);
+    assert(tex_stream);
+    assert(roots_stack);
+    assert(subs_stack);
+
+    if (!node || !(*node)) { return 0; }
+
+    size_t opt_counter = 0;
+    if ((*node) -> left)  { opt_counter += remove_neutral_elems(&(*node) -> left,  vars_table, tex_stream, roots_stack, subs_stack); }
+    if ((*node) -> right) { opt_counter += remove_neutral_elems(&(*node) -> right, vars_table, tex_stream, roots_stack, subs_stack); }
+
+    if ((*node) -> type == OP)
+    {
+        switch((*node) -> value.op)
+        {
+            case ADD: opt_counter += ADD_optimisation(node); printf("ADD OPTIMISATION\n"); break;
+            case SUB: opt_counter += SUB_optimisation(node); printf("SUB OPTIMISATION\n"); break;
+            case MUL: opt_counter += MUL_optimisation(node); printf("MUL OPTIMISATION\n"); break;
+            case POW: opt_counter += POW_optimisation(node); printf("POW OPTIMISATION\n"); break;
+            default: break;
+        }
+    }
+
+    return opt_counter;
+}
+
+#define REPLACE_WITH_RIGHT(node)                \
+    printf( "before right replace:\n"           \
+            "node:  %p\n"                       \
+            "left:  %p\n"                       \
+            "right: %p\n\n",                    \
+            *node,                              \
+            (*node) -> left,                    \
+            (*node) -> right);                  \
+                                                \
+    tree_dtor((*node) -> left, false);          \
+    node_t* temp = *node;                       \
+    *node = (*node) -> right;                   \
+    tree_dtor(temp, false);                     \
+                                                \
+    if ((*node) -> type != OP)                  \
+    {                                           \
+        (*node) -> left  = NULL;                \
+        (*node) -> right = NULL;                \
+    }                                           \
+    printf( "after replace:\n"                  \
+            "node:  %p\n"                       \
+            "left:  %p\n"                       \
+            "right: %p\n\n",                    \
+            *node,                              \
+            (*node) -> left,                    \
+            (*node) -> right);                  \
+    opt_counter++
+
+#define REPLACE_WITH_LEFT(node)                 \
+    printf( "before left replace:\n"            \
+            "node:  %p\n"                       \
+            "left:  %p\n"                       \
+            "right: %p\n\n",                    \
+            *node,                              \
+            (*node) -> left,                    \
+            (*node) -> right);                  \
+                                                \
+    tree_dtor((*node) -> right, false);         \
+    node_t* temp = *node;                       \
+    *node = (*node) -> left;                    \
+    tree_dtor(temp, false);                     \
+                                                \
+    if ((*node) -> type != OP)                  \
+    {                                           \
+        (*node) -> left =  NULL;                \
+        (*node) -> right = NULL;                \
+    }                                           \
+    printf( "after replace:\n"                  \
+            "node:  %p\n"                       \
+            "left:  %p\n"                       \
+            "right: %p\n\n",                    \
+            *node,                              \
+            (*node) -> left,                    \
+            (*node) -> right);                  \
+    opt_counter++
+
+
+#define REPLACE_WITH(son)       \
+    node_t* temp = *node;       \
+    *node = (*node) -> son;     \
+                                \
+    temp -> son = NULL;         \
+    tree_dtor(temp, true);      \
+    opt_counter++               \
+
+#define IS_NUM(direction, x) (((*node) -> direction) -> type == NUM && ((*node) -> direction) -> value.num == (x))
+
+size_t ADD_optimisation(node_t** node)
+{
+    assert(node);
+    assert(*node);
+
+    size_t opt_counter = 0;
+    if      (IS_NUM(left,  0)) { REPLACE_WITH_RIGHT(node); }
+    else if (IS_NUM(right, 1)) { REPLACE_WITH_LEFT(node);  }
+
+    return opt_counter;
+}
+
+size_t SUB_optimisation(node_t** node)
+{
+    assert(node);
+    assert(*node);
+
+    size_t opt_counter = 0;
+    if (IS_NUM(right, 0)) { REPLACE_WITH_LEFT(node); }
+
+    return opt_counter;
+}
+
+size_t MUL_optimisation(node_t** node)
+{
+    assert(node);
+    assert(*node);
+
+    size_t opt_counter = 0;
+    if      (IS_NUM(left,  0)) { REPLACE_WITH_LEFT(node);  }
+    else if (IS_NUM(left,  1)) { REPLACE_WITH_RIGHT(node); }
+    else if (IS_NUM(right, 0)) { REPLACE_WITH_RIGHT(node); }
+    else if (IS_NUM(right, 1)) { REPLACE_WITH_LEFT(node);  }
+
+    return opt_counter;
+}
+
+size_t POW_optimisation(node_t** node)
+{
+    assert(node);
+    assert(*node);
+
+    size_t opt_counter = 0;
+    if (IS_NUM(left, 0) || IS_NUM(left, 1)) { REPLACE_WITH_LEFT(node); }
+    else if (IS_NUM(right, 0))
+    {
+        ((*node) -> right) -> type = NUM;
+        ((*node) -> right) -> value.num = 1;
+        REPLACE_WITH_RIGHT(node);
+    }
+    else if (IS_NUM(right, 1)) { REPLACE_WITH_LEFT(node); }
+
+    return opt_counter;
+}
+
+#undef REPLACE_WITH
+#undef IS_NUM
+
+*/

@@ -2,15 +2,11 @@ digraph
 {
     rankdir=TP
 
-        node00B5D960[shape=record,style="rounded,filled",fillcolor="#BF62FC",label="{ ptr: 00B5D960 | type: OP | value: spec| { left: 00B5DA50 | right: 00B5DCD0 }}"];
-    node00B5D960 -> node00B5DA50[color="#0855F0"]
-    node00B5DA50[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00B5DA50 | type: ID | value: LINEAR| { left: 00000000 | right: 00000000 }}"];
-    node00B5D960 -> node00B5DCD0[color="#0855F0"]
-    node00B5DCD0[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 00B5DCD0 | type: OP | value: ;| { left: 00B5DA28 | right: 00B5DBE0 }}"];
-    node00B5DCD0 -> node00B5DA28[color="#0855F0"]
-    node00B5DA28[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00B5DA28 | type: ID | value: LinC| { left: 00000000 | right: 00000000 }}"];
-    node00B5DCD0 -> node00B5DBE0[color="#0855F0"]
-    node00B5DBE0[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 00B5DBE0 | type: OP | value: ;| { left: 00B5DB90 | right: 00000000 }}"];
-    node00B5DBE0 -> node00B5DB90[color="#0855F0"]
-    node00B5DB90[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00B5DB90 | type: ID | value: LinB| { left: 00000000 | right: 00000000 }}"];
+        node00719DF0[shape=record,style="rounded,filled",fillcolor="#BF62FC",label="{ ptr: 00719DF0 | type: OP | value: spec| { left: 00719D78 | right: 00719DC8 }}"];
+    node00719DF0 -> node00719D78[color="#0855F0"]
+    node00719D78[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00719D78 | type: ID | value: feed| { left: 00000000 | right: 00000000 }}"];
+    node00719DF0 -> node00719DC8[color="#0855F0"]
+    node00719DC8[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 00719DC8 | type: OP | value: ;| { left: 00719DA0 | right: 00000000 }}"];
+    node00719DC8 -> node00719DA0[color="#0855F0"]
+    node00719DA0[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 00719DA0 | type: ID | value: seed| { left: 00000000 | right: 00000000 }}"];
 }
