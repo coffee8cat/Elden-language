@@ -17,7 +17,7 @@ Syntax tree graphical dump example:
 
 ## Grammar rules of Elden Language:
 
-All grammar rules are described in picture below using ... :
+All grammar rules are described in picture below using [BNF Playground](https://bnfparser.firebaseapp.com/) :
 
 ![picture](pictures//Grammar_rules.png)
 
@@ -37,3 +37,9 @@ Middleend + Backend compiling and running:
 ```shell
 make back
 ```
+
+## Test setup
+
+- **CPU**: AMD Ryzen 5 4600H with Radeon Graphics 3.00 GHz
+- **OS**: W10
+- **Compiler**: g++ 13.3.0
