@@ -7,7 +7,7 @@ const char* read_file_data()
 
     printf("Enter file name for reading: ");
     scanf("%s[^\n]\n", input_name);
-    sprintf(file_name, "..\\data\\%s", input_name);
+    sprintf(file_name, "../data/%s", input_name);
 
     FILE* input_file = fopen(file_name, "r");
     if (input_file == NULL)
@@ -30,7 +30,7 @@ FILE* get_stream_for_save()
 
     printf("Enter file name for saving: ");
     scanf("%s[^\n]\n", output_name);
-    sprintf(file_name, "..\\data\\%s", output_name);
+    sprintf(file_name, "../data/%s", output_name);
 
     FILE* output_file = fopen(file_name, "w");
     if (output_file == NULL)

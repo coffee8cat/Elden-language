@@ -1,33 +1,23 @@
-SHELL=C:/Windows/System32/cmd.exe
-
 CC = g++
-
-CFLAGS = -Wformat=2 -Wshadow -Winit-self -Wredundant-decls -Wcast-align -Wundef -Wfloat-equal \
-         -Winline -Wunreachable-code -Wmissing-declarations -Wmissing-include-dirs \
-		 -Wswitch-enum -Wswitch-default -Weffc++ -Wmain -Wextra -Wall -g -pipe -fexceptions \
-		 -Wcast-qual -Wconversion -Wctor-dtor-privacy -Wempty-body -Wformat-security -Wformat=2 \
-		 -Wignored-qualifiers -Wlogical-op -Wno-missing-field-initializers -Wnon-virtual-dtor \
-		 -Woverloaded-virtual -Wpointer-arith -Wsign-promo -Wstack-usage=8192 -Wstrict-aliasing \
-		 -Wstrict-null-sentinel -Wtype-limits -Wwrite-strings -Werror=vla -D_DEBUG -D_EJUDGE_CLIENT_SIDE
 
 DEBUG = DEBUG
 SOURCES_DIR = src
 SOURCES = $(wildcard $(SOURCES_DIR)/*.cpp)
 HEADERS_DIR = headers
 
-LIBS_DIR = ..\libs
+LIBS_DIR = ../libs
 
-LIBS = $(LIBS_DIR)\headers
+LIBS = $(LIBS_DIR)/headers
 LIBS_SRC = $(wildcard $(LIBS_DIR)/src/*.cpp)
-DSL = $(LIBS_DIR)\DSL
+DSL = $(LIBS_DIR)/DSL
 
 BUILD_DIR = build
 OBJ_DIR = obj
 OBJECTS = $(wildcard $(OBJ_DIR)/*.o)
-EXECUTABLE = elden_backend.exe
+EXECUTABLE = elden_backend
 
 all: $(SOURCES) $(BUILD_DIR)
-	$(CC) $(SOURCES) -o $(BUILD_DIR)/$(EXECUTABLE) -I$(HEADERS_DIR) -D$(DEBUG) $(CFLAGS)
+	$(CC) $(SOURCES) -o $(BUILD_DIR)/$(EXECUTABLE) -I$(HEADERS_DIR) -D$(DEBUG)
 
 setup:
 	mkdir $(BUILD_DIR)
@@ -50,15 +40,14 @@ clean:
 	rm $(OBJ_DIR)
 
 create_obj:
-	$(CC) $(SOURCES) $(LIBS_SRC) -c -I$(HEADERS_DIR) -I$(LIBS) -I$(DSL) -D$(DEBUG) $(CFLAGS)
+	$(CC) $(SOURCES) $(LIBS_SRC) -I$(HEADERS_DIR) -I$(LIBS) -I$(DSL) -D$(DEBUG)
 	mv *.o $(OBJ_DIR)
 
 linkage:
 	$(CC) $(OBJECTS) -o $(BUILD_DIR)/$(EXECUTABLE)
 
 compile:
-	make create_obj
-	make linkage
+	$(CC) $(SOURCES) $(LIBS_SRC) -I$(HEADERS_DIR) -I$(LIBS) -I$(DSL) -D$(DEBUG) -o $(BUILD_DIR)/$(EXECUTABLE)
 
 run:
 	$(BUILD_DIR)/$(EXECUTABLE)

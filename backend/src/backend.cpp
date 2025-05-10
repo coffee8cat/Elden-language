@@ -1,5 +1,5 @@
 #include "backend.h"
-
+/*
 static size_t IF_counter = 0;
 
 #define COMPILER_ERROR(expected)                                                    \
@@ -166,12 +166,12 @@ void get_params(node_t* func_spec_node, identificator* ids_table, FILE* output)
     {
         fprintf(output, "POP [BX+%d]\n", i);
     }
-    /*fprintf(output, "\nPUSH BX\n"
-                    "PUSH %d\n"
-                    "PUSH BX\n"
-                    "ADD\n"
-                    "POP BX\n", ids_table[(func_spec_node -> left) -> value.id].BX_shift);
-    */
+    //fprintf(output, "\nPUSH BX\n"
+    //                "PUSH %d\n"
+    //                "PUSH BX\n"
+    //                "ADD\n"
+    //                "POP BX\n", ids_table[(func_spec_node -> left) -> value.id].BX_shift);
+
 }
 
 void translate_Return(node_t* node, identificator* ids_table, FILE* output, size_t BX_shift)
@@ -192,17 +192,17 @@ void translate_Function_Call(node_t* node, identificator* ids_table, FILE* outpu
     assert(node);
     assert(ids_table);
     assert(output);
-/*
-    PUSH BX
 
-    PUSH BX_shift in current function
-    PUSH BX
-    ADD
-    POP BX
+//    PUSH BX
 
-    CALL
+//    PUSH BX_shift in current function
+//    PUSH BX
+//    ADD
+//    POP BX
 
-    PUSH AX*/
+//    CALL
+
+//    PUSH AX
 
     fprintf(output, "\n;CALL Save current BX\n");
     fprintf(output, "PUSH BX\n\n");
@@ -349,3 +349,4 @@ void translate_pop_var(node_t* node, identificator* ids_table, FILE* output)
         fprintf(stderr, "ERROR: node fo ID type expected\n");
     }
 }
+*/
