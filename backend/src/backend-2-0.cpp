@@ -20,10 +20,28 @@ void tree_to_asm(node_t* node, identificator* ids_table, size_t BX_shift)
 
     FILE* fp = get_stream_for_save();
 
+    fprintf(fp, "section .text\n\n");
+    fprintf(fp, "__start:\n");
     translate_OP(node, ids_table, fp, BX_shift);
-    //fprintf(fp, "\n\nHLT\n");
+
+    fprintf(fp, "section .data\n\n");
+    fill_global_vars(ids_table, fp);
 
     fclose(fp);
+}
+
+void fill_global_vars(identificator* ids_table, FILE* output) {
+    assert(output);
+    assert(ids_table);
+
+    size_t curr = 0;
+
+    while (ids_table[curr].name && curr < max_num_of_ids) {
+        if (ids_table[curr].scope == GLOBAL) {
+            fprintf(output, "\t%.*s dq 0\n", ids_table[curr].name_len, ids_table[curr].name);
+        }
+        curr++;
+    }
 }
 
 void translate_OP(node_t* node, identificator* ids_table, FILE* output, size_t BX_shift)
@@ -74,17 +92,24 @@ void asm_translate_Assignment(node_t* node, identificator* ids_table, FILE* outp
     TAB_FPRINTF(output, ";calculating expression for assignment\n");
     asm_translate_Expression(node -> right, ids_table, output, BX_shift);                   // stores calculations result in stack
 
-    TAB_FPRINTF(output, "pop  rcx                   ; assignment to %.*s\n",
+    TAB_FPRINTF(output, "pop  xmm2                   ; assignment to %.*s\n",
                 ids_table[node -> value.id].name_len, ids_table[node -> value.id].name);
-    TAB_FPRINTF(output, "mov  [rbp + %d], rcx\n", ids_table[node -> value.id].address);
+    TAB_FPRINTF(output, "movsd  [rbp + %d], xmm2\n", ids_table[node -> value.id].address);
 }
 
 void translate_condition(FILE* output) {
     assert(output);
 
-    fprintf    (output, "\n\tpop  rcx\n");
-    TAB_FPRINTF(output,     "pop  rdx\n");
-    TAB_FPRINTF(output,     "test rcx, rdx\n\n");
+    //fprintf    (output, "\n\tpop  rcx\n");
+    //TAB_FPRINTF(output,     "pop  rdx\n");
+    //TAB_FPRINTF(output,     "test rcx, rdx\n\n");
+
+
+    TAB_FPRINTF(output, "movsd xmm0, [rsp]          ; get result of right subtree from stack\n\t"
+                        "add   rsp, 8\n");
+    TAB_FPRINTF(output, "movsd xmm1, [rsp]          ; get result of right subtree from stack\n\t"
+                        "add   rsp, 8\n");
+    TAB_FPRINTF(output, "comisd xmm0, xmm1\n");
 
     return;
 }
@@ -127,6 +152,7 @@ void asm_translate_IF(node_t* node, identificator* ids_table, FILE* output, size
     IF_counter++;
 }
 
+
 void asm_translate_While(node_t* node, identificator* ids_table, FILE* output, size_t BX_shift)
 {
     assert(node);
@@ -141,9 +167,19 @@ void asm_translate_While(node_t* node, identificator* ids_table, FILE* output, s
 
     if ( node -> left) {
         asm_translate_Expression(node -> left, ids_table, output, BX_shift);        // store condition result in stack
-        TAB_FPRINTF(output, "pop rcx\n", while_counter);
-        TAB_FPRINTF(output, "push rcx\n", while_counter);
-        TAB_FPRINTF(output, "push rcx\n", while_counter);                           // store two copies
+        //TAB_FPRINTF(output, "pop rcx\n", while_counter);
+
+        //TAB_FPRINTF(output, "push rcx\n", while_counter);
+        //TAB_FPRINTF(output, "push rcx\n", while_counter);                           // store two copies
+
+
+        TAB_FPRINTF(output, "movsd xmm0, [rsp]          ; get result of right subtree from stack\n\t"
+                            "add   rsp, 8\n");
+        TAB_FPRINTF(output, "sub rsp, 8\n\t"
+                            "movsd [rsp], xmm0          ; save result in stack\n\n");
+        TAB_FPRINTF(output, "sub rsp, 8\n\t"
+                            "movsd [rsp], xmm0          ; save result in stack\n\n");
+
     }
 
     translate_condition(output);
@@ -155,10 +191,11 @@ void asm_translate_While(node_t* node, identificator* ids_table, FILE* output, s
     }
 
     TAB_FPRINTF(output, "jmp .while_start%d\n",  while_counter);
-    fprintf(output, "\n.endwhile%d:\n\n",       while_counter);
+    fprintf    (output, "\n.endwhile%d:\n\n",    while_counter);
 
     while_counter++;
 }
+
 
 void asm_translate_Function_Definition(node_t* node, identificator* ids_table, FILE* output)
 {
@@ -169,7 +206,7 @@ void asm_translate_Function_Definition(node_t* node, identificator* ids_table, F
     assert(output);
 
     // it is assumed that for that moment arguments are stored in stack
-
+    TAB_FPRINTF(output, "ret\n\n");
     if (node -> left && node -> left -> left) {
         fprintf(output, "%.*s:\n", ids_table[node -> left -> left -> value.id].name_len, ids_table[node -> left -> left -> value.id].name);
     }
@@ -220,8 +257,8 @@ void asm_translate_Function_Call(node_t* node, identificator* ids_table, FILE* o
                         ids_table[node -> left -> left -> value.id].name);
     }
     TAB_FPRINTF(output, ";push call params\n");
-    asm_push_call_params(node -> left -> right, ids_table, output, BX_shift);
 
+    asm_push_call_params(node -> left -> right, ids_table, output, BX_shift);
     TAB_FPRINTF(output, "sub  rbp, %4d             ; allocate stack frame for function variables\n", BX_shift);
 
     //if (node -> right -> type != ID) { COMPILER_ERROR(ID type node);}
@@ -230,8 +267,7 @@ void asm_translate_Function_Call(node_t* node, identificator* ids_table, FILE* o
             ids_table[node -> left -> left -> value.id].name_len,
             ids_table[node -> left -> left -> value.id].name);
 
-    TAB_FPRINTF(output, "pop  rbx                   ; restore base pointer\n");
-    TAB_FPRINTF(output, "push rax                   ; save return value in stack\n");
+    TAB_FPRINTF(output, "pop  rbp                   ; restore base pointer\n");
     TAB_FPRINTF(output, "; CALL END\n\n");
 }
 
@@ -281,7 +317,7 @@ void asm_translate_Scan(node_t* node, identificator* ids_table, FILE* output)
     asm_translate_pop_var(node -> left, ids_table, output);
 }
 
-#define DEF_OPERATION(enum_name, dump_name) #enum_name,
+#define DEF_OPERATION(enum_name, dump_name, asm_op_name, ...) #asm_op_name,
 
 const char* proc_operations_list[] =
 {
@@ -310,10 +346,27 @@ void asm_translate_Expression(node_t* node, identificator* ids_table, FILE* outp
             TAB_FPRINTF(output, "; prepare result of right subtree in stack:\n");
             asm_translate_Expression(node -> right, ids_table, output, BX_shift);
 
-            TAB_FPRINTF(output, "pop rax                    ; get result of right subtree from stack\n");
-            TAB_FPRINTF(output, "pop rdx                    ; get result of left  subtree from stack\n");
-            TAB_FPRINTF(output, "%s rax, rdx\n", proc_operations_list[node -> value.op]);      // compute
-            TAB_FPRINTF(output, "push rax                   ; save result in stack\n\n");
+            //TAB_FPRINTF(output, "pop  rax                   ; get result of right subtree from stack\n");
+            //TAB_FPRINTF(output, "pop  rdx                   ; get result of left  subtree from stack\n");
+            //TAB_FPRINTF(output, "%s  rax, rdx\n", proc_operations_list[node -> value.op]);      // compute
+            //TAB_FPRINTF(output, "push rax                   ; save result in stack\n\n");
+
+
+            TAB_FPRINTF(output, "movsd xmm0, [rsp]          ; get result of right subtree from stack\n\t"
+                                "add   rsp, 8\n");
+            TAB_FPRINTF(output, "movsd xmm1, [rsp]          ; get result of left  subtree from stack\n\t"
+                                "add   rsp, 8\n");
+
+            switch (node -> value.op) {
+                case ADD:   TAB_FPRINTF(output, "addsd xmm0, xmm1\n"); break;
+                case SUB:   TAB_FPRINTF(output, "subsd xmm0, xmm1\n"); break;
+                case MUL:   TAB_FPRINTF(output, "mulsd xmm0, xmm1\n"); break;
+                case DIV:   TAB_FPRINTF(output, "divsd xmm0, xmm1\n"); break;
+
+                default: { fprintf(stderr, "Invalid operation for expression : %s\n", proc_operations_list[node -> value.op]); }
+            }
+            TAB_FPRINTF(output, "sub rsp, 8\n\t"
+                                "movsd [rsp], xmm0          ; save result in stack\n\n");
         }
     }
     else
@@ -331,18 +384,25 @@ void asm_translate_push_node_value(node_t* node, identificator* ids_table, FILE*
     // mov  rcx, [bp + %d]
     // push rcx
 
+    // PREPARE VALUE
     if (node -> type == ID)
     {
-        if (ids_table[node -> value.id].scope == LOCAL) { TAB_FPRINTF(output, "mov  rcx, [bp + %d]\n", ids_table[node -> value.id].address); }
-        else                                            { TAB_FPRINTF(output, "mov  rcx, [bp + %d]\n", ids_table[node -> value.id].address); }
-
+        if (ids_table[node -> value.id].scope == LOCAL) {
+            TAB_FPRINTF(output, "movsd xmm0, [rbp + %d]\n", ids_table[node -> value.id].address);
+        }
+        else {
+            TAB_FPRINTF(output, "movsd xmm0, [rel %.*s]\n", ids_table[node -> value.id].name_len, ids_table[node -> value.id].name);
+        }
     }
     else if (node -> type == NUM)
     {
-        TAB_FPRINTF(output, "mov  rcx, %lg\n", node -> value.num);
+        TAB_FPRINTF(output, "mov  rax,  __?float64?__(%lg)\n\t"
+                            "movq xmm0, rax\n", node -> value.num);
     }
 
-    TAB_FPRINTF(output, "push rcx\n");
+    // PUSH VALUE
+    TAB_FPRINTF(output, "sub rsp, 8\n\t"
+                        "movsd [rsp], xmm0          ; save result in stack\n\n");
 }
 
 void asm_translate_pop_var(node_t* node, identificator* ids_table, FILE* output)
@@ -357,11 +417,13 @@ void asm_translate_pop_var(node_t* node, identificator* ids_table, FILE* output)
     TAB_FPRINTF(output, "pop rcx\n");
     if (node -> type == ID)
     {
-        if (ids_table[node -> value.id].scope == LOCAL) { TAB_FPRINTF(output, "mov [bp + %d], rcx\n", ids_table[node -> value.id].address); }
-        else                                            { TAB_FPRINTF(output, "mov [rel %s],  rcx\n", ids_table[node -> value.id].name); }
+        if (ids_table[node -> value.id].scope == LOCAL) { TAB_FPRINTF(output, "movsd [rbp + %d],  xmm0\n", ids_table[node -> value.id].address); }
+        else                                            { TAB_FPRINTF(output, "movsd [rel %.*s], xmm0\n",
+                                                                      ids_table[node -> value.id].name_len, ids_table[node -> value.id].name); }
     }
     else
     {
-        fprintf(stderr, "ERROR: node fo ID type expected\n");
+        fprintf(stderr, "ERROR: node of ID type expected\n");
     }
 }
+

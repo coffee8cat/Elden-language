@@ -73,7 +73,7 @@ int make_dot_file(node_t* root, identificator* ids_table, FILE* fp, node_t* curr
     return 0;
 }
 
-#define DEF_OPERATION(enum_name, dump_name) dump_name,
+#define DEF_OPERATION(enum_name, dump_name, ...) dump_name,
 
 const char* dump_operations_list[] =
 {

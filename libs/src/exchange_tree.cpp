@@ -60,7 +60,7 @@ void save_tree(node_t* node, identificator* ids_table, FILE* output)
         switch (node -> value.op)
         {
 
-            #define DEF_OPERATION(name, name_for_save)                  \
+            #define DEF_OPERATION(name, name_for_save, ...)             \
                 case name:                                              \
                 {                                                       \
                     PRINT_OUT("{OP:\"%s\"\n", name_for_save);           \
@@ -116,7 +116,7 @@ void save_params(node_t* node, identificator* ids_table, FILE* output)
         printf("SAVING OPERATION");
         switch (node -> value.op)
         {
-            #define DEF_OPERATION(name, name_for_save)              \
+            #define DEF_OPERATION(name, name_for_save, ...)         \
             case name:                                              \
             {                                                       \
                 PRINT_OUT("{OP:\"%s\"\n", name_for_save);           \
@@ -248,7 +248,7 @@ node_t* read_node(identificator* ids_table, const char** curr)
             return _BOND(NULL, NULL);
         }
 
-        #define DEF_OPERATION(operation, name)                                  \
+        #define DEF_OPERATION(operation, name, ...)                             \
         if (strncmp(*curr, name, op_name_len) == 0)                             \
         {                                                                       \
             *curr = *curr + op_name_len + 1;                                    \

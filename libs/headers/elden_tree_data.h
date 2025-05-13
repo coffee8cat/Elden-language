@@ -19,7 +19,7 @@ enum lexical_operations
 
 #undef DEF_TOKEN
 
-#define DEF_OPERATION(enum_name, dump_name) enum_name,
+#define DEF_OPERATION(enum_name, ...) enum_name,
 
 enum operation
 {
