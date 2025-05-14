@@ -229,6 +229,7 @@ void translate_Function_Call(node_t* node, identificator* ids_table, FILE* outpu
             ids_table[node -> left -> left -> value.id].name_len,
             ids_table[node -> left -> left -> value.id].name);
 
+    fprintf(output, "POP BX\n");
     fprintf(output, "PUSH AX\n");
     fprintf(output, "; CALL END\n");
 }

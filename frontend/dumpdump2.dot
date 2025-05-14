@@ -1,0 +1,20 @@
+digraph
+{
+    rankdir=TP
+
+        node0x55c5f2a808b0[shape=record,style="rounded,filled",fillcolor="#BF62FC",label="{ ptr: 0x55c5f2a808b0 | type: OP | value: spec| { left: 0x55c5f2a80760 | right: 0x55c5f2a80880 }}"];
+    node0x55c5f2a808b0 -> node0x55c5f2a80760[color="#0855F0"]
+    node0x55c5f2a80760[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 0x55c5f2a80760 | type: ID | value: SQSOLVER| { left: (nil) | right: (nil) }}"];
+    node0x55c5f2a808b0 -> node0x55c5f2a80880[color="#0855F0"]
+    node0x55c5f2a80880[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a80880 | type: OP | value: ;| { left: 0x55c5f2a80850 | right: 0x55c5f2a80820 }}"];
+    node0x55c5f2a80880 -> node0x55c5f2a80850[color="#0855F0"]
+    node0x55c5f2a80850[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 0x55c5f2a80850 | type: ID | value: c| { left: (nil) | right: (nil) }}"];
+    node0x55c5f2a80880 -> node0x55c5f2a80820[color="#0855F0"]
+    node0x55c5f2a80820[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a80820 | type: OP | value: ;| { left: 0x55c5f2a807f0 | right: 0x55c5f2a807c0 }}"];
+    node0x55c5f2a80820 -> node0x55c5f2a807f0[color="#0855F0"]
+    node0x55c5f2a807f0[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 0x55c5f2a807f0 | type: ID | value: b| { left: (nil) | right: (nil) }}"];
+    node0x55c5f2a80820 -> node0x55c5f2a807c0[color="#0855F0"]
+    node0x55c5f2a807c0[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a807c0 | type: OP | value: ;| { left: 0x55c5f2a80790 | right: (nil) }}"];
+    node0x55c5f2a807c0 -> node0x55c5f2a80790[color="#0855F0"]
+    node0x55c5f2a80790[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 0x55c5f2a80790 | type: ID | value: a| { left: (nil) | right: (nil) }}"];
+}

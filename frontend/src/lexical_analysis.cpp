@@ -74,7 +74,7 @@ bool get_token(lexeme_t* lexeme_array, size_t lexeme_num, const char** curr)
         return true;                                                        \
     }                                                                       \
 
-    #include "DSL_elden.h"
+    #include "../DSL/DSL_elden.h"
     #undef DEF_TOKEN
 
     return false;
@@ -119,7 +119,7 @@ const char* skip_spaces(const char* curr)
 
 const char* operations_list[] =
 {
-    #include "DSL_elden.h"
+    #include "../DSL/DSL_elden.h"
 };
 
 #undef DEF_TOKEN

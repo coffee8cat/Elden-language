@@ -1,5 +1,5 @@
 #include "exchange_tree.h"
-#include "DSL_comp_tree.h"
+#include "../DSL/DSL_comp_tree.h"
 #include "files_usage.h"
 
 static size_t tabs_shift = 0;
@@ -72,7 +72,7 @@ void save_tree(node_t* node, identificator* ids_table, FILE* output)
                     break;                                              \
                 }                                                       \
 
-            #include "DSL_elden_operations.h"
+            #include "../DSL/DSL_elden_operations.h"
             #undef DEF_OPERATION
 
             default: { fprintf(stderr, "ERROR: No such operation\n"); }
@@ -128,7 +128,7 @@ void save_params(node_t* node, identificator* ids_table, FILE* output)
                 break;                                              \
             }                                                       \
 
-            #include "DSL_elden_operations.h"
+            #include "../DSL/DSL_elden_operations.h"
             #undef DEF_OPERATION
             default: { fprintf(stderr, "ERROR: No such operation\n"); }
         }
@@ -255,7 +255,7 @@ node_t* read_node(identificator* ids_table, const char** curr)
             return _OP(operation, NULL, NULL);                                  \
         }                                                                       \
 
-        #include "DSL_elden_operations.h"
+        #include "../DSL/DSL_elden_operations.h"
         #undef DEF_OPERATION
 
         fprintf(stderr, "ERROR: No match for operation %.*s\n", op_name_len, *curr);

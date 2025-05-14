@@ -1,0 +1,350 @@
+digraph
+{
+    rankdir=TP
+
+        node0x55c5f2a818d0[shape=record,style="rounded,filled",fillcolor="#BF62FC",label="{ ptr: 0x55c5f2a818d0 | type: OP | value: ;| { left: 0x55c5f2a80730 | right: 0x55c5f2a818a0 }}"];
+    node0x55c5f2a818d0 -> node0x55c5f2a80730[color="#0855F0"]
+    node0x55c5f2a80730[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a80730 | type: OP | value: ;| { left: 0x55c5f2a7ff50 | right: 0x55c5f2a80700 }}"];
+    node0x55c5f2a80730 -> node0x55c5f2a7ff50[color="#0855F0"]
+    node0x55c5f2a7ff50[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a7ff50 | type: OP | value: ;| { left: 0x55c5f2a7fec0 | right: 0x55c5f2a7ff20 }}"];
+    node0x55c5f2a7ff50 -> node0x55c5f2a7fec0[color="#0855F0"]
+    node0x55c5f2a7fec0[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a7fec0 | type: OP | value: ;| { left: 0x55c5f2a7fe30 | right: 0x55c5f2a7fe90 }}"];
+    node0x55c5f2a7fec0 -> node0x55c5f2a7fe30[color="#0855F0"]
+    node0x55c5f2a7fe30[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a7fe30 | type: OP | value: ;| { left: 0x55c5f2a7fda0 | right: 0x55c5f2a7fe00 }}"];
+    node0x55c5f2a7fe30 -> node0x55c5f2a7fda0[color="#0855F0"]
+    node0x55c5f2a7fda0[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a7fda0 | type: OP | value: ;| { left: 0x55c5f2a7fb60 | right: 0x55c5f2a7fd70 }}"];
+    node0x55c5f2a7fda0 -> node0x55c5f2a7fb60[color="#0855F0"]
+    node0x55c5f2a7fb60[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a7fb60 | type: OP | value: ;| { left: 0x55c5f2a7fad0 | right: 0x55c5f2a7fb30 }}"];
+    node0x55c5f2a7fb60 -> node0x55c5f2a7fad0[color="#0855F0"]
+    node0x55c5f2a7fad0[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a7fad0 | type: OP | value: ;| { left: 0x55c5f2a7fa40 | right: 0x55c5f2a7faa0 }}"];
+    node0x55c5f2a7fad0 -> node0x55c5f2a7fa40[color="#0855F0"]
+    node0x55c5f2a7fa40[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a7fa40 | type: OP | value: ;| { left: 0x55c5f2a7f9b0 | right: 0x55c5f2a7fa10 }}"];
+    node0x55c5f2a7fa40 -> node0x55c5f2a7f9b0[color="#0855F0"]
+    node0x55c5f2a7f9b0[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a7f9b0 | type: OP | value: ;| { left: 0x55c5f2a7f920 | right: 0x55c5f2a7f980 }}"];
+    node0x55c5f2a7f9b0 -> node0x55c5f2a7f920[color="#0855F0"]
+    node0x55c5f2a7f920[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a7f920 | type: OP | value: ;| { left: 0x55c5f2a7f890 | right: 0x55c5f2a7f8f0 }}"];
+    node0x55c5f2a7f920 -> node0x55c5f2a7f890[color="#0855F0"]
+    node0x55c5f2a7f890[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a7f890 | type: OP | value: ;| { left: 0x55c5f2a7f800 | right: 0x55c5f2a7f860 }}"];
+    node0x55c5f2a7f890 -> node0x55c5f2a7f800[color="#0855F0"]
+    node0x55c5f2a7f800[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a7f800 | type: OP | value: ;| { left: 0x55c5f2a7f770 | right: 0x55c5f2a7f7d0 }}"];
+    node0x55c5f2a7f800 -> node0x55c5f2a7f770[color="#0855F0"]
+    node0x55c5f2a7f770[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a7f770 | type: OP | value: ;| { left: 0x55c5f2a7f6e0 | right: 0x55c5f2a7f740 }}"];
+    node0x55c5f2a7f770 -> node0x55c5f2a7f6e0[color="#0855F0"]
+    node0x55c5f2a7f6e0[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a7f6e0 | type: OP | value: var_def| { left: 0x55c5f2a7f6b0 | right: (nil) }}"];
+    node0x55c5f2a7f6e0 -> node0x55c5f2a7f6b0[color="#0855F0"]
+    node0x55c5f2a7f6b0[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 0x55c5f2a7f6b0 | type: ID | value: aCoeff| { left: (nil) | right: (nil) }}"];
+    node0x55c5f2a7f770 -> node0x55c5f2a7f740[color="#0855F0"]
+    node0x55c5f2a7f740[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a7f740 | type: OP | value: var_def| { left: 0x55c5f2a7f710 | right: (nil) }}"];
+    node0x55c5f2a7f740 -> node0x55c5f2a7f710[color="#0855F0"]
+    node0x55c5f2a7f710[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 0x55c5f2a7f710 | type: ID | value: bCoeff| { left: (nil) | right: (nil) }}"];
+    node0x55c5f2a7f800 -> node0x55c5f2a7f7d0[color="#0855F0"]
+    node0x55c5f2a7f7d0[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a7f7d0 | type: OP | value: var_def| { left: 0x55c5f2a7f7a0 | right: (nil) }}"];
+    node0x55c5f2a7f7d0 -> node0x55c5f2a7f7a0[color="#0855F0"]
+    node0x55c5f2a7f7a0[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 0x55c5f2a7f7a0 | type: ID | value: cCoeff| { left: (nil) | right: (nil) }}"];
+    node0x55c5f2a7f890 -> node0x55c5f2a7f860[color="#0855F0"]
+    node0x55c5f2a7f860[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a7f860 | type: OP | value: var_def| { left: 0x55c5f2a7f830 | right: (nil) }}"];
+    node0x55c5f2a7f860 -> node0x55c5f2a7f830[color="#0855F0"]
+    node0x55c5f2a7f830[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 0x55c5f2a7f830 | type: ID | value: first| { left: (nil) | right: (nil) }}"];
+    node0x55c5f2a7f920 -> node0x55c5f2a7f8f0[color="#0855F0"]
+    node0x55c5f2a7f8f0[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a7f8f0 | type: OP | value: var_def| { left: 0x55c5f2a7f8c0 | right: (nil) }}"];
+    node0x55c5f2a7f8f0 -> node0x55c5f2a7f8c0[color="#0855F0"]
+    node0x55c5f2a7f8c0[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 0x55c5f2a7f8c0 | type: ID | value: second| { left: (nil) | right: (nil) }}"];
+    node0x55c5f2a7f9b0 -> node0x55c5f2a7f980[color="#0855F0"]
+    node0x55c5f2a7f980[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a7f980 | type: OP | value: var_def| { left: 0x55c5f2a7f950 | right: (nil) }}"];
+    node0x55c5f2a7f980 -> node0x55c5f2a7f950[color="#0855F0"]
+    node0x55c5f2a7f950[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 0x55c5f2a7f950 | type: ID | value: numofanswers| { left: (nil) | right: (nil) }}"];
+    node0x55c5f2a7fa40 -> node0x55c5f2a7fa10[color="#0855F0"]
+    node0x55c5f2a7fa10[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a7fa10 | type: OP | value: scan| { left: 0x55c5f2a7f9e0 | right: (nil) }}"];
+    node0x55c5f2a7fa10 -> node0x55c5f2a7f9e0[color="#0855F0"]
+    node0x55c5f2a7f9e0[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 0x55c5f2a7f9e0 | type: ID | value: aCoeff| { left: (nil) | right: (nil) }}"];
+    node0x55c5f2a7fad0 -> node0x55c5f2a7faa0[color="#0855F0"]
+    node0x55c5f2a7faa0[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a7faa0 | type: OP | value: scan| { left: 0x55c5f2a7fa70 | right: (nil) }}"];
+    node0x55c5f2a7faa0 -> node0x55c5f2a7fa70[color="#0855F0"]
+    node0x55c5f2a7fa70[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 0x55c5f2a7fa70 | type: ID | value: bCoeff| { left: (nil) | right: (nil) }}"];
+    node0x55c5f2a7fb60 -> node0x55c5f2a7fb30[color="#0855F0"]
+    node0x55c5f2a7fb30[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a7fb30 | type: OP | value: scan| { left: 0x55c5f2a7fb00 | right: (nil) }}"];
+    node0x55c5f2a7fb30 -> node0x55c5f2a7fb00[color="#0855F0"]
+    node0x55c5f2a7fb00[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 0x55c5f2a7fb00 | type: ID | value: cCoeff| { left: (nil) | right: (nil) }}"];
+    node0x55c5f2a7fda0 -> node0x55c5f2a7fd70[color="#0855F0"]
+    node0x55c5f2a7fd70[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a7fd70 | type: OP | value: =| { left: 0x55c5f2a7fb90 | right: 0x55c5f2a7fd40 }}"];
+    node0x55c5f2a7fd70 -> node0x55c5f2a7fb90[color="#0855F0"]
+    node0x55c5f2a7fb90[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 0x55c5f2a7fb90 | type: ID | value: numofanswers| { left: (nil) | right: (nil) }}"];
+    node0x55c5f2a7fd70 -> node0x55c5f2a7fd40[color="#0855F0"]
+    node0x55c5f2a7fd40[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a7fd40 | type: OP | value: call| { left: 0x55c5f2a7fd10 | right: (nil) }}"];
+    node0x55c5f2a7fd40 -> node0x55c5f2a7fd10[color="#0855F0"]
+    node0x55c5f2a7fd10[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a7fd10 | type: OP | value: spec| { left: 0x55c5f2a7fbc0 | right: 0x55c5f2a7fce0 }}"];
+    node0x55c5f2a7fd10 -> node0x55c5f2a7fbc0[color="#0855F0"]
+    node0x55c5f2a7fbc0[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 0x55c5f2a7fbc0 | type: ID | value: SQSOLVER| { left: (nil) | right: (nil) }}"];
+    node0x55c5f2a7fd10 -> node0x55c5f2a7fce0[color="#0855F0"]
+    node0x55c5f2a7fce0[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a7fce0 | type: OP | value: ;| { left: 0x55c5f2a7fcb0 | right: 0x55c5f2a7fc80 }}"];
+    node0x55c5f2a7fce0 -> node0x55c5f2a7fcb0[color="#0855F0"]
+    node0x55c5f2a7fcb0[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 0x55c5f2a7fcb0 | type: ID | value: cCoeff| { left: (nil) | right: (nil) }}"];
+    node0x55c5f2a7fce0 -> node0x55c5f2a7fc80[color="#0855F0"]
+    node0x55c5f2a7fc80[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a7fc80 | type: OP | value: ;| { left: 0x55c5f2a7fc50 | right: 0x55c5f2a7fc20 }}"];
+    node0x55c5f2a7fc80 -> node0x55c5f2a7fc50[color="#0855F0"]
+    node0x55c5f2a7fc50[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 0x55c5f2a7fc50 | type: ID | value: bCoeff| { left: (nil) | right: (nil) }}"];
+    node0x55c5f2a7fc80 -> node0x55c5f2a7fc20[color="#0855F0"]
+    node0x55c5f2a7fc20[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a7fc20 | type: OP | value: ;| { left: 0x55c5f2a7fbf0 | right: (nil) }}"];
+    node0x55c5f2a7fc20 -> node0x55c5f2a7fbf0[color="#0855F0"]
+    node0x55c5f2a7fbf0[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 0x55c5f2a7fbf0 | type: ID | value: aCoeff| { left: (nil) | right: (nil) }}"];
+    node0x55c5f2a7fe30 -> node0x55c5f2a7fe00[color="#0855F0"]
+    node0x55c5f2a7fe00[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a7fe00 | type: OP | value: print| { left: 0x55c5f2a7fdd0 | right: (nil) }}"];
+    node0x55c5f2a7fe00 -> node0x55c5f2a7fdd0[color="#0855F0"]
+    node0x55c5f2a7fdd0[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 0x55c5f2a7fdd0 | type: ID | value: numofanswers| { left: (nil) | right: (nil) }}"];
+    node0x55c5f2a7fec0 -> node0x55c5f2a7fe90[color="#0855F0"]
+    node0x55c5f2a7fe90[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a7fe90 | type: OP | value: print| { left: 0x55c5f2a7fe60 | right: (nil) }}"];
+    node0x55c5f2a7fe90 -> node0x55c5f2a7fe60[color="#0855F0"]
+    node0x55c5f2a7fe60[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 0x55c5f2a7fe60 | type: ID | value: first| { left: (nil) | right: (nil) }}"];
+    node0x55c5f2a7ff50 -> node0x55c5f2a7ff20[color="#0855F0"]
+    node0x55c5f2a7ff20[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a7ff20 | type: OP | value: print| { left: 0x55c5f2a7fef0 | right: (nil) }}"];
+    node0x55c5f2a7ff20 -> node0x55c5f2a7fef0[color="#0855F0"]
+    node0x55c5f2a7fef0[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 0x55c5f2a7fef0 | type: ID | value: second| { left: (nil) | right: (nil) }}"];
+    node0x55c5f2a80730 -> node0x55c5f2a80700[color="#0855F0"]
+    node0x55c5f2a80700[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a80700 | type: OP | value: def| { left: 0x55c5f2a80070 | right: 0x55c5f2a806d0 }}"];
+    node0x55c5f2a80700 -> node0x55c5f2a80070[color="#0855F0"]
+    node0x55c5f2a80070[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a80070 | type: OP | value: spec| { left: 0x55c5f2a7ff80 | right: 0x55c5f2a80040 }}"];
+    node0x55c5f2a80070 -> node0x55c5f2a7ff80[color="#0855F0"]
+    node0x55c5f2a7ff80[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 0x55c5f2a7ff80 | type: ID | value: LINEAR| { left: (nil) | right: (nil) }}"];
+    node0x55c5f2a80070 -> node0x55c5f2a80040[color="#0855F0"]
+    node0x55c5f2a80040[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a80040 | type: OP | value: ;| { left: 0x55c5f2a80010 | right: 0x55c5f2a7ffe0 }}"];
+    node0x55c5f2a80040 -> node0x55c5f2a80010[color="#0855F0"]
+    node0x55c5f2a80010[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 0x55c5f2a80010 | type: ID | value: LinC| { left: (nil) | right: (nil) }}"];
+    node0x55c5f2a80040 -> node0x55c5f2a7ffe0[color="#0855F0"]
+    node0x55c5f2a7ffe0[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a7ffe0 | type: OP | value: ;| { left: 0x55c5f2a7ffb0 | right: (nil) }}"];
+    node0x55c5f2a7ffe0 -> node0x55c5f2a7ffb0[color="#0855F0"]
+    node0x55c5f2a7ffb0[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 0x55c5f2a7ffb0 | type: ID | value: LinB| { left: (nil) | right: (nil) }}"];
+    node0x55c5f2a80700 -> node0x55c5f2a806d0[color="#0855F0"]
+    node0x55c5f2a806d0[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a806d0 | type: OP | value: ;| { left: 0x55c5f2a80640 | right: 0x55c5f2a806a0 }}"];
+    node0x55c5f2a806d0 -> node0x55c5f2a80640[color="#0855F0"]
+    node0x55c5f2a80640[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a80640 | type: OP | value: ;| { left: 0x55c5f2a804c0 | right: 0x55c5f2a80610 }}"];
+    node0x55c5f2a80640 -> node0x55c5f2a804c0[color="#0855F0"]
+    node0x55c5f2a804c0[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a804c0 | type: OP | value: if| { left: 0x55c5f2a802e0 | right: 0x55c5f2a80490 }}"];
+    node0x55c5f2a804c0 -> node0x55c5f2a802e0[color="#0855F0"]
+    node0x55c5f2a802e0[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a802e0 | type: OP | value: ==| { left: 0x55c5f2a80280 | right: 0x55c5f2a802b0 }}"];
+    node0x55c5f2a802e0 -> node0x55c5f2a80280[color="#0855F0"]
+    node0x55c5f2a80280[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 0x55c5f2a80280 | type: ID | value: LinB| { left: (nil) | right: (nil) }}"];
+    node0x55c5f2a802e0 -> node0x55c5f2a802b0[color="#0855F0"]
+    node0x55c5f2a802b0[shape=record,style="rounded,filled",fillcolor="#0AF212",label="{ ptr: 0x55c5f2a802b0 | type: NUM | value: 0.000000| { left: (nil) | right: (nil) }}"];
+    node0x55c5f2a804c0 -> node0x55c5f2a80490[color="#0855F0"]
+    node0x55c5f2a80490[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a80490 | type: OP | value: ;| { left: 0x55c5f2a80400 | right: 0x55c5f2a80460 }}"];
+    node0x55c5f2a80490 -> node0x55c5f2a80400[color="#0855F0"]
+    node0x55c5f2a80400[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a80400 | type: OP | value: if| { left: 0x55c5f2a80370 | right: 0x55c5f2a803d0 }}"];
+    node0x55c5f2a80400 -> node0x55c5f2a80370[color="#0855F0"]
+    node0x55c5f2a80370[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a80370 | type: OP | value: ==| { left: 0x55c5f2a80310 | right: 0x55c5f2a80340 }}"];
+    node0x55c5f2a80370 -> node0x55c5f2a80310[color="#0855F0"]
+    node0x55c5f2a80310[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 0x55c5f2a80310 | type: ID | value: LinC| { left: (nil) | right: (nil) }}"];
+    node0x55c5f2a80370 -> node0x55c5f2a80340[color="#0855F0"]
+    node0x55c5f2a80340[shape=record,style="rounded,filled",fillcolor="#0AF212",label="{ ptr: 0x55c5f2a80340 | type: NUM | value: 0.000000| { left: (nil) | right: (nil) }}"];
+    node0x55c5f2a80400 -> node0x55c5f2a803d0[color="#0855F0"]
+    node0x55c5f2a803d0[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a803d0 | type: OP | value: return| { left: 0x55c5f2a803a0 | right: (nil) }}"];
+    node0x55c5f2a803d0 -> node0x55c5f2a803a0[color="#0855F0"]
+    node0x55c5f2a803a0[shape=record,style="rounded,filled",fillcolor="#0AF212",label="{ ptr: 0x55c5f2a803a0 | type: NUM | value: 5.000000| { left: (nil) | right: (nil) }}"];
+    node0x55c5f2a80490 -> node0x55c5f2a80460[color="#0855F0"]
+    node0x55c5f2a80460[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a80460 | type: OP | value: return| { left: 0x55c5f2a80430 | right: (nil) }}"];
+    node0x55c5f2a80460 -> node0x55c5f2a80430[color="#0855F0"]
+    node0x55c5f2a80430[shape=record,style="rounded,filled",fillcolor="#0AF212",label="{ ptr: 0x55c5f2a80430 | type: NUM | value: 0.000000| { left: (nil) | right: (nil) }}"];
+    node0x55c5f2a80640 -> node0x55c5f2a80610[color="#0855F0"]
+    node0x55c5f2a80610[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a80610 | type: OP | value: =| { left: 0x55c5f2a804f0 | right: 0x55c5f2a805e0 }}"];
+    node0x55c5f2a80610 -> node0x55c5f2a804f0[color="#0855F0"]
+    node0x55c5f2a804f0[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 0x55c5f2a804f0 | type: ID | value: first| { left: (nil) | right: (nil) }}"];
+    node0x55c5f2a80610 -> node0x55c5f2a805e0[color="#0855F0"]
+    node0x55c5f2a805e0[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a805e0 | type: OP | value: -| { left: 0x55c5f2a80520 | right: 0x55c5f2a805b0 }}"];
+    node0x55c5f2a805e0 -> node0x55c5f2a80520[color="#0855F0"]
+    node0x55c5f2a80520[shape=record,style="rounded,filled",fillcolor="#0AF212",label="{ ptr: 0x55c5f2a80520 | type: NUM | value: 0.000000| { left: (nil) | right: (nil) }}"];
+    node0x55c5f2a805e0 -> node0x55c5f2a805b0[color="#0855F0"]
+    node0x55c5f2a805b0[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a805b0 | type: OP | value: /| { left: 0x55c5f2a80550 | right: 0x55c5f2a80580 }}"];
+    node0x55c5f2a805b0 -> node0x55c5f2a80550[color="#0855F0"]
+    node0x55c5f2a80550[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 0x55c5f2a80550 | type: ID | value: LinC| { left: (nil) | right: (nil) }}"];
+    node0x55c5f2a805b0 -> node0x55c5f2a80580[color="#0855F0"]
+    node0x55c5f2a80580[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 0x55c5f2a80580 | type: ID | value: LinB| { left: (nil) | right: (nil) }}"];
+    node0x55c5f2a806d0 -> node0x55c5f2a806a0[color="#0855F0"]
+    node0x55c5f2a806a0[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a806a0 | type: OP | value: return| { left: 0x55c5f2a80670 | right: (nil) }}"];
+    node0x55c5f2a806a0 -> node0x55c5f2a80670[color="#0855F0"]
+    node0x55c5f2a80670[shape=record,style="rounded,filled",fillcolor="#0AF212",label="{ ptr: 0x55c5f2a80670 | type: NUM | value: 1.000000| { left: (nil) | right: (nil) }}"];
+    node0x55c5f2a818d0 -> node0x55c5f2a818a0[color="#0855F0"]
+    node0x55c5f2a818a0[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a818a0 | type: OP | value: def| { left: 0x55c5f2a808b0 | right: 0x55c5f2a81870 }}"];
+    node0x55c5f2a818a0 -> node0x55c5f2a808b0[color="#0855F0"]
+    node0x55c5f2a808b0[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a808b0 | type: OP | value: spec| { left: 0x55c5f2a80760 | right: 0x55c5f2a80880 }}"];
+    node0x55c5f2a808b0 -> node0x55c5f2a80760[color="#0855F0"]
+    node0x55c5f2a80760[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 0x55c5f2a80760 | type: ID | value: SQSOLVER| { left: (nil) | right: (nil) }}"];
+    node0x55c5f2a808b0 -> node0x55c5f2a80880[color="#0855F0"]
+    node0x55c5f2a80880[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a80880 | type: OP | value: ;| { left: 0x55c5f2a80850 | right: 0x55c5f2a80820 }}"];
+    node0x55c5f2a80880 -> node0x55c5f2a80850[color="#0855F0"]
+    node0x55c5f2a80850[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 0x55c5f2a80850 | type: ID | value: c| { left: (nil) | right: (nil) }}"];
+    node0x55c5f2a80880 -> node0x55c5f2a80820[color="#0855F0"]
+    node0x55c5f2a80820[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a80820 | type: OP | value: ;| { left: 0x55c5f2a807f0 | right: 0x55c5f2a807c0 }}"];
+    node0x55c5f2a80820 -> node0x55c5f2a807f0[color="#0855F0"]
+    node0x55c5f2a807f0[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 0x55c5f2a807f0 | type: ID | value: b| { left: (nil) | right: (nil) }}"];
+    node0x55c5f2a80820 -> node0x55c5f2a807c0[color="#0855F0"]
+    node0x55c5f2a807c0[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a807c0 | type: OP | value: ;| { left: 0x55c5f2a80790 | right: (nil) }}"];
+    node0x55c5f2a807c0 -> node0x55c5f2a80790[color="#0855F0"]
+    node0x55c5f2a80790[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 0x55c5f2a80790 | type: ID | value: a| { left: (nil) | right: (nil) }}"];
+    node0x55c5f2a818a0 -> node0x55c5f2a81870[color="#0855F0"]
+    node0x55c5f2a81870[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a81870 | type: OP | value: ;| { left: 0x55c5f2a817e0 | right: 0x55c5f2a81840 }}"];
+    node0x55c5f2a81870 -> node0x55c5f2a817e0[color="#0855F0"]
+    node0x55c5f2a817e0[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a817e0 | type: OP | value: ;| { left: 0x55c5f2a81090 | right: 0x55c5f2a817b0 }}"];
+    node0x55c5f2a817e0 -> node0x55c5f2a81090[color="#0855F0"]
+    node0x55c5f2a81090[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a81090 | type: OP | value: ;| { left: 0x55c5f2a80dc0 | right: 0x55c5f2a81060 }}"];
+    node0x55c5f2a81090 -> node0x55c5f2a80dc0[color="#0855F0"]
+    node0x55c5f2a80dc0[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a80dc0 | type: OP | value: ;| { left: 0x55c5f2a80b80 | right: 0x55c5f2a80d90 }}"];
+    node0x55c5f2a80dc0 -> node0x55c5f2a80b80[color="#0855F0"]
+    node0x55c5f2a80b80[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a80b80 | type: OP | value: ;| { left: 0x55c5f2a80af0 | right: 0x55c5f2a80b50 }}"];
+    node0x55c5f2a80b80 -> node0x55c5f2a80af0[color="#0855F0"]
+    node0x55c5f2a80af0[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a80af0 | type: OP | value: if| { left: 0x55c5f2a80940 | right: 0x55c5f2a80ac0 }}"];
+    node0x55c5f2a80af0 -> node0x55c5f2a80940[color="#0855F0"]
+    node0x55c5f2a80940[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a80940 | type: OP | value: ==| { left: 0x55c5f2a808e0 | right: 0x55c5f2a80910 }}"];
+    node0x55c5f2a80940 -> node0x55c5f2a808e0[color="#0855F0"]
+    node0x55c5f2a808e0[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 0x55c5f2a808e0 | type: ID | value: a| { left: (nil) | right: (nil) }}"];
+    node0x55c5f2a80940 -> node0x55c5f2a80910[color="#0855F0"]
+    node0x55c5f2a80910[shape=record,style="rounded,filled",fillcolor="#0AF212",label="{ ptr: 0x55c5f2a80910 | type: NUM | value: 0.000000| { left: (nil) | right: (nil) }}"];
+    node0x55c5f2a80af0 -> node0x55c5f2a80ac0[color="#0855F0"]
+    node0x55c5f2a80ac0[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a80ac0 | type: OP | value: return| { left: 0x55c5f2a80a90 | right: (nil) }}"];
+    node0x55c5f2a80ac0 -> node0x55c5f2a80a90[color="#0855F0"]
+    node0x55c5f2a80a90[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a80a90 | type: OP | value: call| { left: 0x55c5f2a80a60 | right: (nil) }}"];
+    node0x55c5f2a80a90 -> node0x55c5f2a80a60[color="#0855F0"]
+    node0x55c5f2a80a60[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a80a60 | type: OP | value: spec| { left: 0x55c5f2a80970 | right: 0x55c5f2a80a30 }}"];
+    node0x55c5f2a80a60 -> node0x55c5f2a80970[color="#0855F0"]
+    node0x55c5f2a80970[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 0x55c5f2a80970 | type: ID | value: LINEAR| { left: (nil) | right: (nil) }}"];
+    node0x55c5f2a80a60 -> node0x55c5f2a80a30[color="#0855F0"]
+    node0x55c5f2a80a30[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a80a30 | type: OP | value: ;| { left: 0x55c5f2a80a00 | right: 0x55c5f2a809d0 }}"];
+    node0x55c5f2a80a30 -> node0x55c5f2a80a00[color="#0855F0"]
+    node0x55c5f2a80a00[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 0x55c5f2a80a00 | type: ID | value: c| { left: (nil) | right: (nil) }}"];
+    node0x55c5f2a80a30 -> node0x55c5f2a809d0[color="#0855F0"]
+    node0x55c5f2a809d0[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a809d0 | type: OP | value: ;| { left: 0x55c5f2a809a0 | right: (nil) }}"];
+    node0x55c5f2a809d0 -> node0x55c5f2a809a0[color="#0855F0"]
+    node0x55c5f2a809a0[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 0x55c5f2a809a0 | type: ID | value: b| { left: (nil) | right: (nil) }}"];
+    node0x55c5f2a80b80 -> node0x55c5f2a80b50[color="#0855F0"]
+    node0x55c5f2a80b50[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a80b50 | type: OP | value: var_def| { left: 0x55c5f2a80b20 | right: (nil) }}"];
+    node0x55c5f2a80b50 -> node0x55c5f2a80b20[color="#0855F0"]
+    node0x55c5f2a80b20[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 0x55c5f2a80b20 | type: ID | value: D| { left: (nil) | right: (nil) }}"];
+    node0x55c5f2a80dc0 -> node0x55c5f2a80d90[color="#0855F0"]
+    node0x55c5f2a80d90[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a80d90 | type: OP | value: =| { left: 0x55c5f2a80bb0 | right: 0x55c5f2a80d60 }}"];
+    node0x55c5f2a80d90 -> node0x55c5f2a80bb0[color="#0855F0"]
+    node0x55c5f2a80bb0[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 0x55c5f2a80bb0 | type: ID | value: D| { left: (nil) | right: (nil) }}"];
+    node0x55c5f2a80d90 -> node0x55c5f2a80d60[color="#0855F0"]
+    node0x55c5f2a80d60[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a80d60 | type: OP | value: -| { left: 0x55c5f2a80c40 | right: 0x55c5f2a80d30 }}"];
+    node0x55c5f2a80d60 -> node0x55c5f2a80c40[color="#0855F0"]
+    node0x55c5f2a80c40[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a80c40 | type: OP | value: *| { left: 0x55c5f2a80be0 | right: 0x55c5f2a80c10 }}"];
+    node0x55c5f2a80c40 -> node0x55c5f2a80be0[color="#0855F0"]
+    node0x55c5f2a80be0[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 0x55c5f2a80be0 | type: ID | value: b| { left: (nil) | right: (nil) }}"];
+    node0x55c5f2a80c40 -> node0x55c5f2a80c10[color="#0855F0"]
+    node0x55c5f2a80c10[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 0x55c5f2a80c10 | type: ID | value: b| { left: (nil) | right: (nil) }}"];
+    node0x55c5f2a80d60 -> node0x55c5f2a80d30[color="#0855F0"]
+    node0x55c5f2a80d30[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a80d30 | type: OP | value: *| { left: 0x55c5f2a80cd0 | right: 0x55c5f2a80d00 }}"];
+    node0x55c5f2a80d30 -> node0x55c5f2a80cd0[color="#0855F0"]
+    node0x55c5f2a80cd0[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a80cd0 | type: OP | value: *| { left: 0x55c5f2a80c70 | right: 0x55c5f2a80ca0 }}"];
+    node0x55c5f2a80cd0 -> node0x55c5f2a80c70[color="#0855F0"]
+    node0x55c5f2a80c70[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 0x55c5f2a80c70 | type: ID | value: c| { left: (nil) | right: (nil) }}"];
+    node0x55c5f2a80cd0 -> node0x55c5f2a80ca0[color="#0855F0"]
+    node0x55c5f2a80ca0[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 0x55c5f2a80ca0 | type: ID | value: a| { left: (nil) | right: (nil) }}"];
+    node0x55c5f2a80d30 -> node0x55c5f2a80d00[color="#0855F0"]
+    node0x55c5f2a80d00[shape=record,style="rounded,filled",fillcolor="#0AF212",label="{ ptr: 0x55c5f2a80d00 | type: NUM | value: 4.000000| { left: (nil) | right: (nil) }}"];
+    node0x55c5f2a81090 -> node0x55c5f2a81060[color="#0855F0"]
+    node0x55c5f2a81060[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a81060 | type: OP | value: if| { left: 0x55c5f2a80e50 | right: 0x55c5f2a81030 }}"];
+    node0x55c5f2a81060 -> node0x55c5f2a80e50[color="#0855F0"]
+    node0x55c5f2a80e50[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a80e50 | type: OP | value: ==| { left: 0x55c5f2a80df0 | right: 0x55c5f2a80e20 }}"];
+    node0x55c5f2a80e50 -> node0x55c5f2a80df0[color="#0855F0"]
+    node0x55c5f2a80df0[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 0x55c5f2a80df0 | type: ID | value: D| { left: (nil) | right: (nil) }}"];
+    node0x55c5f2a80e50 -> node0x55c5f2a80e20[color="#0855F0"]
+    node0x55c5f2a80e20[shape=record,style="rounded,filled",fillcolor="#0AF212",label="{ ptr: 0x55c5f2a80e20 | type: NUM | value: 0.000000| { left: (nil) | right: (nil) }}"];
+    node0x55c5f2a81060 -> node0x55c5f2a81030[color="#0855F0"]
+    node0x55c5f2a81030[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a81030 | type: OP | value: ;| { left: 0x55c5f2a80fa0 | right: 0x55c5f2a81000 }}"];
+    node0x55c5f2a81030 -> node0x55c5f2a80fa0[color="#0855F0"]
+    node0x55c5f2a80fa0[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a80fa0 | type: OP | value: =| { left: 0x55c5f2a80e80 | right: 0x55c5f2a80f70 }}"];
+    node0x55c5f2a80fa0 -> node0x55c5f2a80e80[color="#0855F0"]
+    node0x55c5f2a80e80[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 0x55c5f2a80e80 | type: ID | value: first| { left: (nil) | right: (nil) }}"];
+    node0x55c5f2a80fa0 -> node0x55c5f2a80f70[color="#0855F0"]
+    node0x55c5f2a80f70[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a80f70 | type: OP | value: -| { left: 0x55c5f2a80eb0 | right: 0x55c5f2a80f40 }}"];
+    node0x55c5f2a80f70 -> node0x55c5f2a80eb0[color="#0855F0"]
+    node0x55c5f2a80eb0[shape=record,style="rounded,filled",fillcolor="#0AF212",label="{ ptr: 0x55c5f2a80eb0 | type: NUM | value: 0.000000| { left: (nil) | right: (nil) }}"];
+    node0x55c5f2a80f70 -> node0x55c5f2a80f40[color="#0855F0"]
+    node0x55c5f2a80f40[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a80f40 | type: OP | value: /| { left: 0x55c5f2a80ee0 | right: 0x55c5f2a80f10 }}"];
+    node0x55c5f2a80f40 -> node0x55c5f2a80ee0[color="#0855F0"]
+    node0x55c5f2a80ee0[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 0x55c5f2a80ee0 | type: ID | value: b| { left: (nil) | right: (nil) }}"];
+    node0x55c5f2a80f40 -> node0x55c5f2a80f10[color="#0855F0"]
+    node0x55c5f2a80f10[shape=record,style="rounded,filled",fillcolor="#0AF212",label="{ ptr: 0x55c5f2a80f10 | type: NUM | value: 2.000000| { left: (nil) | right: (nil) }}"];
+    node0x55c5f2a81030 -> node0x55c5f2a81000[color="#0855F0"]
+    node0x55c5f2a81000[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a81000 | type: OP | value: return| { left: 0x55c5f2a80fd0 | right: (nil) }}"];
+    node0x55c5f2a81000 -> node0x55c5f2a80fd0[color="#0855F0"]
+    node0x55c5f2a80fd0[shape=record,style="rounded,filled",fillcolor="#0AF212",label="{ ptr: 0x55c5f2a80fd0 | type: NUM | value: 1.000000| { left: (nil) | right: (nil) }}"];
+    node0x55c5f2a817e0 -> node0x55c5f2a817b0[color="#0855F0"]
+    node0x55c5f2a817b0[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a817b0 | type: OP | value: if| { left: 0x55c5f2a81120 | right: 0x55c5f2a81780 }}"];
+    node0x55c5f2a817b0 -> node0x55c5f2a81120[color="#0855F0"]
+    node0x55c5f2a81120[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a81120 | type: OP | value: more| { left: 0x55c5f2a810c0 | right: 0x55c5f2a810f0 }}"];
+    node0x55c5f2a81120 -> node0x55c5f2a810c0[color="#0855F0"]
+    node0x55c5f2a810c0[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 0x55c5f2a810c0 | type: ID | value: D| { left: (nil) | right: (nil) }}"];
+    node0x55c5f2a81120 -> node0x55c5f2a810f0[color="#0855F0"]
+    node0x55c5f2a810f0[shape=record,style="rounded,filled",fillcolor="#0AF212",label="{ ptr: 0x55c5f2a810f0 | type: NUM | value: 0.000000| { left: (nil) | right: (nil) }}"];
+    node0x55c5f2a817b0 -> node0x55c5f2a81780[color="#0855F0"]
+    node0x55c5f2a81780[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a81780 | type: OP | value: ;| { left: 0x55c5f2a816f0 | right: 0x55c5f2a81750 }}"];
+    node0x55c5f2a81780 -> node0x55c5f2a816f0[color="#0855F0"]
+    node0x55c5f2a816f0[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a816f0 | type: OP | value: ;| { left: 0x55c5f2a814b0 | right: 0x55c5f2a816c0 }}"];
+    node0x55c5f2a816f0 -> node0x55c5f2a814b0[color="#0855F0"]
+    node0x55c5f2a814b0[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a814b0 | type: OP | value: ;| { left: 0x55c5f2a81270 | right: 0x55c5f2a81480 }}"];
+    node0x55c5f2a814b0 -> node0x55c5f2a81270[color="#0855F0"]
+    node0x55c5f2a81270[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a81270 | type: OP | value: =| { left: 0x55c5f2a81150 | right: 0x55c5f2a81240 }}"];
+    node0x55c5f2a81270 -> node0x55c5f2a81150[color="#0855F0"]
+    node0x55c5f2a81150[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 0x55c5f2a81150 | type: ID | value: D| { left: (nil) | right: (nil) }}"];
+    node0x55c5f2a81270 -> node0x55c5f2a81240[color="#0855F0"]
+    node0x55c5f2a81240[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a81240 | type: OP | value: ^| { left: 0x55c5f2a81180 | right: 0x55c5f2a81210 }}"];
+    node0x55c5f2a81240 -> node0x55c5f2a81180[color="#0855F0"]
+    node0x55c5f2a81180[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 0x55c5f2a81180 | type: ID | value: D| { left: (nil) | right: (nil) }}"];
+    node0x55c5f2a81240 -> node0x55c5f2a81210[color="#0855F0"]
+    node0x55c5f2a81210[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a81210 | type: OP | value: /| { left: 0x55c5f2a811b0 | right: 0x55c5f2a811e0 }}"];
+    node0x55c5f2a81210 -> node0x55c5f2a811b0[color="#0855F0"]
+    node0x55c5f2a811b0[shape=record,style="rounded,filled",fillcolor="#0AF212",label="{ ptr: 0x55c5f2a811b0 | type: NUM | value: 1.000000| { left: (nil) | right: (nil) }}"];
+    node0x55c5f2a81210 -> node0x55c5f2a811e0[color="#0855F0"]
+    node0x55c5f2a811e0[shape=record,style="rounded,filled",fillcolor="#0AF212",label="{ ptr: 0x55c5f2a811e0 | type: NUM | value: 2.000000| { left: (nil) | right: (nil) }}"];
+    node0x55c5f2a814b0 -> node0x55c5f2a81480[color="#0855F0"]
+    node0x55c5f2a81480[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a81480 | type: OP | value: =| { left: 0x55c5f2a812a0 | right: 0x55c5f2a81450 }}"];
+    node0x55c5f2a81480 -> node0x55c5f2a812a0[color="#0855F0"]
+    node0x55c5f2a812a0[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 0x55c5f2a812a0 | type: ID | value: first| { left: (nil) | right: (nil) }}"];
+    node0x55c5f2a81480 -> node0x55c5f2a81450[color="#0855F0"]
+    node0x55c5f2a81450[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a81450 | type: OP | value: -| { left: 0x55c5f2a812d0 | right: 0x55c5f2a81420 }}"];
+    node0x55c5f2a81450 -> node0x55c5f2a812d0[color="#0855F0"]
+    node0x55c5f2a812d0[shape=record,style="rounded,filled",fillcolor="#0AF212",label="{ ptr: 0x55c5f2a812d0 | type: NUM | value: 0.000000| { left: (nil) | right: (nil) }}"];
+    node0x55c5f2a81450 -> node0x55c5f2a81420[color="#0855F0"]
+    node0x55c5f2a81420[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a81420 | type: OP | value: /| { left: 0x55c5f2a81360 | right: 0x55c5f2a813f0 }}"];
+    node0x55c5f2a81420 -> node0x55c5f2a81360[color="#0855F0"]
+    node0x55c5f2a81360[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a81360 | type: OP | value: +| { left: 0x55c5f2a81300 | right: 0x55c5f2a81330 }}"];
+    node0x55c5f2a81360 -> node0x55c5f2a81300[color="#0855F0"]
+    node0x55c5f2a81300[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 0x55c5f2a81300 | type: ID | value: b| { left: (nil) | right: (nil) }}"];
+    node0x55c5f2a81360 -> node0x55c5f2a81330[color="#0855F0"]
+    node0x55c5f2a81330[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 0x55c5f2a81330 | type: ID | value: D| { left: (nil) | right: (nil) }}"];
+    node0x55c5f2a81420 -> node0x55c5f2a813f0[color="#0855F0"]
+    node0x55c5f2a813f0[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a813f0 | type: OP | value: *| { left: 0x55c5f2a81390 | right: 0x55c5f2a813c0 }}"];
+    node0x55c5f2a813f0 -> node0x55c5f2a81390[color="#0855F0"]
+    node0x55c5f2a81390[shape=record,style="rounded,filled",fillcolor="#0AF212",label="{ ptr: 0x55c5f2a81390 | type: NUM | value: 2.000000| { left: (nil) | right: (nil) }}"];
+    node0x55c5f2a813f0 -> node0x55c5f2a813c0[color="#0855F0"]
+    node0x55c5f2a813c0[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 0x55c5f2a813c0 | type: ID | value: a| { left: (nil) | right: (nil) }}"];
+    node0x55c5f2a816f0 -> node0x55c5f2a816c0[color="#0855F0"]
+    node0x55c5f2a816c0[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a816c0 | type: OP | value: =| { left: 0x55c5f2a814e0 | right: 0x55c5f2a81690 }}"];
+    node0x55c5f2a816c0 -> node0x55c5f2a814e0[color="#0855F0"]
+    node0x55c5f2a814e0[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 0x55c5f2a814e0 | type: ID | value: second| { left: (nil) | right: (nil) }}"];
+    node0x55c5f2a816c0 -> node0x55c5f2a81690[color="#0855F0"]
+    node0x55c5f2a81690[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a81690 | type: OP | value: -| { left: 0x55c5f2a81510 | right: 0x55c5f2a81660 }}"];
+    node0x55c5f2a81690 -> node0x55c5f2a81510[color="#0855F0"]
+    node0x55c5f2a81510[shape=record,style="rounded,filled",fillcolor="#0AF212",label="{ ptr: 0x55c5f2a81510 | type: NUM | value: 0.000000| { left: (nil) | right: (nil) }}"];
+    node0x55c5f2a81690 -> node0x55c5f2a81660[color="#0855F0"]
+    node0x55c5f2a81660[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a81660 | type: OP | value: /| { left: 0x55c5f2a815a0 | right: 0x55c5f2a81630 }}"];
+    node0x55c5f2a81660 -> node0x55c5f2a815a0[color="#0855F0"]
+    node0x55c5f2a815a0[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a815a0 | type: OP | value: -| { left: 0x55c5f2a81540 | right: 0x55c5f2a81570 }}"];
+    node0x55c5f2a815a0 -> node0x55c5f2a81540[color="#0855F0"]
+    node0x55c5f2a81540[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 0x55c5f2a81540 | type: ID | value: b| { left: (nil) | right: (nil) }}"];
+    node0x55c5f2a815a0 -> node0x55c5f2a81570[color="#0855F0"]
+    node0x55c5f2a81570[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 0x55c5f2a81570 | type: ID | value: D| { left: (nil) | right: (nil) }}"];
+    node0x55c5f2a81660 -> node0x55c5f2a81630[color="#0855F0"]
+    node0x55c5f2a81630[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a81630 | type: OP | value: *| { left: 0x55c5f2a815d0 | right: 0x55c5f2a81600 }}"];
+    node0x55c5f2a81630 -> node0x55c5f2a815d0[color="#0855F0"]
+    node0x55c5f2a815d0[shape=record,style="rounded,filled",fillcolor="#0AF212",label="{ ptr: 0x55c5f2a815d0 | type: NUM | value: 2.000000| { left: (nil) | right: (nil) }}"];
+    node0x55c5f2a81630 -> node0x55c5f2a81600[color="#0855F0"]
+    node0x55c5f2a81600[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 0x55c5f2a81600 | type: ID | value: a| { left: (nil) | right: (nil) }}"];
+    node0x55c5f2a81780 -> node0x55c5f2a81750[color="#0855F0"]
+    node0x55c5f2a81750[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a81750 | type: OP | value: return| { left: 0x55c5f2a81720 | right: (nil) }}"];
+    node0x55c5f2a81750 -> node0x55c5f2a81720[color="#0855F0"]
+    node0x55c5f2a81720[shape=record,style="rounded,filled",fillcolor="#0AF212",label="{ ptr: 0x55c5f2a81720 | type: NUM | value: 2.000000| { left: (nil) | right: (nil) }}"];
+    node0x55c5f2a81870 -> node0x55c5f2a81840[color="#0855F0"]
+    node0x55c5f2a81840[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55c5f2a81840 | type: OP | value: return| { left: 0x55c5f2a81810 | right: (nil) }}"];
+    node0x55c5f2a81840 -> node0x55c5f2a81810[color="#0855F0"]
+    node0x55c5f2a81810[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 0x55c5f2a81810 | type: ID | value: D| { left: (nil) | right: (nil) }}"];
+}

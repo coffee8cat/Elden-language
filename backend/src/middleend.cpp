@@ -50,6 +50,7 @@ void write_func_def_info(node_t* node, identificator* ids_table)
 
             printf("num of params = %d, BX_shift = %d\n", num_of_params, BX_shift);
 
+            ids_table[node -> left -> left -> value.id].type          = FUNCTION;
             ids_table[node -> left -> left -> value.id].num_of_params = num_of_params;
             ids_table[node -> left -> left -> value.id].BX_shift      = BX_shift;
             ids_table[node -> left -> left -> value.id].is_defined    = true;
@@ -80,6 +81,7 @@ void count_params(node_t* node, identificator* ids_table, size_t* num_of_params)
     }
     else if (node -> type == ID)
     {
+        ids_table[node -> value.id].type    = VAR;
         ids_table[node -> value.id].scope   = LOCAL;
         ids_table[node -> value.id].address = *num_of_params;
         (*num_of_params)++;

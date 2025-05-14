@@ -7,7 +7,7 @@ static bool is_first_param = true;
 
 const char* operations_names[] =
 {
-    #include "DSL_elden.h"
+    #include "../DSL/DSL_elden.h"
     "empty"
 };
 

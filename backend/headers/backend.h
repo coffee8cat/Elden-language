@@ -16,7 +16,9 @@
 typedef void (elden_to_asm_translation_func)(node_t*, identificator*, FILE*);
 
 void tree_to_asm(node_t* node, identificator* ids_table, size_t BX_shift);
-void fill_global_vars(identificator* ids_table, FILE* output);
+//void fill_global_vars(identificator* ids_table, FILE* output);
+void write_global_vars(FILE* output, identificator* ids_table);
+void write_data_for_lib_funcs(FILE* output);
 void translate_OP(node_t* node, identificator* ids_table, FILE* output, size_t BX_shift);
 
 void asm_translate_Assignment   (node_t* node, identificator* ids_table, FILE* output, size_t BX_shift);

@@ -16,6 +16,8 @@ OBJ_DIR = obj
 OBJECTS = $(wildcard $(OBJ_DIR)/*.o)
 EXECUTABLE = elden_backend
 
+ASM_FILE = sqsolver_x86
+
 all: $(SOURCES) $(BUILD_DIR)
 	$(CC) $(SOURCES) -o $(BUILD_DIR)/$(EXECUTABLE) -I$(HEADERS_DIR) -D$(DEBUG)
 
@@ -48,6 +50,16 @@ linkage:
 
 compile:
 	$(CC) $(SOURCES) $(LIBS_SRC) -I$(HEADERS_DIR) -I$(LIBS) -I$(DSL) -D$(DEBUG) -o $(BUILD_DIR)/$(EXECUTABLE)
+
+compile_asm:
+	nasm -f elf64 ../data/$(ASM_FILE).asm -o ../data/$(ASM_FILE).o
+	gcc -no-pie ../data/$(ASM_FILE).o -o ../data/$(ASM_FILE) -lm
+
+run_asm:
+	./../data/fact_asm
+
+debug_asm:
+	edb --run ../data/$(ASM_FILE)
 
 run:
 	$(BUILD_DIR)/$(EXECUTABLE)

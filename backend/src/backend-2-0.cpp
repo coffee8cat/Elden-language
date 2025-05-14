@@ -20,28 +20,45 @@ void tree_to_asm(node_t* node, identificator* ids_table, size_t BX_shift)
 
     FILE* fp = get_stream_for_save();
 
-    fprintf(fp, "section .text\n\n");
-    fprintf(fp, "__start:\n");
+    fprintf(fp, "section .text\n\n"
+                "global main\n"
+                "extern elem_in\n"
+                "extern elem_out\n"
+                "main:\n");
+
     translate_OP(node, ids_table, fp, BX_shift);
 
-    fprintf(fp, "section .data\n\n");
-    fill_global_vars(ids_table, fp);
+    fprintf(fp, "\nsection .data\n\n");
+    write_global_vars(fp, ids_table);
 
+    write_data_for_lib_funcs(fp);
+
+    fprintf(fp, "section .note.GNU-stack noalloc noexec nowrite progbits\n");
     fclose(fp);
 }
 
-void fill_global_vars(identificator* ids_table, FILE* output) {
+void write_global_vars(FILE* output, identificator* ids_table) {
     assert(output);
     assert(ids_table);
 
+    fprintf(output, "\n\t; global variables\n\n");
     size_t curr = 0;
-
-    while (ids_table[curr].name && curr < max_num_of_ids) {
-        if (ids_table[curr].scope == GLOBAL) {
-            fprintf(output, "\t%.*s dq 0\n", ids_table[curr].name_len, ids_table[curr].name);
+    while (ids_table[curr].name && curr < max_num_of_ids)
+    {
+        // functions have true in .is_defined
+        if (ids_table[curr].scope == GLOBAL && ids_table[curr].type == VAR) {
+            TAB_FPRINTF(output, "%.*s dq 0\n", ids_table[curr].name_len, ids_table[curr].name);
         }
         curr++;
     }
+}
+
+void write_data_for_lib_funcs(FILE* output) {
+    assert(output);
+
+    fprintf(output, "\n\t; data for libs\n\n");
+    TAB_FPRINTF(output, "double_format db \"%%lf\", 0\n");
+    TAB_FPRINTF(output, "double_var    dq 0.0\n");
 }
 
 void translate_OP(node_t* node, identificator* ids_table, FILE* output, size_t BX_shift)
@@ -90,11 +107,15 @@ void asm_translate_Assignment(node_t* node, identificator* ids_table, FILE* outp
     assert(output);
 
     TAB_FPRINTF(output, ";calculating expression for assignment\n");
-    asm_translate_Expression(node -> right, ids_table, output, BX_shift);                   // stores calculations result in stack
-
-    TAB_FPRINTF(output, "pop  xmm2                   ; assignment to %.*s\n",
+    asm_translate_Expression(node -> right, ids_table, output, BX_shift);
+    // after func above result is stored in stack
+    // store result in xmm0
+    TAB_FPRINTF(output, "movsd xmm0, [rsp]          ; assignment to %.*s\n\t"
+                        "add   rsp, 8\n",
                 ids_table[node -> value.id].name_len, ids_table[node -> value.id].name);
-    TAB_FPRINTF(output, "movsd  [rbp + %d], xmm2\n", ids_table[node -> value.id].address);
+
+    // save result in var
+    TAB_FPRINTF(output, "movsd  [rbp + 8 * %d], xmm0\n",  ids_table[node -> value.id].address);
 }
 
 void translate_condition(FILE* output) {
@@ -104,11 +125,12 @@ void translate_condition(FILE* output) {
     //TAB_FPRINTF(output,     "pop  rdx\n");
     //TAB_FPRINTF(output,     "test rcx, rdx\n\n");
 
-
+    // pop two arguments from stack
     TAB_FPRINTF(output, "movsd xmm0, [rsp]          ; get result of right subtree from stack\n\t"
                         "add   rsp, 8\n");
     TAB_FPRINTF(output, "movsd xmm1, [rsp]          ; get result of right subtree from stack\n\t"
                         "add   rsp, 8\n");
+    // compare
     TAB_FPRINTF(output, "comisd xmm0, xmm1\n");
 
     return;
@@ -129,26 +151,32 @@ void asm_translate_IF(node_t* node, identificator* ids_table, FILE* output, size
     if (node -> left -> left  == NULL) { perror("Empty left part of condition (nullptr) for IF node\n"); assert(0); }
     if (node -> left -> right == NULL) { perror("Empty right part of condition (nullptr) for IF node\n"); assert(0); }
 
+    // prepare left and right part of comparison
     asm_translate_Expression(node -> left -> right, ids_table, output, BX_shift);
     asm_translate_Expression(node -> left -> left,  ids_table, output, BX_shift);
 
+    // compare
     translate_condition(output);
 
+    // write the matching jmp instruction
     if (node -> left -> value.op == EQUAL)
     {
-        TAB_FPRINTF(output, "jne .endif%d:\n", local_IF_counter);
+        TAB_FPRINTF(output, "jne .endif%d\n", local_IF_counter);
     }
     else if (node -> left -> value.op == GREATER)
     {
-        TAB_FPRINTF(output, "ja .endif%d:\n", local_IF_counter);
+        TAB_FPRINTF(output, "ja .endif%d\n", local_IF_counter);
     }
     else { fprintf(stderr, "ERROR: Invalid operation for condition in IF: %d\n", node -> left -> value.op); assert(0); }
 
+    // translate IF body
     TAB_FPRINTF(output, "; if body:\n");
     translate_OP(node -> right, ids_table, output, BX_shift);
 
+    // for skipping IF body
     TAB_FPRINTF(output, ".endif%d:\n", local_IF_counter);
 
+    // to avoid uncertainty in labels
     IF_counter++;
 }
 
@@ -205,13 +233,21 @@ void asm_translate_Function_Definition(node_t* node, identificator* ids_table, F
     assert(ids_table);
     assert(output);
 
-    // it is assumed that for that moment arguments are stored in stack
-    TAB_FPRINTF(output, "ret\n\n");
+    // this is bc old format did not contain MAIN function,
+    // therefore i have to write _start before translation and somehow
+    // put EOP for MAIN
+    TAB_FPRINTF(output, "; Exit with code 0 (success)\n\t"
+                        "mov rax, 60                 ; sys_exit\n\t"
+                        "xor rdi, rdi                ; code 0\n\t"
+                        "syscall\n\n");
+
+    // print function name
     if (node -> left && node -> left -> left) {
         fprintf(output, "%.*s:\n", ids_table[node -> left -> left -> value.id].name_len, ids_table[node -> left -> left -> value.id].name);
     }
     else { fprintf(stderr, "ERROR: nullptr in function definition"); }
 
+    // translate function body
     translate_OP(node -> right, ids_table, output, ids_table[node -> left -> left -> value.id].BX_shift);
 }
 
@@ -221,10 +257,15 @@ void asm_translate_Return(node_t* node, identificator* ids_table, FILE* output, 
     assert(ids_table);
     assert(output);
 
+    // calculate return value
     fprintf(output, "; prepare return value\n");
     asm_translate_Expression(node -> left, ids_table, output, BX_shift);
 
-    // restore registers
+    // return value is stored in stack now
+    // save to xmm0, due to restoring rsp and rbp after return
+    TAB_FPRINTF(output, "movsd xmm0, [rsp]          ; get function result before ret\n\t"
+                        "add   rsp, 8\n");
+    // restore callee-saved registers ???
 
     TAB_FPRINTF(output, "ret\n\n");
 }
@@ -234,40 +275,35 @@ void asm_translate_Function_Call(node_t* node, identificator* ids_table, FILE* o
     assert(node);
     assert(ids_table);
     assert(output);
-/*
-    PUSH BX
 
-    PUSH BX_shift in current function
-    PUSH BX
-    ADD
-    POP BX
+    // shift base
+    TAB_FPRINTF(output, "\n;before CALL shift base and stack pointers (rsp, rbp)\n");
+    TAB_FPRINTF(output, "sub rbp, 8 * %d\n", BX_shift);
+    TAB_FPRINTF(output, "mov rsp, rbp\n");
 
-    CALL
-
-    PUSH AX*/
-
-    TAB_FPRINTF(output, "\n;CALL Save current Base pointer (rbp)\n");
-    TAB_FPRINTF(output, "push rbp\n\n");
-
-    // check function
+    // check function definition
     if (not ids_table[node -> left -> left -> value.id].is_defined)
     {
         fprintf(stderr, "ERROR: Function %.*s was not defined in this scope\n",
                         ids_table[node -> left -> left -> value.id].name_len,
                         ids_table[node -> left -> left -> value.id].name);
     }
-    TAB_FPRINTF(output, ";push call params\n");
 
+    TAB_FPRINTF(output, "; push call params\n");
     asm_push_call_params(node -> left -> right, ids_table, output, BX_shift);
-    TAB_FPRINTF(output, "sub  rbp, %4d             ; allocate stack frame for function variables\n", BX_shift);
-
-    //if (node -> right -> type != ID) { COMPILER_ERROR(ID type node);}
 
     TAB_FPRINTF(output, "call %.*s\n",
             ids_table[node -> left -> left -> value.id].name_len,
             ids_table[node -> left -> left -> value.id].name);
 
-    TAB_FPRINTF(output, "pop  rbp                   ; restore base pointer\n");
+    // after call return value is stored in xmm0
+    // restore base pointer and stack pointer
+    TAB_FPRINTF(output, "add rbp, 8 * %d\n", BX_shift);
+    TAB_FPRINTF(output, "mov rsp, rbp\n");
+
+    // push function result
+    TAB_FPRINTF(output, "sub rsp, 8\n\t"
+                        "movsd [rsp], xmm0          ; save result in stack\n\n");
     TAB_FPRINTF(output, "; CALL END\n\n");
 }
 
@@ -303,8 +339,20 @@ void asm_translate_Print(node_t* node, identificator* ids_table, FILE* output, s
     assert(ids_table);
     assert(output);
 
+    TAB_FPRINTF(output, "; prepare for printf\n\n");
     asm_translate_Expression(node -> left, ids_table, output, BX_shift);
-    TAB_FPRINTF(output, "call printf\n\n");
+
+    // store result from stack in xmm0 for printf
+    TAB_FPRINTF(output, "movsd xmm0, [rsp]\n\t"
+                        "add   rsp, 8\n");
+
+    TAB_FPRINTF(output, "call elem_out\n\n");
+    /*
+    // prepare format string address and number of args
+    TAB_FPRINTF(output, "mov rdi, double_format  ; pointer to format string\n\t"
+                        "mov eax, 1              ; number of arguments in xmm\n\t"
+                        "call printf\n\n");
+    */
 }
 
 void asm_translate_Scan(node_t* node, identificator* ids_table, FILE* output)
@@ -312,9 +360,29 @@ void asm_translate_Scan(node_t* node, identificator* ids_table, FILE* output)
     assert(node);
     assert(ids_table);
     assert(output);
+    /*
+    // prepare arguments for scanf and call
+    TAB_FPRINTF(output, "; prepare for scanf\n\t"
+                        "mov rdi, double_format  ; db \"%%lf\", 0\n\t"
+                        "mov rsi, double_var     ; dq 0.0\n\t"
+                        "xor eax, eax\n\t"
+                        "call scanf\n");
+    */
+    TAB_FPRINTF(output, "call elem_in\n");
+    // store result in stack
+    /*
+    TAB_FPRINTF(output, "; store result in stack\n\t"
+                        "movsd xmm0, [double_var]\n\t"
+                        "sub rsp, 8\n\t"
+                        "movsd [rsp], xmm0\n\n");
+    */
 
-    fprintf(output, "\n\tcall scanf\n");
+    TAB_FPRINTF(output, "; store result in stack\n\t"
+                        "sub rsp, 8\n\t"
+                        "movsd [rsp], xmm0\n\n");
+
     asm_translate_pop_var(node -> left, ids_table, output);
+    TAB_FPRINTF(output, "; scanf end\n\n");
 }
 
 #define DEF_OPERATION(enum_name, dump_name, asm_op_name, ...) #asm_op_name,
@@ -346,25 +414,25 @@ void asm_translate_Expression(node_t* node, identificator* ids_table, FILE* outp
             TAB_FPRINTF(output, "; prepare result of right subtree in stack:\n");
             asm_translate_Expression(node -> right, ids_table, output, BX_shift);
 
-            //TAB_FPRINTF(output, "pop  rax                   ; get result of right subtree from stack\n");
-            //TAB_FPRINTF(output, "pop  rdx                   ; get result of left  subtree from stack\n");
-            //TAB_FPRINTF(output, "%s  rax, rdx\n", proc_operations_list[node -> value.op]);      // compute
-            //TAB_FPRINTF(output, "push rax                   ; save result in stack\n\n");
-
-
+            // pop two arguments for operation
             TAB_FPRINTF(output, "movsd xmm0, [rsp]          ; get result of right subtree from stack\n\t"
                                 "add   rsp, 8\n");
             TAB_FPRINTF(output, "movsd xmm1, [rsp]          ; get result of left  subtree from stack\n\t"
                                 "add   rsp, 8\n");
 
+            // apply operation
             switch (node -> value.op) {
                 case ADD:   TAB_FPRINTF(output, "addsd xmm0, xmm1\n"); break;
                 case SUB:   TAB_FPRINTF(output, "subsd xmm0, xmm1\n"); break;
                 case MUL:   TAB_FPRINTF(output, "mulsd xmm0, xmm1\n"); break;
                 case DIV:   TAB_FPRINTF(output, "divsd xmm0, xmm1\n"); break;
 
+                // IT IS NOT VALID, only bc i need only sqrt for tests, i will try to redo it
+                case POW:   TAB_FPRINTF(output,  "sqrtsd xmm0, xmm1\n"); break;
+
                 default: { fprintf(stderr, "Invalid operation for expression : %s\n", proc_operations_list[node -> value.op]); }
             }
+            // store result in stack
             TAB_FPRINTF(output, "sub rsp, 8\n\t"
                                 "movsd [rsp], xmm0          ; save result in stack\n\n");
         }
@@ -381,14 +449,11 @@ void asm_translate_push_node_value(node_t* node, identificator* ids_table, FILE*
     assert(ids_table);
     assert(output);
 
-    // mov  rcx, [bp + %d]
-    // push rcx
-
     // PREPARE VALUE
     if (node -> type == ID)
     {
         if (ids_table[node -> value.id].scope == LOCAL) {
-            TAB_FPRINTF(output, "movsd xmm0, [rbp + %d]\n", ids_table[node -> value.id].address);
+            TAB_FPRINTF(output, "movsd xmm0, [rbp + 8 * %d]\n", ids_table[node -> value.id].address);
         }
         else {
             TAB_FPRINTF(output, "movsd xmm0, [rel %.*s]\n", ids_table[node -> value.id].name_len, ids_table[node -> value.id].name);
@@ -396,7 +461,7 @@ void asm_translate_push_node_value(node_t* node, identificator* ids_table, FILE*
     }
     else if (node -> type == NUM)
     {
-        TAB_FPRINTF(output, "mov  rax,  __?float64?__(%lg)\n\t"
+        TAB_FPRINTF(output, "mov  rax,  __float64__(%lf)\n\t"
                             "movq xmm0, rax\n", node -> value.num);
     }
 
@@ -411,13 +476,13 @@ void asm_translate_pop_var(node_t* node, identificator* ids_table, FILE* output)
     assert(ids_table);
     assert(output);
 
-    // pop rcx
-    // mov [rbp + %d], rcx
-
-    TAB_FPRINTF(output, "pop rcx\n");
+    // a.k.a pop xmm0
+    TAB_FPRINTF(output, "movsd xmm0, [rsp]\n\t"
+                        "add   rsp, 8\n");
+    // mov var, xmm0
     if (node -> type == ID)
     {
-        if (ids_table[node -> value.id].scope == LOCAL) { TAB_FPRINTF(output, "movsd [rbp + %d],  xmm0\n", ids_table[node -> value.id].address); }
+        if (ids_table[node -> value.id].scope == LOCAL) { TAB_FPRINTF(output, "movsd [rbp + 8 * %d],  xmm0\n", ids_table[node -> value.id].address); }
         else                                            { TAB_FPRINTF(output, "movsd [rel %.*s], xmm0\n",
                                                                       ids_table[node -> value.id].name_len, ids_table[node -> value.id].name); }
     }

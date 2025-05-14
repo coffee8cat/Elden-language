@@ -13,7 +13,7 @@
 
 enum lexical_operations
 {
-    #include "DSL_elden.h"
+    #include "../DSL/DSL_elden.h"
     UNKNOWN
 };
 
@@ -23,7 +23,7 @@ enum lexical_operations
 
 enum operation
 {
-    #include "DSL_elden_operations.h"
+    #include "../DSL/DSL_elden_operations.h"
     END
 };
 #undef DEF_OPERATION

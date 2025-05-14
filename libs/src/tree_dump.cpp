@@ -77,7 +77,7 @@ int make_dot_file(node_t* root, identificator* ids_table, FILE* fp, node_t* curr
 
 const char* dump_operations_list[] =
 {
-    #include "DSL_elden_operations.h"
+    #include "../DSL/DSL_elden_operations.h"
 };
 #undef DEF_OPERATION
 

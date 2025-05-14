@@ -1,32 +1,44 @@
 section .text
-global main
-extern printf
 
-main:
+__start:
+	;calculating expression for assignment
+	mov  rax,  __float64__(4)
+	movq xmm0, rax
+	sub rsp, 8
+	movsd [rsp], xmm0          ; save result in stack
+
+	pop  xmm2                  ; assignment to Maliketh
+	movsd  [rbp + 1], xmm2
+	;calculating expression for assignment
 
 ;CALL Save current Base pointer (rbp)
 	push rbp
 
 	;push call params
-	mov  rax,  __float64__(4.)
-	movq xmm0, rax
+	movsd xmm0, [rel Michella]
 	sub rsp, 8
 	movsd [rsp], xmm0          ; save result in stack
 
-	sub  rbp,    0             ; allocate stack frame for function variables
-	call feed
+	sub  rbp,    2             ; allocate stack frame for function variables
+	call FACTORIAL
 	pop  rbp                   ; restore base pointer
 	; CALL END
+
+	pop  xmm2                   ; assignment to Maliketh
+	movsd  [rbp + 1], xmm2
+	movsd xmm0, [rel Maliketh]
+	sub rsp, 8
+	movsd [rsp], xmm0          ; save result in stack
 
 	call printf
 
 	ret
 
-feed:
+FACTORIAL:
 
 ; IF
 	; condition
-	mov  rax,  __float64__(0.)
+	mov  rax,  __float64__(1)
 	movq xmm0, rax
 	sub rsp, 8
 	movsd [rsp], xmm0          ; save result in stack
@@ -40,10 +52,10 @@ feed:
 	movsd xmm1, [rsp]          ; get result of right subtree from stack
 	add   rsp, 8
 	comisd xmm0, xmm1
-	jne .endif0
+	jne .endif0:
 	; if body:
 ; prepare return value
-	mov  rax,  __float64__(1.)
+	mov  rax,  __float64__(1)
 	movq xmm0, rax
 	sub rsp, 8
 	movsd [rsp], xmm0          ; save result in stack
@@ -51,53 +63,14 @@ feed:
 	ret
 
 	.endif0:
-
-; IF
-	; condition
-	mov  rax,  __float64__(1.)
-	movq xmm0, rax
-	sub rsp, 8
-	movsd [rsp], xmm0          ; save result in stack
-
-	movsd xmm0, [rbp + 0]
-	sub rsp, 8
-	movsd [rsp], xmm0          ; save result in stack
-
-	movsd xmm0, [rsp]          ; get result of right subtree from stack
-	add   rsp, 8
-	movsd xmm1, [rsp]          ; get result of right subtree from stack
-	add   rsp, 8
-	comisd xmm0, xmm1
-	jne .endif2
-	; if body:
-; prepare return value
-	mov  rax,  __float64__(1.)
-	movq xmm0, rax
-	sub rsp, 8
-	movsd [rsp], xmm0          ; save result in stack
-
-	ret
-
-	.endif2:
-; prepare return value
+	;calculating expression for assignment
 	; prepare result of left subtree in stack:
 	movsd xmm0, [rbp + 0]
 	sub rsp, 8
 	movsd [rsp], xmm0          ; save result in stack
 
 	; prepare result of right subtree in stack:
-
-;CALL Save current Base pointer (rbp)
-	push rbp
-
-	;push call params
-	; prepare result of left subtree in stack:
-	movsd xmm0, [rbp + 0]
-	sub rsp, 8
-	movsd [rsp], xmm0          ; save result in stack
-
-	; prepare result of right subtree in stack:
-	mov  rax,  __float64__(1.)
+	mov  rax,  __float64__(1)
 	movq xmm0, rax
 	sub rsp, 8
 	movsd [rsp], xmm0          ; save result in stack
@@ -110,10 +83,28 @@ feed:
 	sub rsp, 8
 	movsd [rsp], xmm0          ; save result in stack
 
-	sub  rbp,    1             ; allocate stack frame for function variables
-	call feed
+	pop  xmm2                   ; assignment to Maliketh
+	movsd  [rbp + 1], xmm2
+	;calculating expression for assignment
+	; prepare result of left subtree in stack:
+
+;CALL Save current Base pointer (rbp)
+	push rbp
+
+	;push call params
+	movsd xmm0, [rbp + 1]
+	sub rsp, 8
+	movsd [rsp], xmm0          ; save result in stack
+
+	sub  rbp,    2             ; allocate stack frame for function variables
+	call FACTORIAL
 	pop  rbp                   ; restore base pointer
 	; CALL END
+
+	; prepare result of right subtree in stack:
+	movsd xmm0, [rbp + 0]
+	sub rsp, 8
+	movsd [rsp], xmm0          ; save result in stack
 
 	movsd xmm0, [rsp]          ; get result of right subtree from stack
 	add   rsp, 8
@@ -123,6 +114,12 @@ feed:
 	sub rsp, 8
 	movsd [rsp], xmm0          ; save result in stack
 
+	pop  xmm2                   ; assignment to Maliketh
+	movsd  [rbp + 1], xmm2
+; prepare return value
+	movsd xmm0, [rbp + 1]
+	sub rsp, 8
+	movsd [rsp], xmm0          ; save result in stack
+
 	ret
 
-	section .note.GNU-stack noalloc noexec nowrite progbits

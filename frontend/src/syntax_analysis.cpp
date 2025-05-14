@@ -1,5 +1,5 @@
 #include "syntax_analysis.h"
-#include "DSL_comp_tree.h"
+#include "../DSL/DSL_comp_tree.h"
 
 #define SYNTAX_ERROR(expected)                                                                  \
     fprintf(stderr, "\n\n!!! SYNTAX ERROR !!!\n"                                                \

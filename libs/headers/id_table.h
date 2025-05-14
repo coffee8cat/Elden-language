@@ -6,12 +6,14 @@
 #include <assert.h>
 #include <string.h>
 
+enum id_type {VAR, FUNCTION};
 enum scope_type {GLOBAL, LOCAL};
 
 //== IDS TABLE ========================================================================//
 struct identificator
 {
     // general
+    id_type     type;
     const char* name;
     size_t      name_len;
 
