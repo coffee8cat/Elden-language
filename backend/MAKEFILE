@@ -11,6 +11,7 @@ LIBS = $(LIBS_DIR)/headers
 LIBS_SRC = $(wildcard $(LIBS_DIR)/src/*.cpp)
 DSL = $(LIBS_DIR)/DSL
 
+BIN_BUILD_DIR = bin_build
 BUILD_DIR = build
 OBJ_DIR = obj
 OBJECTS = $(wildcard $(OBJ_DIR)/*.o)
@@ -52,14 +53,15 @@ compile:
 	$(CC) $(SOURCES) $(LIBS_SRC) -I$(HEADERS_DIR) -I$(LIBS) -I$(DSL) -D$(DEBUG) -o $(BUILD_DIR)/$(EXECUTABLE)
 
 compile_asm:
-	nasm -f elf64 ../data/$(ASM_FILE).asm -o ../data/$(ASM_FILE).o
-	gcc -no-pie ../data/$(ASM_FILE).o -o ../data/$(ASM_FILE) -lm
+	g++	-c ../data/my_lib.cpp -g -o ../$(BIN_BUILD_DIR)/my_lib.o -fPIC
+	nasm -f elf64 ../data/$(ASM_FILE).asm -g -o ../$(BIN_BUILD_DIR)/$(ASM_FILE).o
+	g++ -g -fPIE ../$(BIN_BUILD_DIR)/$(ASM_FILE).o ../$(BIN_BUILD_DIR)/my_lib.o -o ../$(BIN_BUILD_DIR)/$(ASM_FILE)
 
 run_asm:
-	./../data/fact_asm
+	./../$(BIN_BUILD_DIR)/$(ASM_FILE)
 
 debug_asm:
-	edb --run ../data/$(ASM_FILE)
+	edb --run ../$(BIN_BUILD_DIR)/$(ASM_FILE)
 
 run:
 	$(BUILD_DIR)/$(EXECUTABLE)

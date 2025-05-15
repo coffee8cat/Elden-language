@@ -1,24 +1,20 @@
-
-
-section .data
-	double_var    dq 0.0
-
-section .rodata
-	double_format db "%lf", 0
-
 section .text
 
 global main
-extern printf
+extern elem_in
+extern elem_out
 extern scanf
 main:
-	; prepare for scanf
-	lea rdi, [rel double_format]  ; db "%lf", 0
-	lea rsi, [rel double_var]     ; dq 0.0
-	xor eax, eax
-	call scanf
+	sub rsp, 8           ; выравниваем стек (scanf будет делать call, нужно кратно 16 перед call)
+
+    lea rdi, [rel double_format]         ; format string
+    lea rsi, [rel double_var]       ; адрес переменной
+    xor eax, eax         ; число XMM регистров (по ABI)
+    call scanf  wrt ..plt
+
+    add rsp, 8           ; восстанавливаем стек
+
 	; store result in stack
-	movsd xmm0, [double_var]
 	sub rsp, 8
 	movsd [rsp], xmm0
 
@@ -27,13 +23,15 @@ main:
 	movsd [rel aCoeff], xmm0
 	; scanf end
 
-	; prepare for scanf
-	mov rdi, double_format  ; db "%lf", 0
-	mov rsi, double_var     ; dq 0.0
-	xor eax, eax
-	call scanf
+	sub rsp, 8           ; выравниваем стек (scanf будет делать call, нужно кратно 16 перед call)
+
+    lea rdi, [rel double_format]         ; format string
+    lea rsi, [rel double_var]       ; адрес переменной
+    xor eax, eax         ; число XMM регистров (по ABI)
+    call scanf  wrt ..plt
+
+    add rsp, 8           ; восстанавливаем стек
 	; store result in stack
-	movsd xmm0, [double_var]
 	sub rsp, 8
 	movsd [rsp], xmm0
 
@@ -42,13 +40,15 @@ main:
 	movsd [rel bCoeff], xmm0
 	; scanf end
 
-	; prepare for scanf
-	mov rdi, double_format  ; db "%lf", 0
-	mov rsi, double_var     ; dq 0.0
-	xor eax, eax
-	call scanf
+	sub rsp, 8           ; выравниваем стек (scanf будет делать call, нужно кратно 16 перед call)
+
+    lea rdi, [rel double_format]         ; format string
+    lea rsi, [rel double_var]       ; адрес переменной
+    xor eax, eax         ; число XMM регистров (по ABI)
+    call scanf  wrt ..plt
+
+    add rsp, 8           ; восстанавливаем стек
 	; store result in stack
-	movsd xmm0, [double_var]
 	sub rsp, 8
 	movsd [rsp], xmm0
 
@@ -94,9 +94,7 @@ main:
 
 	movsd xmm0, [rsp]
 	add   rsp, 8
-	mov rdi, double_format  ; pointer to format string
-	mov eax, 1              ; number of arguments in xmm
-	call printf
+	call elem_out
 
 	; prepare for printf
 
@@ -106,9 +104,7 @@ main:
 
 	movsd xmm0, [rsp]
 	add   rsp, 8
-	mov rdi, double_format  ; pointer to format string
-	mov eax, 1              ; number of arguments in xmm
-	call printf
+	call elem_out
 
 	; prepare for printf
 
@@ -118,9 +114,7 @@ main:
 
 	movsd xmm0, [rsp]
 	add   rsp, 8
-	mov rdi, double_format  ; pointer to format string
-	mov eax, 1              ; number of arguments in xmm
-	call printf
+	call elem_out
 
 	; Exit with code 0 (success)
 	mov rax, 60                 ; sys_exit
@@ -644,5 +638,6 @@ section .data
 
 	; data for libs
 
-
+	double_format db "%lf", 0
+	double_var    dq 0.0
 section .note.GNU-stack noalloc noexec nowrite progbits
