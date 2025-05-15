@@ -61,7 +61,10 @@ run_asm:
 	./../$(BIN_BUILD_DIR)/$(ASM_FILE)
 
 debug_asm:
-	edb --run ../$(BIN_BUILD_DIR)/$(ASM_FILE)
+	sudo edb --run ../$(BIN_BUILD_DIR)/$(ASM_FILE)
+
+gdb_asm:
+	sudo gdb ../$(BIN_BUILD_DIR)/$(ASM_FILE)
 
 run:
 	$(BUILD_DIR)/$(EXECUTABLE)

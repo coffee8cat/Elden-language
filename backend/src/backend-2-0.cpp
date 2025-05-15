@@ -24,6 +24,7 @@ void tree_to_asm(node_t* node, identificator* ids_table, size_t BX_shift)
                 "global main\n"
                 "extern elem_in\n"
                 "extern elem_out\n"
+                "extern scanf\n"
                 "main:\n");
 
     translate_OP(node, ids_table, fp, BX_shift);
@@ -112,10 +113,19 @@ void asm_translate_Assignment(node_t* node, identificator* ids_table, FILE* outp
     // store result in xmm0
     TAB_FPRINTF(output, "movsd xmm0, [rsp]          ; assignment to %.*s\n\t"
                         "add   rsp, 8\n",
-                ids_table[node -> value.id].name_len, ids_table[node -> value.id].name);
+                ids_table[node -> left -> value.id].name_len, ids_table[node -> left -> value.id].name);
 
     // save result in var
-    TAB_FPRINTF(output, "movsd  [rbp + 8 * %d], xmm0\n",  ids_table[node -> value.id].address);
+    if (node -> left -> type != ID) {
+        fprintf(stderr, "cannot assign to ID [%p]", node);
+        assert(0);
+    }
+    if (ids_table[node -> left -> value.id].scope == GLOBAL) {
+        TAB_FPRINTF(output, "movsd  [rel %.*s], xmm0\n",  ids_table[node -> left -> value.id].name_len, ids_table[node -> left -> value.id].name);
+    }
+    else {
+        TAB_FPRINTF(output, "movsd  [rbp + 8 * %d], xmm0\n",  ids_table[node -> left -> value.id].address);
+    }
 }
 
 void translate_condition(FILE* output) {
@@ -251,6 +261,27 @@ void asm_translate_Function_Definition(node_t* node, identificator* ids_table, F
     translate_OP(node -> right, ids_table, output, ids_table[node -> left -> left -> value.id].BX_shift);
 }
 
+void get_params(node_t* func_spec_node, identificator* ids_table, FILE* output)
+{
+    assert(func_spec_node);
+    assert(ids_table);
+    assert(output);
+
+    int num_of_params = (int)ids_table[(func_spec_node -> left) -> value.id].num_of_params;
+    TAB_FPRINTF(output,     "; get params from stack====================================\n");
+
+    // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    // i-1 since params shift from rbp is numerated from 0
+    for (int i = num_of_params - 1; i > -1; i--)
+    {
+        TAB_FPRINTF(output, "movsd xmm0, [rsp]          ; pop %d param\n\t"
+                            "add   rsp, 8\n\t"
+                            "movsd [rbp + 8 * %d], xmm0\n\n", i+1, i);
+    }
+    TAB_FPRINTF(output,     "; params loaded============================================\n");
+}
+
+
 void asm_translate_Return(node_t* node, identificator* ids_table, FILE* output, size_t BX_shift)
 {
     assert(node);
@@ -292,6 +323,8 @@ void asm_translate_Function_Call(node_t* node, identificator* ids_table, FILE* o
     TAB_FPRINTF(output, "; push call params\n");
     asm_push_call_params(node -> left -> right, ids_table, output, BX_shift);
 
+    //params are in the right order in stack
+    get_params(node -> left, ids_table, output);
     TAB_FPRINTF(output, "call %.*s\n",
             ids_table[node -> left -> left -> value.id].name_len,
             ids_table[node -> left -> left -> value.id].name);
@@ -360,15 +393,17 @@ void asm_translate_Scan(node_t* node, identificator* ids_table, FILE* output)
     assert(node);
     assert(ids_table);
     assert(output);
-    /*
+
     // prepare arguments for scanf and call
-    TAB_FPRINTF(output, "; prepare for scanf\n\t"
-                        "mov rdi, double_format  ; db \"%%lf\", 0\n\t"
-                        "mov rsi, double_var     ; dq 0.0\n\t"
-                        "xor eax, eax\n\t"
-                        "call scanf\n");
-    */
-    TAB_FPRINTF(output, "call elem_in\n");
+    TAB_FPRINTF(output, "; scanf start ;===================================================\n\t"
+                        "sub rsp, 8                         ; align stack by 16 before call\n\t"
+                        "lea rdi, [rel double_format]       ; format string\n\t"
+                        "lea rsi, [rel double_var]          ; pointer to var\n\t"
+                        "xor eax, eax                       ; num of XMM regs (by ABI)\n\t"
+                        "call scanf  wrt ..plt\n\t"
+                        "add rsp, 8                         ; restore stack\n\n");
+
+    //TAB_FPRINTF(output, "call elem_in\n");
     // store result in stack
     /*
     TAB_FPRINTF(output, "; store result in stack\n\t"
@@ -382,7 +417,7 @@ void asm_translate_Scan(node_t* node, identificator* ids_table, FILE* output)
                         "movsd [rsp], xmm0\n\n");
 
     asm_translate_pop_var(node -> left, ids_table, output);
-    TAB_FPRINTF(output, "; scanf end\n\n");
+    TAB_FPRINTF(output, "; scanf end ;=====================================================\n\n");
 }
 
 #define DEF_OPERATION(enum_name, dump_name, asm_op_name, ...) #asm_op_name,

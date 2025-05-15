@@ -9,6 +9,6 @@ extern "C" {
     }
 
     void elem_out(double x) {
-        printf("%lf", x);
+        printf("%lf\n", x);
     }
 }

@@ -5,14 +5,13 @@ extern elem_in
 extern elem_out
 extern scanf
 main:
-	sub rsp, 8           ; выравниваем стек (scanf будет делать call, нужно кратно 16 перед call)
-
-    lea rdi, [rel double_format]         ; format string
-    lea rsi, [rel double_var]       ; адрес переменной
-    xor eax, eax         ; число XMM регистров (по ABI)
-    call scanf  wrt ..plt
-
-    add rsp, 8           ; восстанавливаем стек
+	; scanf start ;===================================================
+	sub rsp, 8                         ; align stack by 16 before call
+	lea rdi, [rel double_format]       ; format string
+	lea rsi, [rel double_var]          ; pointer to var
+	xor eax, eax                       ; num of XMM regs (by ABI)
+	call scanf  wrt ..plt
+	add rsp, 8                         ; restore stack
 
 	; store result in stack
 	sub rsp, 8
@@ -21,16 +20,16 @@ main:
 	movsd xmm0, [rsp]
 	add   rsp, 8
 	movsd [rel aCoeff], xmm0
-	; scanf end
+	; scanf end ;=====================================================
 
-	sub rsp, 8           ; выравниваем стек (scanf будет делать call, нужно кратно 16 перед call)
+	; scanf start ;===================================================
+	sub rsp, 8                         ; align stack by 16 before call
+	lea rdi, [rel double_format]       ; format string
+	lea rsi, [rel double_var]          ; pointer to var
+	xor eax, eax                       ; num of XMM regs (by ABI)
+	call scanf  wrt ..plt
+	add rsp, 8                         ; restore stack
 
-    lea rdi, [rel double_format]         ; format string
-    lea rsi, [rel double_var]       ; адрес переменной
-    xor eax, eax         ; число XMM регистров (по ABI)
-    call scanf  wrt ..plt
-
-    add rsp, 8           ; восстанавливаем стек
 	; store result in stack
 	sub rsp, 8
 	movsd [rsp], xmm0
@@ -38,16 +37,16 @@ main:
 	movsd xmm0, [rsp]
 	add   rsp, 8
 	movsd [rel bCoeff], xmm0
-	; scanf end
+	; scanf end ;=====================================================
 
-	sub rsp, 8           ; выравниваем стек (scanf будет делать call, нужно кратно 16 перед call)
+	; scanf start ;===================================================
+	sub rsp, 8                         ; align stack by 16 before call
+	lea rdi, [rel double_format]       ; format string
+	lea rsi, [rel double_var]          ; pointer to var
+	xor eax, eax                       ; num of XMM regs (by ABI)
+	call scanf  wrt ..plt
+	add rsp, 8                         ; restore stack
 
-    lea rdi, [rel double_format]         ; format string
-    lea rsi, [rel double_var]       ; адрес переменной
-    xor eax, eax         ; число XMM регистров (по ABI)
-    call scanf  wrt ..plt
-
-    add rsp, 8           ; восстанавливаем стек
 	; store result in stack
 	sub rsp, 8
 	movsd [rsp], xmm0
@@ -55,10 +54,10 @@ main:
 	movsd xmm0, [rsp]
 	add   rsp, 8
 	movsd [rel cCoeff], xmm0
-	; scanf end
+	; scanf end ;=====================================================
 
 	;calculating expression for assignment
-
+	
 ;before CALL shift base and stack pointers (rsp, rbp)
 	sub rbp, 8 * 6
 	mov rsp, rbp
@@ -75,6 +74,20 @@ main:
 	sub rsp, 8
 	movsd [rsp], xmm0          ; save result in stack
 
+	; get params from stack====================================
+	movsd xmm0, [rsp]          ; pop 3 param
+	add   rsp, 8
+	movsd [rbp + 8 * 2], xmm0
+
+	movsd xmm0, [rsp]          ; pop 2 param
+	add   rsp, 8
+	movsd [rbp + 8 * 1], xmm0
+
+	movsd xmm0, [rsp]          ; pop 1 param
+	add   rsp, 8
+	movsd [rbp + 8 * 0], xmm0
+
+	; params loaded============================================
 	call SQSOLVER
 	add rbp, 8 * 6
 	mov rsp, rbp
@@ -83,9 +96,9 @@ main:
 
 	; CALL END
 
-	movsd xmm0, [rsp]          ; assignment to bCoeff
+	movsd xmm0, [rsp]          ; assignment to numofanswers
 	add   rsp, 8
-	movsd  [rbp + 8 * 1], xmm0
+	movsd  [rel numofanswers], xmm0
 	; prepare for printf
 
 	movsd xmm0, [rel numofanswers]
@@ -122,7 +135,7 @@ main:
 	syscall
 
 LINEAR:
-
+	
 ; IF
 	; condition
 	mov  rax,  __float64__(0.000000)
@@ -141,7 +154,7 @@ LINEAR:
 	comisd xmm0, xmm1
 	jne .endif0
 	; if body:
-
+	
 ; IF
 	; condition
 	mov  rax,  __float64__(0.000000)
@@ -216,9 +229,9 @@ LINEAR:
 	sub rsp, 8
 	movsd [rsp], xmm0          ; save result in stack
 
-	movsd xmm0, [rsp]          ; assignment to bCoeff
+	movsd xmm0, [rsp]          ; assignment to first
 	add   rsp, 8
-	movsd  [rbp + 8 * 1], xmm0
+	movsd  [rel first], xmm0
 ; prepare return value
 	mov  rax,  __float64__(1.000000)
 	movq xmm0, rax
@@ -235,7 +248,7 @@ LINEAR:
 	syscall
 
 SQSOLVER:
-
+	
 ; IF
 	; condition
 	mov  rax,  __float64__(0.000000)
@@ -255,7 +268,7 @@ SQSOLVER:
 	jne .endif4
 	; if body:
 ; prepare return value
-
+	
 ;before CALL shift base and stack pointers (rsp, rbp)
 	sub rbp, 8 * 4
 	mov rsp, rbp
@@ -268,6 +281,16 @@ SQSOLVER:
 	sub rsp, 8
 	movsd [rsp], xmm0          ; save result in stack
 
+	; get params from stack====================================
+	movsd xmm0, [rsp]          ; pop 2 param
+	add   rsp, 8
+	movsd [rbp + 8 * 1], xmm0
+
+	movsd xmm0, [rsp]          ; pop 1 param
+	add   rsp, 8
+	movsd [rbp + 8 * 0], xmm0
+
+	; params loaded============================================
 	call LINEAR
 	add rbp, 8 * 4
 	mov rsp, rbp
@@ -343,10 +366,10 @@ SQSOLVER:
 	sub rsp, 8
 	movsd [rsp], xmm0          ; save result in stack
 
-	movsd xmm0, [rsp]          ; assignment to bCoeff
+	movsd xmm0, [rsp]          ; assignment to D
 	add   rsp, 8
-	movsd  [rbp + 8 * 1], xmm0
-
+	movsd  [rbp + 8 * 3], xmm0
+	
 ; IF
 	; condition
 	mov  rax,  __float64__(0.000000)
@@ -400,9 +423,9 @@ SQSOLVER:
 	sub rsp, 8
 	movsd [rsp], xmm0          ; save result in stack
 
-	movsd xmm0, [rsp]          ; assignment to bCoeff
+	movsd xmm0, [rsp]          ; assignment to first
 	add   rsp, 8
-	movsd  [rbp + 8 * 1], xmm0
+	movsd  [rel first], xmm0
 ; prepare return value
 	mov  rax,  __float64__(1.000000)
 	movq xmm0, rax
@@ -414,7 +437,7 @@ SQSOLVER:
 	ret
 
 	.endif6:
-
+	
 ; IF
 	; condition
 	mov  rax,  __float64__(0.000000)
@@ -468,9 +491,9 @@ SQSOLVER:
 	sub rsp, 8
 	movsd [rsp], xmm0          ; save result in stack
 
-	movsd xmm0, [rsp]          ; assignment to bCoeff
+	movsd xmm0, [rsp]          ; assignment to D
 	add   rsp, 8
-	movsd  [rbp + 8 * 1], xmm0
+	movsd  [rbp + 8 * 3], xmm0
 	;calculating expression for assignment
 	; prepare result of left subtree in stack:
 	mov  rax,  __float64__(0.000000)
@@ -534,9 +557,9 @@ SQSOLVER:
 	sub rsp, 8
 	movsd [rsp], xmm0          ; save result in stack
 
-	movsd xmm0, [rsp]          ; assignment to bCoeff
+	movsd xmm0, [rsp]          ; assignment to first
 	add   rsp, 8
-	movsd  [rbp + 8 * 1], xmm0
+	movsd  [rel first], xmm0
 	;calculating expression for assignment
 	; prepare result of left subtree in stack:
 	mov  rax,  __float64__(0.000000)
@@ -600,9 +623,9 @@ SQSOLVER:
 	sub rsp, 8
 	movsd [rsp], xmm0          ; save result in stack
 
-	movsd xmm0, [rsp]          ; assignment to bCoeff
+	movsd xmm0, [rsp]          ; assignment to second
 	add   rsp, 8
-	movsd  [rbp + 8 * 1], xmm0
+	movsd  [rel second], xmm0
 ; prepare return value
 	mov  rax,  __float64__(2.000000)
 	movq xmm0, rax

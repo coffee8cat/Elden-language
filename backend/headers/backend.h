@@ -29,6 +29,7 @@ void asm_translate_IF           (node_t* node, identificator* ids_table, FILE* o
 void asm_translate_While        (node_t* node, identificator* ids_table, FILE* output, size_t BX_shift);
 
 void asm_translate_Function_Definition(node_t* node, identificator* ids_table, FILE* output);
+void get_params(node_t* func_spec_node, identificator* ids_table, FILE* output);
 //elden_to_asm_translation_func get_params;
 
 void asm_translate_Return       (node_t* node, identificator* ids_table, FILE* output, size_t BX_shift);
