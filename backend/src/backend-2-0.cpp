@@ -124,7 +124,7 @@ void asm_translate_Assignment(node_t* node, identificator* ids_table, FILE* outp
         TAB_FPRINTF(output, "movsd  [rel %.*s], xmm0\n",  ids_table[node -> left -> value.id].name_len, ids_table[node -> left -> value.id].name);
     }
     else {
-        TAB_FPRINTF(output, "movsd  [rbp + 8 * %d], xmm0\n",  ids_table[node -> left -> value.id].address);
+        TAB_FPRINTF(output, "movsd  [rbp - 8 * %d], xmm0\n",  ids_table[node -> left -> value.id].address);
     }
 }
 
@@ -257,26 +257,31 @@ void asm_translate_Function_Definition(node_t* node, identificator* ids_table, F
     }
     else { fprintf(stderr, "ERROR: nullptr in function definition"); }
 
+    size_t FRAME_SIZE_aligned_by_16 = 8 * ( ids_table[node -> left -> left -> value.id].BX_shift +
+                                            ids_table[node -> left -> left -> value.id].BX_shift % 2);
+    // BX_SHIFT ALIGNED BY 16
+    TAB_FPRINTF(output, "push rbp\n\t"
+                        "mov  rbp, rsp\n\t"
+                        "sub  rsp, %d\n\t", FRAME_SIZE_aligned_by_16);
+
+    // GET PARAMETERS FROM STACK, CONSIDERING RET ADDRESS IS ON TOP OF STACK
+    get_params(ids_table[(node -> left -> left) -> value.id].num_of_params, FRAME_SIZE_aligned_by_16, output);
     // translate function body
     translate_OP(node -> right, ids_table, output, ids_table[node -> left -> left -> value.id].BX_shift);
 }
 
-void get_params(node_t* func_spec_node, identificator* ids_table, FILE* output)
-{
-    assert(func_spec_node);
-    assert(ids_table);
+void get_params(size_t num_of_params, size_t frame_size, FILE* output) {
     assert(output);
 
-    int num_of_params = (int)ids_table[(func_spec_node -> left) -> value.id].num_of_params;
     TAB_FPRINTF(output,     "; get params from stack====================================\n");
 
-    // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    // i-1 since params shift from rbp is numerated from 0
-    for (int i = num_of_params - 1; i > -1; i--)
+    // 16 bc there were two pushes (ret addr and rbp) between frame and parameters
+    size_t rbp_rel = frame_size + 16;
+    for (size_t i = 0; i < num_of_params; i++)
     {
-        TAB_FPRINTF(output, "movsd xmm0, [rsp]          ; pop %d param\n\t"
-                            "add   rsp, 8\n\t"
-                            "movsd [rbp + 8 * %d], xmm0\n\n", i+1, i);
+        TAB_FPRINTF(output, "movsd xmm0, [rsp + %d]        ; pop %d param\n\t"
+                            "movsd [rbp - 8 * %d], xmm0\n\n", rbp_rel, i+1, i);
+        rbp_rel += 8;
     }
     TAB_FPRINTF(output,     "; params loaded============================================\n");
 }
@@ -295,10 +300,9 @@ void asm_translate_Return(node_t* node, identificator* ids_table, FILE* output, 
     // return value is stored in stack now
     // save to xmm0, due to restoring rsp and rbp after return
     TAB_FPRINTF(output, "movsd xmm0, [rsp]          ; get function result before ret\n\t"
-                        "add   rsp, 8\n");
-    // restore callee-saved registers ???
-
-    TAB_FPRINTF(output, "ret\n\n");
+                        "add   rsp, 8\n\t"
+                        "leave                      ; restore rbp and rsp\n\t"
+                        "ret\n\n");
 }
 
 void asm_translate_Function_Call(node_t* node, identificator* ids_table, FILE* output, size_t BX_shift)
@@ -308,9 +312,9 @@ void asm_translate_Function_Call(node_t* node, identificator* ids_table, FILE* o
     assert(output);
 
     // shift base
-    TAB_FPRINTF(output, "\n;before CALL shift base and stack pointers (rsp, rbp)\n");
-    TAB_FPRINTF(output, "sub rbp, 8 * %d\n", BX_shift);
-    TAB_FPRINTF(output, "mov rsp, rbp\n");
+    //TAB_FPRINTF(output, "\n;before CALL shift base and stack pointers (rsp, rbp)\n");
+    //TAB_FPRINTF(output, "sub rbp, 8 * %d\n", BX_shift);
+    //TAB_FPRINTF(output, "mov rsp, rbp\n");
 
     // check function definition
     if (not ids_table[node -> left -> left -> value.id].is_defined)
@@ -324,20 +328,28 @@ void asm_translate_Function_Call(node_t* node, identificator* ids_table, FILE* o
     asm_push_call_params(node -> left -> right, ids_table, output, BX_shift);
 
     //params are in the right order in stack
-    get_params(node -> left, ids_table, output);
+    //get_params(node -> left, ids_table, output);
     TAB_FPRINTF(output, "call %.*s\n",
             ids_table[node -> left -> left -> value.id].name_len,
             ids_table[node -> left -> left -> value.id].name);
 
     // after call return value is stored in xmm0
     // restore base pointer and stack pointer
-    TAB_FPRINTF(output, "add rbp, 8 * %d\n", BX_shift);
-    TAB_FPRINTF(output, "mov rsp, rbp\n");
+    //TAB_FPRINTF(output, "add rbp, 8 * %d\n", BX_shift);
+    //TAB_FPRINTF(output, "mov rsp, rbp\n");
 
+    clear_stack(ids_table[node -> left -> left -> value.id].num_of_params, output);
     // push function result
     TAB_FPRINTF(output, "sub rsp, 8\n\t"
                         "movsd [rsp], xmm0          ; save result in stack\n\n");
     TAB_FPRINTF(output, "; CALL END\n\n");
+}
+
+void clear_stack(size_t num_of_params, FILE* output) {
+    assert(output);
+
+    // maybe have to align by 16
+    TAB_FPRINTF(output, "add rsp, %ld                ; clear stack\n", 8 * num_of_params);
 }
 
 void asm_push_call_params(node_t* node, identificator* ids_table, FILE* output, size_t BX_shift)
@@ -488,7 +500,7 @@ void asm_translate_push_node_value(node_t* node, identificator* ids_table, FILE*
     if (node -> type == ID)
     {
         if (ids_table[node -> value.id].scope == LOCAL) {
-            TAB_FPRINTF(output, "movsd xmm0, [rbp + 8 * %d]\n", ids_table[node -> value.id].address);
+            TAB_FPRINTF(output, "movsd xmm0, [rbp - 8 * %d]\n", ids_table[node -> value.id].address);
         }
         else {
             TAB_FPRINTF(output, "movsd xmm0, [rel %.*s]\n", ids_table[node -> value.id].name_len, ids_table[node -> value.id].name);
@@ -517,7 +529,7 @@ void asm_translate_pop_var(node_t* node, identificator* ids_table, FILE* output)
     // mov var, xmm0
     if (node -> type == ID)
     {
-        if (ids_table[node -> value.id].scope == LOCAL) { TAB_FPRINTF(output, "movsd [rbp + 8 * %d],  xmm0\n", ids_table[node -> value.id].address); }
+        if (ids_table[node -> value.id].scope == LOCAL) { TAB_FPRINTF(output, "movsd [rbp - 8 * %d],  xmm0\n", ids_table[node -> value.id].address); }
         else                                            { TAB_FPRINTF(output, "movsd [rel %.*s], xmm0\n",
                                                                       ids_table[node -> value.id].name_len, ids_table[node -> value.id].name); }
     }

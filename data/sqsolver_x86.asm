@@ -57,10 +57,6 @@ main:
 	; scanf end ;=====================================================
 
 	;calculating expression for assignment
-	
-;before CALL shift base and stack pointers (rsp, rbp)
-	sub rbp, 8 * 6
-	mov rsp, rbp
 	; push call params
 	movsd xmm0, [rel aCoeff]
 	sub rsp, 8
@@ -74,23 +70,8 @@ main:
 	sub rsp, 8
 	movsd [rsp], xmm0          ; save result in stack
 
-	; get params from stack====================================
-	movsd xmm0, [rsp]          ; pop 3 param
-	add   rsp, 8
-	movsd [rbp + 8 * 2], xmm0
-
-	movsd xmm0, [rsp]          ; pop 2 param
-	add   rsp, 8
-	movsd [rbp + 8 * 1], xmm0
-
-	movsd xmm0, [rsp]          ; pop 1 param
-	add   rsp, 8
-	movsd [rbp + 8 * 0], xmm0
-
-	; params loaded============================================
 	call SQSOLVER
-	add rbp, 8 * 6
-	mov rsp, rbp
+	add rsp, 24                ; clear stack
 	sub rsp, 8
 	movsd [rsp], xmm0          ; save result in stack
 
@@ -135,6 +116,17 @@ main:
 	syscall
 
 LINEAR:
+	push rbp
+	mov  rbp, rsp
+	sub  rsp, 16
+		; get params from stack====================================
+	movsd xmm0, [rsp + 32]        ; pop 1 param
+	movsd [rbp - 8 * 0], xmm0
+
+	movsd xmm0, [rsp + 40]        ; pop 2 param
+	movsd [rbp - 8 * 1], xmm0
+
+	; params loaded============================================
 	
 ; IF
 	; condition
@@ -143,7 +135,7 @@ LINEAR:
 	sub rsp, 8
 	movsd [rsp], xmm0          ; save result in stack
 
-	movsd xmm0, [rbp + 8 * 1]
+	movsd xmm0, [rbp - 8 * 1]
 	sub rsp, 8
 	movsd [rsp], xmm0          ; save result in stack
 
@@ -162,7 +154,7 @@ LINEAR:
 	sub rsp, 8
 	movsd [rsp], xmm0          ; save result in stack
 
-	movsd xmm0, [rbp + 8 * 0]
+	movsd xmm0, [rbp - 8 * 0]
 	sub rsp, 8
 	movsd [rsp], xmm0          ; save result in stack
 
@@ -181,6 +173,7 @@ LINEAR:
 
 	movsd xmm0, [rsp]          ; get function result before ret
 	add   rsp, 8
+	leave                      ; restore rbp and rsp
 	ret
 
 	.endif1:
@@ -192,6 +185,7 @@ LINEAR:
 
 	movsd xmm0, [rsp]          ; get function result before ret
 	add   rsp, 8
+	leave                      ; restore rbp and rsp
 	ret
 
 	.endif0:
@@ -204,12 +198,12 @@ LINEAR:
 
 	; prepare result of right subtree in stack:
 	; prepare result of left subtree in stack:
-	movsd xmm0, [rbp + 8 * 0]
+	movsd xmm0, [rbp - 8 * 0]
 	sub rsp, 8
 	movsd [rsp], xmm0          ; save result in stack
 
 	; prepare result of right subtree in stack:
-	movsd xmm0, [rbp + 8 * 1]
+	movsd xmm0, [rbp - 8 * 1]
 	sub rsp, 8
 	movsd [rsp], xmm0          ; save result in stack
 
@@ -240,6 +234,7 @@ LINEAR:
 
 	movsd xmm0, [rsp]          ; get function result before ret
 	add   rsp, 8
+	leave                      ; restore rbp and rsp
 	ret
 
 	; Exit with code 0 (success)
@@ -248,6 +243,20 @@ LINEAR:
 	syscall
 
 SQSOLVER:
+	push rbp
+	mov  rbp, rsp
+	sub  rsp, 32
+		; get params from stack====================================
+	movsd xmm0, [rsp + 48]        ; pop 1 param
+	movsd [rbp - 8 * 0], xmm0
+
+	movsd xmm0, [rsp + 56]        ; pop 2 param
+	movsd [rbp - 8 * 1], xmm0
+
+	movsd xmm0, [rsp + 64]        ; pop 3 param
+	movsd [rbp - 8 * 2], xmm0
+
+	; params loaded============================================
 	
 ; IF
 	; condition
@@ -256,7 +265,7 @@ SQSOLVER:
 	sub rsp, 8
 	movsd [rsp], xmm0          ; save result in stack
 
-	movsd xmm0, [rbp + 8 * 2]
+	movsd xmm0, [rbp - 8 * 2]
 	sub rsp, 8
 	movsd [rsp], xmm0          ; save result in stack
 
@@ -268,32 +277,17 @@ SQSOLVER:
 	jne .endif4
 	; if body:
 ; prepare return value
-	
-;before CALL shift base and stack pointers (rsp, rbp)
-	sub rbp, 8 * 4
-	mov rsp, rbp
 	; push call params
-	movsd xmm0, [rbp + 8 * 1]
+	movsd xmm0, [rbp - 8 * 1]
 	sub rsp, 8
 	movsd [rsp], xmm0          ; save result in stack
 
-	movsd xmm0, [rbp + 8 * 0]
+	movsd xmm0, [rbp - 8 * 0]
 	sub rsp, 8
 	movsd [rsp], xmm0          ; save result in stack
 
-	; get params from stack====================================
-	movsd xmm0, [rsp]          ; pop 2 param
-	add   rsp, 8
-	movsd [rbp + 8 * 1], xmm0
-
-	movsd xmm0, [rsp]          ; pop 1 param
-	add   rsp, 8
-	movsd [rbp + 8 * 0], xmm0
-
-	; params loaded============================================
 	call LINEAR
-	add rbp, 8 * 4
-	mov rsp, rbp
+	add rsp, 16                ; clear stack
 	sub rsp, 8
 	movsd [rsp], xmm0          ; save result in stack
 
@@ -301,18 +295,19 @@ SQSOLVER:
 
 	movsd xmm0, [rsp]          ; get function result before ret
 	add   rsp, 8
+	leave                      ; restore rbp and rsp
 	ret
 
 	.endif4:
 	;calculating expression for assignment
 	; prepare result of left subtree in stack:
 	; prepare result of left subtree in stack:
-	movsd xmm0, [rbp + 8 * 1]
+	movsd xmm0, [rbp - 8 * 1]
 	sub rsp, 8
 	movsd [rsp], xmm0          ; save result in stack
 
 	; prepare result of right subtree in stack:
-	movsd xmm0, [rbp + 8 * 1]
+	movsd xmm0, [rbp - 8 * 1]
 	sub rsp, 8
 	movsd [rsp], xmm0          ; save result in stack
 
@@ -327,12 +322,12 @@ SQSOLVER:
 	; prepare result of right subtree in stack:
 	; prepare result of left subtree in stack:
 	; prepare result of left subtree in stack:
-	movsd xmm0, [rbp + 8 * 0]
+	movsd xmm0, [rbp - 8 * 0]
 	sub rsp, 8
 	movsd [rsp], xmm0          ; save result in stack
 
 	; prepare result of right subtree in stack:
-	movsd xmm0, [rbp + 8 * 2]
+	movsd xmm0, [rbp - 8 * 2]
 	sub rsp, 8
 	movsd [rsp], xmm0          ; save result in stack
 
@@ -368,7 +363,7 @@ SQSOLVER:
 
 	movsd xmm0, [rsp]          ; assignment to D
 	add   rsp, 8
-	movsd  [rbp + 8 * 3], xmm0
+	movsd  [rbp - 8 * 3], xmm0
 	
 ; IF
 	; condition
@@ -377,7 +372,7 @@ SQSOLVER:
 	sub rsp, 8
 	movsd [rsp], xmm0          ; save result in stack
 
-	movsd xmm0, [rbp + 8 * 3]
+	movsd xmm0, [rbp - 8 * 3]
 	sub rsp, 8
 	movsd [rsp], xmm0          ; save result in stack
 
@@ -397,7 +392,7 @@ SQSOLVER:
 
 	; prepare result of right subtree in stack:
 	; prepare result of left subtree in stack:
-	movsd xmm0, [rbp + 8 * 1]
+	movsd xmm0, [rbp - 8 * 1]
 	sub rsp, 8
 	movsd [rsp], xmm0          ; save result in stack
 
@@ -434,6 +429,7 @@ SQSOLVER:
 
 	movsd xmm0, [rsp]          ; get function result before ret
 	add   rsp, 8
+	leave                      ; restore rbp and rsp
 	ret
 
 	.endif6:
@@ -445,7 +441,7 @@ SQSOLVER:
 	sub rsp, 8
 	movsd [rsp], xmm0          ; save result in stack
 
-	movsd xmm0, [rbp + 8 * 3]
+	movsd xmm0, [rbp - 8 * 3]
 	sub rsp, 8
 	movsd [rsp], xmm0          ; save result in stack
 
@@ -458,7 +454,7 @@ SQSOLVER:
 	; if body:
 	;calculating expression for assignment
 	; prepare result of left subtree in stack:
-	movsd xmm0, [rbp + 8 * 3]
+	movsd xmm0, [rbp - 8 * 3]
 	sub rsp, 8
 	movsd [rsp], xmm0          ; save result in stack
 
@@ -493,7 +489,7 @@ SQSOLVER:
 
 	movsd xmm0, [rsp]          ; assignment to D
 	add   rsp, 8
-	movsd  [rbp + 8 * 3], xmm0
+	movsd  [rbp - 8 * 3], xmm0
 	;calculating expression for assignment
 	; prepare result of left subtree in stack:
 	mov  rax,  __float64__(0.000000)
@@ -504,12 +500,12 @@ SQSOLVER:
 	; prepare result of right subtree in stack:
 	; prepare result of left subtree in stack:
 	; prepare result of left subtree in stack:
-	movsd xmm0, [rbp + 8 * 1]
+	movsd xmm0, [rbp - 8 * 1]
 	sub rsp, 8
 	movsd [rsp], xmm0          ; save result in stack
 
 	; prepare result of right subtree in stack:
-	movsd xmm0, [rbp + 8 * 3]
+	movsd xmm0, [rbp - 8 * 3]
 	sub rsp, 8
 	movsd [rsp], xmm0          ; save result in stack
 
@@ -529,7 +525,7 @@ SQSOLVER:
 	movsd [rsp], xmm0          ; save result in stack
 
 	; prepare result of right subtree in stack:
-	movsd xmm0, [rbp + 8 * 2]
+	movsd xmm0, [rbp - 8 * 2]
 	sub rsp, 8
 	movsd [rsp], xmm0          ; save result in stack
 
@@ -570,12 +566,12 @@ SQSOLVER:
 	; prepare result of right subtree in stack:
 	; prepare result of left subtree in stack:
 	; prepare result of left subtree in stack:
-	movsd xmm0, [rbp + 8 * 1]
+	movsd xmm0, [rbp - 8 * 1]
 	sub rsp, 8
 	movsd [rsp], xmm0          ; save result in stack
 
 	; prepare result of right subtree in stack:
-	movsd xmm0, [rbp + 8 * 3]
+	movsd xmm0, [rbp - 8 * 3]
 	sub rsp, 8
 	movsd [rsp], xmm0          ; save result in stack
 
@@ -595,7 +591,7 @@ SQSOLVER:
 	movsd [rsp], xmm0          ; save result in stack
 
 	; prepare result of right subtree in stack:
-	movsd xmm0, [rbp + 8 * 2]
+	movsd xmm0, [rbp - 8 * 2]
 	sub rsp, 8
 	movsd [rsp], xmm0          ; save result in stack
 
@@ -634,16 +630,18 @@ SQSOLVER:
 
 	movsd xmm0, [rsp]          ; get function result before ret
 	add   rsp, 8
+	leave                      ; restore rbp and rsp
 	ret
 
 	.endif8:
 ; prepare return value
-	movsd xmm0, [rbp + 8 * 3]
+	movsd xmm0, [rbp - 8 * 3]
 	sub rsp, 8
 	movsd [rsp], xmm0          ; save result in stack
 
 	movsd xmm0, [rsp]          ; get function result before ret
 	add   rsp, 8
+	leave                      ; restore rbp and rsp
 	ret
 
 

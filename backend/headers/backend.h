@@ -29,12 +29,13 @@ void asm_translate_IF           (node_t* node, identificator* ids_table, FILE* o
 void asm_translate_While        (node_t* node, identificator* ids_table, FILE* output, size_t BX_shift);
 
 void asm_translate_Function_Definition(node_t* node, identificator* ids_table, FILE* output);
-void get_params(node_t* func_spec_node, identificator* ids_table, FILE* output);
+void get_params(size_t num_of_params, size_t frame_size, FILE* output);
 //elden_to_asm_translation_func get_params;
 
 void asm_translate_Return       (node_t* node, identificator* ids_table, FILE* output, size_t BX_shift);
 void asm_translate_Function_Call(node_t* node, identificator* ids_table, FILE* output, size_t BX_shift);
 void asm_push_call_params       (node_t* node, identificator* ids_table, FILE* output, size_t BX_shift);
+void clear_stack(size_t num_of_params, FILE* output);
 
 void asm_translate_Print        (node_t* node, identificator* ids_table, FILE* output, size_t BX_shift);
 void asm_translate_Scan         (node_t* node, identificator* ids_table, FILE* output);
