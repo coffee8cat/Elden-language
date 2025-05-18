@@ -17,7 +17,7 @@ OBJ_DIR = obj
 OBJECTS = $(wildcard $(OBJ_DIR)/*.o)
 EXECUTABLE = elden_backend
 
-ASM_FILE = sqsolver_x86
+ASM_FILE = fact_x86
 
 all: $(SOURCES) $(BUILD_DIR)
 	$(CC) $(SOURCES) -o $(BUILD_DIR)/$(EXECUTABLE) -I$(HEADERS_DIR) -D$(DEBUG)
@@ -55,7 +55,8 @@ compile:
 compile_asm:
 	g++	-c ../data/my_lib.cpp -g -o ../$(BIN_BUILD_DIR)/my_lib.o -fPIC
 	nasm -f elf64 ../data/$(ASM_FILE).asm -g -o ../$(BIN_BUILD_DIR)/$(ASM_FILE).o
-	g++ -g -fPIE ../$(BIN_BUILD_DIR)/$(ASM_FILE).o ../$(BIN_BUILD_DIR)/my_lib.o -o ../$(BIN_BUILD_DIR)/$(ASM_FILE)
+	nasm -f elf64 ../data/my_lib.asm -g -o ../$(BIN_BUILD_DIR)/my_lib_asm.o
+	g++ -g -fPIE ../$(BIN_BUILD_DIR)/$(ASM_FILE).o ../$(BIN_BUILD_DIR)/my_lib.o ../$(BIN_BUILD_DIR)/my_lib_asm.o -o ../$(BIN_BUILD_DIR)/$(ASM_FILE)
 
 run_asm:
 	./../$(BIN_BUILD_DIR)/$(ASM_FILE)

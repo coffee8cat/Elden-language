@@ -1,6 +1,7 @@
 section .text
 
 global main
+extern print_double
 extern elem_in
 extern elem_out
 extern scanf
@@ -88,7 +89,15 @@ main:
 
 	movsd xmm0, [rsp]
 	add   rsp, 8
-	call elem_out
+	mov rax, rsp               ; use caller-saved rcx
+	and rax, 0xF               ; rcx = rsp % 16
+	sub rsp, rax               ; align stack by 16
+	push rax                   ; save aligning, now after call stack will be aligned by 16
+
+	call print_double
+
+	pop rax                    ; restore aligning
+	add rsp, rax               ; restore stack
 
 	; prepare for printf
 
@@ -98,7 +107,15 @@ main:
 
 	movsd xmm0, [rsp]
 	add   rsp, 8
-	call elem_out
+	mov rax, rsp               ; use caller-saved rcx
+	and rax, 0xF               ; rcx = rsp % 16
+	sub rsp, rax               ; align stack by 16
+	push rax                   ; save aligning, now after call stack will be aligned by 16
+
+	call print_double
+
+	pop rax                    ; restore aligning
+	add rsp, rax               ; restore stack
 
 	; prepare for printf
 
@@ -108,7 +125,15 @@ main:
 
 	movsd xmm0, [rsp]
 	add   rsp, 8
-	call elem_out
+	mov rax, rsp               ; use caller-saved rcx
+	and rax, 0xF               ; rcx = rsp % 16
+	sub rsp, rax               ; align stack by 16
+	push rax                   ; save aligning, now after call stack will be aligned by 16
+
+	call print_double
+
+	pop rax                    ; restore aligning
+	add rsp, rax               ; restore stack
 
 	; Exit with code 0 (success)
 	mov rax, 60                 ; sys_exit

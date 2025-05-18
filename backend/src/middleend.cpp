@@ -83,7 +83,7 @@ void count_params(node_t* node, identificator* ids_table, size_t* num_of_params)
     {
         ids_table[node -> value.id].type    = VAR;
         ids_table[node -> value.id].scope   = LOCAL;
-        ids_table[node -> value.id].address = *num_of_params;
+        ids_table[node -> value.id].address = *num_of_params + 1;
         (*num_of_params)++;
     }
     else { assert(0); }

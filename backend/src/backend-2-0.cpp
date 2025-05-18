@@ -22,6 +22,7 @@ void tree_to_asm(node_t* node, identificator* ids_table, size_t BX_shift)
 
     fprintf(fp, "section .text\n\n"
                 "global main\n"
+                "extern print_double\n"
                 "extern elem_in\n"
                 "extern elem_out\n"
                 "extern scanf\n"
@@ -277,10 +278,10 @@ void get_params(size_t num_of_params, size_t frame_size, FILE* output) {
 
     // 16 bc there were two pushes (ret addr and rbp) between frame and parameters
     size_t rbp_rel = frame_size + 16;
-    for (size_t i = 0; i < num_of_params; i++)
+    for (size_t i = 1; i <= num_of_params; i++)
     {
         TAB_FPRINTF(output, "movsd xmm0, [rsp + %d]        ; pop %d param\n\t"
-                            "movsd [rbp - 8 * %d], xmm0\n\n", rbp_rel, i+1, i);
+                            "movsd [rbp - 8 * %d], xmm0\n\n", rbp_rel, i, i);
         rbp_rel += 8;
     }
     TAB_FPRINTF(output,     "; params loaded============================================\n");
@@ -390,8 +391,14 @@ void asm_translate_Print(node_t* node, identificator* ids_table, FILE* output, s
     // store result from stack in xmm0 for printf
     TAB_FPRINTF(output, "movsd xmm0, [rsp]\n\t"
                         "add   rsp, 8\n");
-
-    TAB_FPRINTF(output, "call elem_out\n\n");
+    // align stack
+    TAB_FPRINTF(output, "mov rax, rsp               ; use caller-saved rcx\n\t"
+                        "and rax, 0xF               ; rcx = rsp % 16\n\t"
+                        "sub rsp, rax               ; align stack by 16\n\t"
+                        "push rax                   ; save aligning, now after call stack will be aligned by 16\n\n\t"
+                        "call print_double\n\n\t"
+                        "pop rax                    ; restore aligning\n\t"
+                        "add rsp, rax               ; restore stack\n\n");
     /*
     // prepare format string address and number of args
     TAB_FPRINTF(output, "mov rdi, double_format  ; pointer to format string\n\t"
@@ -462,9 +469,9 @@ void asm_translate_Expression(node_t* node, identificator* ids_table, FILE* outp
             asm_translate_Expression(node -> right, ids_table, output, BX_shift);
 
             // pop two arguments for operation
-            TAB_FPRINTF(output, "movsd xmm0, [rsp]          ; get result of right subtree from stack\n\t"
+            TAB_FPRINTF(output, "movsd xmm1, [rsp]          ; get result of right subtree from stack\n\t"
                                 "add   rsp, 8\n");
-            TAB_FPRINTF(output, "movsd xmm1, [rsp]          ; get result of left  subtree from stack\n\t"
+            TAB_FPRINTF(output, "movsd xmm0, [rsp]          ; get result of left  subtree from stack\n\t"
                                 "add   rsp, 8\n");
 
             // apply operation
