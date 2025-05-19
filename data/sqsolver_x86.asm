@@ -146,10 +146,10 @@ LINEAR:
 	sub  rsp, 16
 		; get params from stack====================================
 	movsd xmm0, [rsp + 32]        ; pop 1 param
-	movsd [rbp - 8 * 0], xmm0
+	movsd [rbp - 8 * 1], xmm0
 
 	movsd xmm0, [rsp + 40]        ; pop 2 param
-	movsd [rbp - 8 * 1], xmm0
+	movsd [rbp - 8 * 2], xmm0
 
 	; params loaded============================================
 	
@@ -160,7 +160,7 @@ LINEAR:
 	sub rsp, 8
 	movsd [rsp], xmm0          ; save result in stack
 
-	movsd xmm0, [rbp - 8 * 1]
+	movsd xmm0, [rbp - 8 * 2]
 	sub rsp, 8
 	movsd [rsp], xmm0          ; save result in stack
 
@@ -179,7 +179,7 @@ LINEAR:
 	sub rsp, 8
 	movsd [rsp], xmm0          ; save result in stack
 
-	movsd xmm0, [rbp - 8 * 0]
+	movsd xmm0, [rbp - 8 * 1]
 	sub rsp, 8
 	movsd [rsp], xmm0          ; save result in stack
 
@@ -223,26 +223,26 @@ LINEAR:
 
 	; prepare result of right subtree in stack:
 	; prepare result of left subtree in stack:
-	movsd xmm0, [rbp - 8 * 0]
-	sub rsp, 8
-	movsd [rsp], xmm0          ; save result in stack
-
-	; prepare result of right subtree in stack:
 	movsd xmm0, [rbp - 8 * 1]
 	sub rsp, 8
 	movsd [rsp], xmm0          ; save result in stack
 
-	movsd xmm0, [rsp]          ; get result of right subtree from stack
+	; prepare result of right subtree in stack:
+	movsd xmm0, [rbp - 8 * 2]
+	sub rsp, 8
+	movsd [rsp], xmm0          ; save result in stack
+
+	movsd xmm1, [rsp]          ; get result of right subtree from stack
 	add   rsp, 8
-	movsd xmm1, [rsp]          ; get result of left  subtree from stack
+	movsd xmm0, [rsp]          ; get result of left  subtree from stack
 	add   rsp, 8
 	divsd xmm0, xmm1
 	sub rsp, 8
 	movsd [rsp], xmm0          ; save result in stack
 
-	movsd xmm0, [rsp]          ; get result of right subtree from stack
+	movsd xmm1, [rsp]          ; get result of right subtree from stack
 	add   rsp, 8
-	movsd xmm1, [rsp]          ; get result of left  subtree from stack
+	movsd xmm0, [rsp]          ; get result of left  subtree from stack
 	add   rsp, 8
 	subsd xmm0, xmm1
 	sub rsp, 8
@@ -273,13 +273,13 @@ SQSOLVER:
 	sub  rsp, 32
 		; get params from stack====================================
 	movsd xmm0, [rsp + 48]        ; pop 1 param
-	movsd [rbp - 8 * 0], xmm0
-
-	movsd xmm0, [rsp + 56]        ; pop 2 param
 	movsd [rbp - 8 * 1], xmm0
 
-	movsd xmm0, [rsp + 64]        ; pop 3 param
+	movsd xmm0, [rsp + 56]        ; pop 2 param
 	movsd [rbp - 8 * 2], xmm0
+
+	movsd xmm0, [rsp + 64]        ; pop 3 param
+	movsd [rbp - 8 * 3], xmm0
 
 	; params loaded============================================
 	
@@ -290,7 +290,7 @@ SQSOLVER:
 	sub rsp, 8
 	movsd [rsp], xmm0          ; save result in stack
 
-	movsd xmm0, [rbp - 8 * 2]
+	movsd xmm0, [rbp - 8 * 3]
 	sub rsp, 8
 	movsd [rsp], xmm0          ; save result in stack
 
@@ -303,11 +303,11 @@ SQSOLVER:
 	; if body:
 ; prepare return value
 	; push call params
-	movsd xmm0, [rbp - 8 * 1]
+	movsd xmm0, [rbp - 8 * 2]
 	sub rsp, 8
 	movsd [rsp], xmm0          ; save result in stack
 
-	movsd xmm0, [rbp - 8 * 0]
+	movsd xmm0, [rbp - 8 * 1]
 	sub rsp, 8
 	movsd [rsp], xmm0          ; save result in stack
 
@@ -327,27 +327,7 @@ SQSOLVER:
 	;calculating expression for assignment
 	; prepare result of left subtree in stack:
 	; prepare result of left subtree in stack:
-	movsd xmm0, [rbp - 8 * 1]
-	sub rsp, 8
-	movsd [rsp], xmm0          ; save result in stack
-
-	; prepare result of right subtree in stack:
-	movsd xmm0, [rbp - 8 * 1]
-	sub rsp, 8
-	movsd [rsp], xmm0          ; save result in stack
-
-	movsd xmm0, [rsp]          ; get result of right subtree from stack
-	add   rsp, 8
-	movsd xmm1, [rsp]          ; get result of left  subtree from stack
-	add   rsp, 8
-	mulsd xmm0, xmm1
-	sub rsp, 8
-	movsd [rsp], xmm0          ; save result in stack
-
-	; prepare result of right subtree in stack:
-	; prepare result of left subtree in stack:
-	; prepare result of left subtree in stack:
-	movsd xmm0, [rbp - 8 * 0]
+	movsd xmm0, [rbp - 8 * 2]
 	sub rsp, 8
 	movsd [rsp], xmm0          ; save result in stack
 
@@ -356,9 +336,29 @@ SQSOLVER:
 	sub rsp, 8
 	movsd [rsp], xmm0          ; save result in stack
 
-	movsd xmm0, [rsp]          ; get result of right subtree from stack
+	movsd xmm1, [rsp]          ; get result of right subtree from stack
 	add   rsp, 8
-	movsd xmm1, [rsp]          ; get result of left  subtree from stack
+	movsd xmm0, [rsp]          ; get result of left  subtree from stack
+	add   rsp, 8
+	mulsd xmm0, xmm1
+	sub rsp, 8
+	movsd [rsp], xmm0          ; save result in stack
+
+	; prepare result of right subtree in stack:
+	; prepare result of left subtree in stack:
+	; prepare result of left subtree in stack:
+	movsd xmm0, [rbp - 8 * 1]
+	sub rsp, 8
+	movsd [rsp], xmm0          ; save result in stack
+
+	; prepare result of right subtree in stack:
+	movsd xmm0, [rbp - 8 * 3]
+	sub rsp, 8
+	movsd [rsp], xmm0          ; save result in stack
+
+	movsd xmm1, [rsp]          ; get result of right subtree from stack
+	add   rsp, 8
+	movsd xmm0, [rsp]          ; get result of left  subtree from stack
 	add   rsp, 8
 	mulsd xmm0, xmm1
 	sub rsp, 8
@@ -370,17 +370,17 @@ SQSOLVER:
 	sub rsp, 8
 	movsd [rsp], xmm0          ; save result in stack
 
-	movsd xmm0, [rsp]          ; get result of right subtree from stack
+	movsd xmm1, [rsp]          ; get result of right subtree from stack
 	add   rsp, 8
-	movsd xmm1, [rsp]          ; get result of left  subtree from stack
+	movsd xmm0, [rsp]          ; get result of left  subtree from stack
 	add   rsp, 8
 	mulsd xmm0, xmm1
 	sub rsp, 8
 	movsd [rsp], xmm0          ; save result in stack
 
-	movsd xmm0, [rsp]          ; get result of right subtree from stack
+	movsd xmm1, [rsp]          ; get result of right subtree from stack
 	add   rsp, 8
-	movsd xmm1, [rsp]          ; get result of left  subtree from stack
+	movsd xmm0, [rsp]          ; get result of left  subtree from stack
 	add   rsp, 8
 	subsd xmm0, xmm1
 	sub rsp, 8
@@ -417,7 +417,7 @@ SQSOLVER:
 
 	; prepare result of right subtree in stack:
 	; prepare result of left subtree in stack:
-	movsd xmm0, [rbp - 8 * 1]
+	movsd xmm0, [rbp - 8 * 2]
 	sub rsp, 8
 	movsd [rsp], xmm0          ; save result in stack
 
@@ -427,17 +427,17 @@ SQSOLVER:
 	sub rsp, 8
 	movsd [rsp], xmm0          ; save result in stack
 
-	movsd xmm0, [rsp]          ; get result of right subtree from stack
+	movsd xmm1, [rsp]          ; get result of right subtree from stack
 	add   rsp, 8
-	movsd xmm1, [rsp]          ; get result of left  subtree from stack
+	movsd xmm0, [rsp]          ; get result of left  subtree from stack
 	add   rsp, 8
 	divsd xmm0, xmm1
 	sub rsp, 8
 	movsd [rsp], xmm0          ; save result in stack
 
-	movsd xmm0, [rsp]          ; get result of right subtree from stack
+	movsd xmm1, [rsp]          ; get result of right subtree from stack
 	add   rsp, 8
-	movsd xmm1, [rsp]          ; get result of left  subtree from stack
+	movsd xmm0, [rsp]          ; get result of left  subtree from stack
 	add   rsp, 8
 	subsd xmm0, xmm1
 	sub rsp, 8
@@ -475,7 +475,7 @@ SQSOLVER:
 	movsd xmm1, [rsp]          ; get result of right subtree from stack
 	add   rsp, 8
 	comisd xmm0, xmm1
-	ja .endif8
+	jbe .endif8
 	; if body:
 	;calculating expression for assignment
 	; prepare result of left subtree in stack:
@@ -496,17 +496,17 @@ SQSOLVER:
 	sub rsp, 8
 	movsd [rsp], xmm0          ; save result in stack
 
-	movsd xmm0, [rsp]          ; get result of right subtree from stack
+	movsd xmm1, [rsp]          ; get result of right subtree from stack
 	add   rsp, 8
-	movsd xmm1, [rsp]          ; get result of left  subtree from stack
+	movsd xmm0, [rsp]          ; get result of left  subtree from stack
 	add   rsp, 8
 	divsd xmm0, xmm1
 	sub rsp, 8
 	movsd [rsp], xmm0          ; save result in stack
 
-	movsd xmm0, [rsp]          ; get result of right subtree from stack
+	movsd xmm1, [rsp]          ; get result of right subtree from stack
 	add   rsp, 8
-	movsd xmm1, [rsp]          ; get result of left  subtree from stack
+	movsd xmm0, [rsp]          ; get result of left  subtree from stack
 	add   rsp, 8
 	sqrtsd xmm0, xmm1
 	sub rsp, 8
@@ -525,7 +525,7 @@ SQSOLVER:
 	; prepare result of right subtree in stack:
 	; prepare result of left subtree in stack:
 	; prepare result of left subtree in stack:
-	movsd xmm0, [rbp - 8 * 1]
+	movsd xmm0, [rbp - 8 * 2]
 	sub rsp, 8
 	movsd [rsp], xmm0          ; save result in stack
 
@@ -534,9 +534,9 @@ SQSOLVER:
 	sub rsp, 8
 	movsd [rsp], xmm0          ; save result in stack
 
-	movsd xmm0, [rsp]          ; get result of right subtree from stack
+	movsd xmm1, [rsp]          ; get result of right subtree from stack
 	add   rsp, 8
-	movsd xmm1, [rsp]          ; get result of left  subtree from stack
+	movsd xmm0, [rsp]          ; get result of left  subtree from stack
 	add   rsp, 8
 	addsd xmm0, xmm1
 	sub rsp, 8
@@ -550,29 +550,29 @@ SQSOLVER:
 	movsd [rsp], xmm0          ; save result in stack
 
 	; prepare result of right subtree in stack:
-	movsd xmm0, [rbp - 8 * 2]
+	movsd xmm0, [rbp - 8 * 3]
 	sub rsp, 8
 	movsd [rsp], xmm0          ; save result in stack
 
-	movsd xmm0, [rsp]          ; get result of right subtree from stack
+	movsd xmm1, [rsp]          ; get result of right subtree from stack
 	add   rsp, 8
-	movsd xmm1, [rsp]          ; get result of left  subtree from stack
+	movsd xmm0, [rsp]          ; get result of left  subtree from stack
 	add   rsp, 8
 	mulsd xmm0, xmm1
 	sub rsp, 8
 	movsd [rsp], xmm0          ; save result in stack
 
-	movsd xmm0, [rsp]          ; get result of right subtree from stack
+	movsd xmm1, [rsp]          ; get result of right subtree from stack
 	add   rsp, 8
-	movsd xmm1, [rsp]          ; get result of left  subtree from stack
+	movsd xmm0, [rsp]          ; get result of left  subtree from stack
 	add   rsp, 8
 	divsd xmm0, xmm1
 	sub rsp, 8
 	movsd [rsp], xmm0          ; save result in stack
 
-	movsd xmm0, [rsp]          ; get result of right subtree from stack
+	movsd xmm1, [rsp]          ; get result of right subtree from stack
 	add   rsp, 8
-	movsd xmm1, [rsp]          ; get result of left  subtree from stack
+	movsd xmm0, [rsp]          ; get result of left  subtree from stack
 	add   rsp, 8
 	subsd xmm0, xmm1
 	sub rsp, 8
@@ -591,7 +591,7 @@ SQSOLVER:
 	; prepare result of right subtree in stack:
 	; prepare result of left subtree in stack:
 	; prepare result of left subtree in stack:
-	movsd xmm0, [rbp - 8 * 1]
+	movsd xmm0, [rbp - 8 * 2]
 	sub rsp, 8
 	movsd [rsp], xmm0          ; save result in stack
 
@@ -600,9 +600,9 @@ SQSOLVER:
 	sub rsp, 8
 	movsd [rsp], xmm0          ; save result in stack
 
-	movsd xmm0, [rsp]          ; get result of right subtree from stack
+	movsd xmm1, [rsp]          ; get result of right subtree from stack
 	add   rsp, 8
-	movsd xmm1, [rsp]          ; get result of left  subtree from stack
+	movsd xmm0, [rsp]          ; get result of left  subtree from stack
 	add   rsp, 8
 	subsd xmm0, xmm1
 	sub rsp, 8
@@ -616,29 +616,29 @@ SQSOLVER:
 	movsd [rsp], xmm0          ; save result in stack
 
 	; prepare result of right subtree in stack:
-	movsd xmm0, [rbp - 8 * 2]
+	movsd xmm0, [rbp - 8 * 3]
 	sub rsp, 8
 	movsd [rsp], xmm0          ; save result in stack
 
-	movsd xmm0, [rsp]          ; get result of right subtree from stack
+	movsd xmm1, [rsp]          ; get result of right subtree from stack
 	add   rsp, 8
-	movsd xmm1, [rsp]          ; get result of left  subtree from stack
+	movsd xmm0, [rsp]          ; get result of left  subtree from stack
 	add   rsp, 8
 	mulsd xmm0, xmm1
 	sub rsp, 8
 	movsd [rsp], xmm0          ; save result in stack
 
-	movsd xmm0, [rsp]          ; get result of right subtree from stack
+	movsd xmm1, [rsp]          ; get result of right subtree from stack
 	add   rsp, 8
-	movsd xmm1, [rsp]          ; get result of left  subtree from stack
+	movsd xmm0, [rsp]          ; get result of left  subtree from stack
 	add   rsp, 8
 	divsd xmm0, xmm1
 	sub rsp, 8
 	movsd [rsp], xmm0          ; save result in stack
 
-	movsd xmm0, [rsp]          ; get result of right subtree from stack
+	movsd xmm1, [rsp]          ; get result of right subtree from stack
 	add   rsp, 8
-	movsd xmm1, [rsp]          ; get result of left  subtree from stack
+	movsd xmm0, [rsp]          ; get result of left  subtree from stack
 	add   rsp, 8
 	subsd xmm0, xmm1
 	sub rsp, 8
@@ -660,7 +660,8 @@ SQSOLVER:
 
 	.endif8:
 ; prepare return value
-	movsd xmm0, [rbp - 8 * 3]
+	mov  rax,  __float64__(0.000000)
+	movq xmm0, rax
 	sub rsp, 8
 	movsd [rsp], xmm0          ; save result in stack
 

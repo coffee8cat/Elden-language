@@ -2,11 +2,15 @@ digraph
 {
     rankdir=TP
 
-        node0x55d9d98bb1b0[shape=record,style="rounded,filled",fillcolor="#BF62FC",label="{ ptr: 0x55d9d98bb1b0 | type: OP | value: spec| { left: 0x55d9d98bb120 | right: 0x55d9d98bb180 }}"];
-    node0x55d9d98bb1b0 -> node0x55d9d98bb120[color="#0855F0"]
-    node0x55d9d98bb120[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 0x55d9d98bb120 | type: ID | value: FACTORIAL| { left: (nil) | right: (nil) }}"];
-    node0x55d9d98bb1b0 -> node0x55d9d98bb180[color="#0855F0"]
-    node0x55d9d98bb180[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55d9d98bb180 | type: OP | value: ;| { left: 0x55d9d98bb150 | right: (nil) }}"];
-    node0x55d9d98bb180 -> node0x55d9d98bb150[color="#0855F0"]
-    node0x55d9d98bb150[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 0x55d9d98bb150 | type: ID | value: Tarnished| { left: (nil) | right: (nil) }}"];
+        node0x55fe6c83f070[shape=record,style="rounded,filled",fillcolor="#BF62FC",label="{ ptr: 0x55fe6c83f070 | type: OP | value: spec| { left: 0x55fe6c83ef80 | right: 0x55fe6c83f040 }}"];
+    node0x55fe6c83f070 -> node0x55fe6c83ef80[color="#0855F0"]
+    node0x55fe6c83ef80[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 0x55fe6c83ef80 | type: ID | value: LINEAR| { left: (nil) | right: (nil) }}"];
+    node0x55fe6c83f070 -> node0x55fe6c83f040[color="#0855F0"]
+    node0x55fe6c83f040[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55fe6c83f040 | type: OP | value: ;| { left: 0x55fe6c83f010 | right: 0x55fe6c83efe0 }}"];
+    node0x55fe6c83f040 -> node0x55fe6c83f010[color="#0855F0"]
+    node0x55fe6c83f010[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 0x55fe6c83f010 | type: ID | value: LinC| { left: (nil) | right: (nil) }}"];
+    node0x55fe6c83f040 -> node0x55fe6c83efe0[color="#0855F0"]
+    node0x55fe6c83efe0[shape=record,style="rounded,filled",fillcolor="#F2900A",label="{ ptr: 0x55fe6c83efe0 | type: OP | value: ;| { left: 0x55fe6c83efb0 | right: (nil) }}"];
+    node0x55fe6c83efe0 -> node0x55fe6c83efb0[color="#0855F0"]
+    node0x55fe6c83efb0[shape=record,style="rounded,filled",fillcolor="#1BECC5",label="{ ptr: 0x55fe6c83efb0 | type: ID | value: LinB| { left: (nil) | right: (nil) }}"];
 }

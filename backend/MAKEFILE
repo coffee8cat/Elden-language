@@ -17,7 +17,7 @@ OBJ_DIR = obj
 OBJECTS = $(wildcard $(OBJ_DIR)/*.o)
 EXECUTABLE = elden_backend
 
-ASM_FILE = fact_x86
+ASM_FILE = sqsolver_x86
 
 all: $(SOURCES) $(BUILD_DIR)
 	$(CC) $(SOURCES) -o $(BUILD_DIR)/$(EXECUTABLE) -I$(HEADERS_DIR) -D$(DEBUG)

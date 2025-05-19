@@ -70,6 +70,6 @@ The fallen leaves tell us a story of the SQSOLVER shine upon the ring of a, the 
         Bless thy tarnished with Lost ashes of war;
     };
 
-    Bless thy tarnished with the ring of D;
+    Bless thy tarnished with rune of Death;
 };
 $

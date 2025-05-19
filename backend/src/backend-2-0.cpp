@@ -176,7 +176,7 @@ void asm_translate_IF(node_t* node, identificator* ids_table, FILE* output, size
     }
     else if (node -> left -> value.op == GREATER)
     {
-        TAB_FPRINTF(output, "ja .endif%d\n", local_IF_counter);
+        TAB_FPRINTF(output, "jbe .endif%d\n", local_IF_counter);
     }
     else { fprintf(stderr, "ERROR: Invalid operation for condition in IF: %d\n", node -> left -> value.op); assert(0); }
 

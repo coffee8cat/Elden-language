@@ -42,22 +42,16 @@
 											{NUM:"0"}
 										}
 									}
-									{OP:"="
+									{OP:"scan"
 										{ID:"aCoeff"}
-										{OP:"-"
-											{NUM:"0"}
-											{NUM:"5"}
-										}
 									}
 								}
-								{OP:"="
+								{OP:"scan"
 									{ID:"bCoeff"}
-									{NUM:"1"}
 								}
 							}
-							{OP:"="
+							{OP:"scan"
 								{ID:"cCoeff"}
-								{NUM:"2"}
 							}
 						}
 						{OP:"="
@@ -124,9 +118,12 @@
 					}
 					{OP:"="
 						{ID:"first"}
-						{OP:"/"
-							{ID:"LinC"}
-							{ID:"LinB"}
+						{OP:"-"
+							{NUM:"0"}
+							{OP:"/"
+								{ID:"LinC"}
+								{ID:"LinB"}
+							}
 						}
 					}
 				}
@@ -276,7 +273,7 @@
 				}
 			}
 			{OP:"return"
-				{ID:"D"}
+				{NUM:"0"}
 			}
 		}
 	}
