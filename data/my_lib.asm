@@ -8,6 +8,12 @@ section .data
 section .text
     global print_double
 
+;====================================================================
+; Prints double value to console with fixed precision
+; Entry: xmm0 - double for print
+; Exit:  None
+; Dstr:  rax, rcx, rdx, rsi, rdi, xmm1, xmm2, xmm3
+;====================================================================
 print_double:
     push rbp
     mov  rbp, rsp
@@ -76,7 +82,12 @@ print_double:
     pop  rbx
     leave
     ret
-
+;====================================================================
+; Entry: rdi - integer to convert
+;        rsi - pointer to a string for converting
+; Exit:  rsi - pointer to byte after converted integer in a string
+; Dstr:  rax, rbx, rcx, rdx, rsi
+;====================================================================
 int_to_ascii:
     mov  rax, rdi
     mov  rcx, 10
